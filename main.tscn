@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhjo4c6b7xb5c"]
+
+[ext_resource type="PackedScene" uid="uid://cioc5obgwqwtp" path="res://main_menu/main_menu.tscn" id="2_v3g4g"]
+
+[node name="Game" type="Node"]
+
+[node name="MainMenu" parent="." instance=ExtResource("2_v3g4g")]
+size_flags_horizontal = 0
+
+[node name="LevelSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://World/world.tscn")
+spawn_path = NodePath("../Level")
+spawn_limit = 1
+
+[node name="Level" type="Node2D" parent="."]

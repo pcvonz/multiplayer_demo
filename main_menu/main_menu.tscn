@@ -1,0 +1,134 @@
+[gd_scene load_steps=8 format=3 uid="uid://cioc5obgwqwtp"]
+
+[ext_resource type="Shader" path="res://main_menu/main_menu.gdshader" id="1_btc8w"]
+[ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_q5yfe"]
+[ext_resource type="PackedScene" uid="uid://d0f0kvhj3htw5" path="res://Server/Lobby.tscn" id="3_no0ps"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jicvw"]
+shader = ExtResource("1_btc8w")
+
+[sub_resource type="Gradient" id="Gradient_m5rj8"]
+offsets = PackedFloat32Array(0.818182, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cq8ci"]
+frequency = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_l0vl7"]
+color_ramp = SubResource("Gradient_m5rj8")
+noise = SubResource("FastNoiseLite_cq8ci")
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q5yfe")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_jicvw")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_l0vl7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -104.5
+offset_right = 110.0
+offset_bottom = 104.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 50
+
+[node name="name" type="LineEdit" parent="HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "Goose"
+placeholder_text = "Input name"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="GameStatus" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="StartGame" type="Button" parent="HBoxContainer/VBoxContainer/GameStatus"]
+visible = false
+layout_mode = 2
+text = "Start game"
+
+[node name="Players" type="Label" parent="HBoxContainer/VBoxContainer/GameStatus"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Players:"
+
+[node name="GameOptions" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/VBoxContainer/GameOptions"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/GameOptions/MarginContainer2"]
+layout_mode = 2
+
+[node name="server" type="Button" parent="HBoxContainer/VBoxContainer/GameOptions/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Host Server"
+
+[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/VBoxContainer/GameOptions"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer/GameOptions"]
+layout_mode = 2
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/GameOptions/MarginContainer"]
+layout_mode = 2
+
+[node name="Adress" type="LineEdit" parent="HBoxContainer/VBoxContainer/GameOptions/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "127.0.0.1"
+placeholder_text = "SERVER IP"
+
+[node name="client" type="Button" parent="HBoxContainer/VBoxContainer/GameOptions/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Connect To Server
+"
+
+[node name="Lobby" parent="." instance=ExtResource("3_no0ps")]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://main.tscn")
+spawn_path = NodePath("../World")
+spawn_limit = 1
+
+[node name="World" type="Node2D" parent="."]
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/GameStatus/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/GameOptions/MarginContainer2/VBoxContainer/server" to="." method="_on_server_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/GameOptions/MarginContainer/VBoxContainer/client" to="." method="_on_client_pressed"]
+[connection signal="player_connected" from="Lobby" to="." method="_on_lobby_player_connected"]
+[connection signal="player_disconnected" from="Lobby" to="." method="_on_lobby_player_disconnected"]
