@@ -5,6 +5,8 @@ extends MultiplayerSynchronizer
 @export var rotating_starboard := false
 @export var brake_engaged := false
 @export var primary_weapon := false
+@export var place_object := false
+@export var placement_position: Vector2
 
 
 @rpc("call_local")
@@ -26,6 +28,10 @@ func set_thrust_engaged(state: bool):
 @rpc("call_local")
 func activate_primary_weapon():
 	primary_weapon = true
+
+@rpc("call_local")
+func activate_place_object():
+	place_object = true
 
 func _ready():
 	set_process_input(get_multiplayer_authority() == multiplayer.get_unique_id())
@@ -53,3 +59,11 @@ func _input(event):
 
 	if event.is_action_pressed("fire"):
 		activate_primary_weapon.rpc()
+
+	if event.is_action_released("click"):
+		var mouse_event: InputEventMouse = event
+		var mouse_position = mouse_event.position
+		placement_position = mouse_position - (get_viewport().get_visible_rect().size / 2)
+		
+		activate_place_object()
+

@@ -29,6 +29,6 @@ spawn_limit = 4
 [node name="PlayerSpawner" type="Node2D" parent="."]
 
 [node name="WeaponSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://ship/Missile/missile.tscn")
+_spawnable_scenes = PackedStringArray("res://Station/station.tscn", "res://ship/Missile/missile.tscn")
 spawn_path = NodePath("../PlayerSpawner")
 spawn_limit = 1000

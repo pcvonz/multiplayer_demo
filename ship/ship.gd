@@ -7,6 +7,7 @@ extends RigidBody2D
 @export var stopping_speed = 2.0
 @export var ship_name: String
 @onready var missile_scene = preload("res://ship/Missile/missile.tscn")
+@onready var station_scene = preload("res://Station/station.tscn")
 
 signal on_add_to_spawner(node: Node)
 
@@ -26,6 +27,13 @@ func _ready():
 		$Camera2D.enabled = false
 
 func _process(_delta):
+	if input.place_object:
+		var station = station_scene.instantiate()
+		station.global_position = input.placement_position + global_position
+		input.place_object = false
+		station.player_id = player_id
+
+		on_add_to_spawner.emit(station)
 	if input.primary_weapon:
 		input.primary_weapon = false
 		var missile = missile_scene.instantiate()
