@@ -38,7 +38,7 @@ func _ready():
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 
 
-func join_game(player_name: String, address = ""):
+func join_game(player_name: String, address: String):
 	player_info.name = player_name
 	if address.is_empty():
 		address = DEFAULT_SERVER_IP

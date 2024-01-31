@@ -118,6 +118,10 @@ layout_mode = 2
 text = "Connect To Server
 "
 
+[node name="connection_status" type="Label" parent="HBoxContainer/VBoxContainer/GameOptions/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="Lobby" parent="." instance=ExtResource("3_no0ps")]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]

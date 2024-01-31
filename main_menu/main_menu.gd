@@ -6,8 +6,9 @@ func _ready():
 	pass # Replace with function body.
 
 func _on_client_pressed():
-	var IP_ADDRESS: String = get_node("%Adress").text
-	$Lobby.join_game(get_node("%name").text, IP_ADDRESS)
+	var address: String = get_node("%Adress").text
+	get_node("%connection_status").text = "connection to: %s" % address
+	$Lobby.join_game(get_node("%name").text, address)
 
 func _on_server_pressed():
 	$Lobby.create_game(get_node("%name").text)
