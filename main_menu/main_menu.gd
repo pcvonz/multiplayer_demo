@@ -1,6 +1,5 @@
 extends Control
 
-@export var PORT = 8080
 @export var MAX_CLIENTS = 10
 @onready var IP_ADDRESS: String = get_node("%Adress").text
 # Called when the node enters the scene tree for the first time.
