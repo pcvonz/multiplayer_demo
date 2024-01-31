@@ -1,12 +1,12 @@
 extends Control
 
 @export var MAX_CLIENTS = 10
-@onready var IP_ADDRESS: String = get_node("%Adress").text
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 func _on_client_pressed():
+	var IP_ADDRESS: String = get_node("%Adress").text
 	$Lobby.join_game(get_node("%name").text, IP_ADDRESS)
 
 func _on_server_pressed():
