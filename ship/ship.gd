@@ -8,6 +8,8 @@ extends RigidBody2D
 @export var ship_name: String
 @onready var missile_scene = preload("res://ship/Missile/missile.tscn")
 
+signal on_add_to_spawner(node: Node)
+
 @export var player_id := 1 :
 	set(id):
 		player_id = id
@@ -31,7 +33,8 @@ func _process(_delta):
 		missile.rotation = self.rotation
 		missile.global_position = self.global_position
 		missile.linear_velocity = self.linear_velocity
-		get_node("../../WeaponSpawner").add_child(missile)
+		
+		on_add_to_spawner.emit(missile)
 
 func _integrate_forces(state: PhysicsDirectBodyState2D):
 	if input.thrust_engaged:
