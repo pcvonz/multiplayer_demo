@@ -6,6 +6,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_v33uy"]
 
 [node name="Missile" type="RigidBody2D"]
+max_contacts_reported = 4
+contact_monitor = true
 script = ExtResource("1_ej2rr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -15,3 +17,5 @@ shape = SubResource("CircleShape2D_v33uy")
 modulate = Color(1, 0.0666667, 1, 1)
 scale = Vector2(0.31836, 0.324384)
 texture = ExtResource("1_evlio")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

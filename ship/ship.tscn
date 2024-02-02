@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://1r5lguti5vfn"]
+[gd_scene load_steps=10 format=3 uid="uid://1r5lguti5vfn"]
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_kbfi8"]
 [ext_resource type="Texture2D" uid="uid://t5lcyvo0c2yw" path="res://icon.svg" id="2_bpfnb"]
@@ -40,6 +40,46 @@ properties/2/replication_mode = 1
 properties/3/path = NodePath(".:angular_velocity")
 properties/3/spawn = true
 properties/3/replication_mode = 1
+properties/4/path = NodePath(".:health")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+
+[sub_resource type="Animation" id="Animation_3246v"]
+resource_name = "damage"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.0352941, 0.137255, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8qjcx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cdtyu"]
+_data = {
+"RESET": SubResource("Animation_8qjcx"),
+"damage": SubResource("Animation_3246v")
+}
 
 [node name="ship" type="RigidBody2D" groups=["players"]]
 gravity_scale = 0.0
@@ -50,7 +90,7 @@ script = ExtResource("1_kbfi8")
 shape = SubResource("RectangleShape2D_mw1cn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.53125, 0.5)
+scale = Vector2(0.5, 0.471)
 texture = ExtResource("2_bpfnb")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -68,3 +108,14 @@ offset_left = -20.0
 offset_top = -75.0
 offset_right = 20.0
 offset_bottom = -52.0
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -1.0
+offset_top = 56.0
+offset_right = 3.0
+offset_bottom = 83.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cdtyu")
+}

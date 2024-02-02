@@ -29,7 +29,6 @@ func _on_timeout():
 			return
 			
 		var missile: RigidBody2D = missile_scene.instantiate()
-		missile.add_collision_exception_with(self)
 		missile.global_position = self.global_position
 		missile.look_at(closest_player.global_position)
 		missile.rotation = missile.rotation + ( PI / 2 )

@@ -5,9 +5,14 @@ extends RigidBody2D
 @export var angular_speed = .1
 @export var max_angular_speed = 10.0
 @export var stopping_speed = 2.0
+@export var health = 10.0
 @export var ship_name: String
 @onready var missile_scene = preload("res://ship/Missile/missile.tscn")
-@onready var station_scene = preload("res://Station/station.tscn")
+@onready var station_scene = preload("res://Turret/turret.tscn")
+@onready var explode_scene = preload("res://ship/explode.tscn")
+@onready var progress_bar: ProgressBar = get_node("ProgressBar")
+@onready var input = $PlayerInput
+@onready var anim: AnimationPlayer = get_node("AnimationPlayer")
 
 signal on_add_to_spawner(node: Node)
 
@@ -18,9 +23,10 @@ signal on_add_to_spawner(node: Node)
 		$id.text = "%s" % ship_name
 		$PlayerInput.set_multiplayer_authority(id)
 
-@onready var input = $PlayerInput
 
 func _ready():
+	progress_bar.value = health
+	progress_bar.max_value = health
 	if player_id == multiplayer.get_unique_id():
 		$Camera2D.enabled = true
 	else:
@@ -43,6 +49,21 @@ func _process(_delta):
 		missile.linear_velocity = self.linear_velocity
 		
 		on_add_to_spawner.emit(missile)
+
+func damage(amount: float):
+	health -= amount
+	progress_bar.value = health
+	anim.play("damage")
+	if progress_bar.value <= 0:
+		explode()
+
+func explode():
+	$CollisionShape2D.set_deferred("disabled", true)
+	$Sprite2D.visible = false
+	var explode_instance = explode_scene.instantiate()
+	explode_instance.global_position = global_position
+	on_add_to_spawner.emit(explode_instance)
+	
 
 func _integrate_forces(state: PhysicsDirectBodyState2D):
 	if input.thrust_engaged:

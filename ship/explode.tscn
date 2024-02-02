@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://cebys673sqrdx"]
+
+[ext_resource type="Script" path="res://ship/explode.gd" id="1_ynefu"]
+[ext_resource type="Texture2D" uid="uid://cxcmqamjx71lk" path="res://ship/explode/icon/1.PNG" id="2_t0ar0"]
+[ext_resource type="Texture2D" uid="uid://cx627uqwm81aq" path="res://ship/explode/icon/2.PNG" id="3_is2yg"]
+[ext_resource type="Texture2D" uid="uid://bkx2313u01omj" path="res://ship/explode/icon/3.PNG" id="4_408dp"]
+[ext_resource type="Texture2D" uid="uid://baf10kaqvntub" path="res://ship/explode/icon/4.PNG" id="5_4fuh3"]
+[ext_resource type="Texture2D" uid="uid://c10adnofv3ka7" path="res://ship/explode/icon/5.PNG" id="6_nebxd"]
+[ext_resource type="Texture2D" uid="uid://1t4g7ru6u744" path="res://ship/explode/icon/6.PNG" id="7_wail0"]
+
+[node name="explosion" type="Node2D"]
+script = ExtResource("1_ynefu")
+
+[node name="1" type="RigidBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="1"]
+texture = ExtResource("2_t0ar0")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="1"]
+scale = Vector2(0.966397, 1)
+polygon = PackedVector2Array(5.17385, 4, -11.3825, -1, -5.17385, -5, -26.904, -11, -17.5911, -19, -25.8693, -22, -17.5911, -32, -30.0084, -31, -34.1474, -23, -33.1127, 7)
+
+[node name="2" type="RigidBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="2"]
+texture = ExtResource("3_is2yg")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="2"]
+polygon = PackedVector2Array(8, -7, 31, -4, 30, -31, 9, -33)
+
+[node name="3" type="RigidBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="3"]
+texture = ExtResource("4_408dp")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="3"]
+polygon = PackedVector2Array(13, 12, 31, 10, 31, 28, 23, 31, 6, 31)
+
+[node name="4" type="RigidBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="4"]
+texture = ExtResource("5_4fuh3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="4"]
+polygon = PackedVector2Array(-32, 18, -9, 12, -7, 24, 1, 26, -3, 31, -27, 32)
+
+[node name="5" type="RigidBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="5"]
+texture = ExtResource("6_nebxd")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="5"]
+polygon = PackedVector2Array(-16, -31, -25, -23, -18, -19, -26, -12, -5, -5, -11, -1, 4, 3, 2, 7, 11, 14, 31, 10, 31, -4, 7, -6, 4, -23, 8, -31)
+
+[node name="6" type="RigidBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="6"]
+texture = ExtResource("7_wail0")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="6"]
+polygon = PackedVector2Array(-31, 8, -32, 17, -8, 10, -6, 22, 3, 26, -2, 32, 5, 32, 11, 13, 1, 7)
