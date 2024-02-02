@@ -1,7 +1,7 @@
 extends Node2D
 
+var starting_linear_velocity := Vector2(0, 0)
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	explode()
 
@@ -15,4 +15,5 @@ func explode():
 	for child in children:
 		var x = randf_range(-100.0, 100.0)
 		var y = randf_range(-100.0, 100.0)
+		child.linear_velocity = starting_linear_velocity
 		child.apply_impulse(Vector2(x, y))

@@ -18,7 +18,7 @@ func _on_add_to_spawner(node: Node):
 		# Setup takes spawner and self as input
 		if "setup" in node:
 			node.setup(self, $WeaponSpawner)
-		$WeaponSpawner.add_child(node)
+		$WeaponSpawner.call_deferred("add_child", node)
 			
 func spawn_ship(id: int):
 	var new_ship = preload("res://ship/ship.tscn").instantiate()

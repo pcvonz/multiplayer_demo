@@ -5,7 +5,7 @@ extends RigidBody2D
 @export var angular_speed = .1
 @export var max_angular_speed = 10.0
 @export var stopping_speed = 2.0
-@export var health = 10.0
+@export var health = 100.0
 @export var ship_name: String
 @onready var missile_scene = preload("res://ship/Missile/missile.tscn")
 @onready var station_scene = preload("res://Turret/turret.tscn")
@@ -23,16 +23,23 @@ signal on_add_to_spawner(node: Node)
 		$id.text = "%s" % ship_name
 		$PlayerInput.set_multiplayer_authority(id)
 
-
 func _ready():
 	progress_bar.value = health
 	progress_bar.max_value = health
+	if not multiplayer.is_server():
+		set_physics_process_internal(false)
+		set_physics_process(false)
 	if player_id == multiplayer.get_unique_id():
 		$Camera2D.enabled = true
 	else:
 		$Camera2D.enabled = false
 
 func _process(_delta):
+	if health != progress_bar.value :
+		progress_bar.value = health
+		if health <= 0:
+			anim.play("damage")
+			explode()
 	if input.place_object:
 		var station = station_scene.instantiate()
 		station.global_position = input.placement_position + global_position
@@ -52,15 +59,12 @@ func _process(_delta):
 
 func damage(amount: float):
 	health -= amount
-	progress_bar.value = health
-	anim.play("damage")
-	if progress_bar.value <= 0:
-		explode()
 
 func explode():
 	$CollisionShape2D.set_deferred("disabled", true)
 	$Sprite2D.visible = false
 	var explode_instance = explode_scene.instantiate()
+	explode_instance.starting_linear_velocity = linear_velocity
 	explode_instance.global_position = global_position
 	on_add_to_spawner.emit(explode_instance)
 	

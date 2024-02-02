@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bn1eauccy14wn"]
+[gd_scene load_steps=6 format=3 uid="uid://bn1eauccy14wn"]
 
 [ext_resource type="Script" path="res://World/World.gd" id="1_e77p4"]
 
@@ -14,6 +14,9 @@ width = 5000
 height = 5000
 color_ramp = SubResource("Gradient_rgvd5")
 noise = SubResource("FastNoiseLite_5ka65")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ghxy"]
+size = Vector2(1161, 20)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_e77p4")
@@ -32,3 +35,33 @@ spawn_limit = 4
 _spawnable_scenes = PackedStringArray("res://Station/station.tscn", "res://ship/Missile/missile.tscn")
 spawn_path = NodePath("../PlayerSpawner")
 spawn_limit = 1000
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-680, -270)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(570.5, 0)
+shape = SubResource("RectangleShape2D_3ghxy")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(-670, 370)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(570.5, 0)
+shape = SubResource("RectangleShape2D_3ghxy")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(-680, -270)
+rotation = 1.58018
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(570.5, 0)
+shape = SubResource("RectangleShape2D_3ghxy")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(471, -272)
+rotation = 1.58018
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(570.5, 0)
+shape = SubResource("RectangleShape2D_3ghxy")
