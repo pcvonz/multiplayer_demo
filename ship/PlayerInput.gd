@@ -61,6 +61,7 @@ func _input(event):
 		activate_primary_weapon.rpc()
 
 	if event.is_action_released("click"):
+		return
 		var mouse_event: InputEventMouse = event
 		var mouse_position = mouse_event.position
 		placement_position = mouse_position - (get_viewport().get_visible_rect().size / 2)

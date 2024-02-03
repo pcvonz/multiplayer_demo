@@ -29,6 +29,7 @@ func _ready():
 	if not multiplayer.is_server():
 		set_physics_process_internal(false)
 		set_physics_process(false)
+	set_process(multiplayer.is_server())
 	if player_id == multiplayer.get_unique_id():
 		$Camera2D.enabled = true
 	else:

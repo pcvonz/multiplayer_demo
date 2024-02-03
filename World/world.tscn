@@ -1,6 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bn1eauccy14wn"]
 
 [ext_resource type="Script" path="res://World/World.gd" id="1_e77p4"]
+[ext_resource type="PackedScene" uid="uid://cyg4pxfyvhj2u" path="res://factory/factory.tscn" id="2_gkmvu"]
 
 [sub_resource type="Gradient" id="Gradient_rgvd5"]
 offsets = PackedFloat32Array(0.763393, 1)
@@ -15,9 +16,6 @@ height = 5000
 color_ramp = SubResource("Gradient_rgvd5")
 noise = SubResource("FastNoiseLite_5ka65")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ghxy"]
-size = Vector2(1161, 20)
-
 [node name="World" type="Node2D"]
 script = ExtResource("1_e77p4")
 
@@ -27,41 +25,17 @@ texture = SubResource("NoiseTexture2D_uadub")
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://ship/ship.tscn")
 spawn_path = NodePath("../PlayerSpawner")
-spawn_limit = 4
+spawn_limit = 10
 
 [node name="PlayerSpawner" type="Node2D" parent="."]
 
+[node name="factory" parent="." instance=ExtResource("2_gkmvu")]
+position = Vector2(282, 412)
+build_queue = Array[Resource("res://ui/spawn_option_card/spawn_option_resource.gd")]([])
+percent_left = 0.0
+build_time = 0.0
+
 [node name="WeaponSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Station/station.tscn", "res://ship/Missile/missile.tscn")
+_spawnable_scenes = PackedStringArray("res://ship/Missile/missile.tscn")
 spawn_path = NodePath("../PlayerSpawner")
-spawn_limit = 1000
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-680, -270)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(570.5, 0)
-shape = SubResource("RectangleShape2D_3ghxy")
-
-[node name="StaticBody2D4" type="StaticBody2D" parent="."]
-position = Vector2(-670, 370)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(570.5, 0)
-shape = SubResource("RectangleShape2D_3ghxy")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(-680, -270)
-rotation = 1.58018
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(570.5, 0)
-shape = SubResource("RectangleShape2D_3ghxy")
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2(471, -272)
-rotation = 1.58018
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2(570.5, 0)
-shape = SubResource("RectangleShape2D_3ghxy")
+spawn_limit = 2000
