@@ -8,7 +8,6 @@ extends MultiplayerSynchronizer
 @export var place_object := false
 @export var placement_position: Vector2
 
-
 @rpc("call_local")
 func set_brake(state: bool):
 	brake_engaged = state
@@ -35,6 +34,7 @@ func activate_place_object():
 
 func _ready():
 	set_process_input(get_multiplayer_authority() == multiplayer.get_unique_id())
+	set_process(get_multiplayer_authority() == multiplayer.get_unique_id())
 
 func _input(event):
 	if event.is_action_pressed("ui_up"):

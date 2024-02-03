@@ -1,31 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://1r5lguti5vfn"]
+[gd_scene load_steps=9 format=3 uid="uid://1r5lguti5vfn"]
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_kbfi8"]
 [ext_resource type="Texture2D" uid="uid://t5lcyvo0c2yw" path="res://icon.svg" id="2_bpfnb"]
-[ext_resource type="Script" path="res://ship/PlayerInput.gd" id="3_tngm2"]
+[ext_resource type="PackedScene" uid="uid://bmb1q6u04otj5" path="res://ship/player_input.tscn" id="3_r2dtr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mw1cn"]
 size = Vector2(78, 76)
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6fljk"]
-properties/0/path = NodePath("PlayerInput:thrust_engaged")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath("PlayerInput:rotating_port")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath("PlayerInput:rotating_starboard")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-properties/3/path = NodePath("PlayerInput:brake_engaged")
-properties/3/spawn = true
-properties/3/replication_mode = 1
-properties/4/path = NodePath("PlayerInput:place_object")
-properties/4/spawn = true
-properties/4/replication_mode = 1
-properties/5/path = NodePath("PlayerInput:placement_position")
-properties/5/spawn = true
-properties/5/replication_mode = 1
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3ri7u"]
 properties/0/path = NodePath(".:linear_velocity")
@@ -96,18 +76,10 @@ texture = ExtResource("2_bpfnb")
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_speed = 100.0
 
-[node name="PlayerInput" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_6fljk")
-script = ExtResource("3_tngm2")
+[node name="PlayerInput" parent="." instance=ExtResource("3_r2dtr")]
 
 [node name="ServerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_3ri7u")
-
-[node name="id" type="Label" parent="."]
-offset_left = -20.0
-offset_top = -75.0
-offset_right = 20.0
-offset_bottom = -52.0
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 offset_left = -1.0

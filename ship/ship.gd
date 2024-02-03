@@ -6,22 +6,14 @@ extends RigidBody2D
 @export var max_angular_speed = 10.0
 @export var stopping_speed = 2.0
 @export var health = 100.0
-@export var ship_name: String
 @onready var missile_scene = preload("res://ship/Missile/missile.tscn")
 @onready var station_scene = preload("res://Turret/turret.tscn")
 @onready var explode_scene = preload("res://ship/explode.tscn")
 @onready var progress_bar: ProgressBar = get_node("ProgressBar")
-@onready var input = $PlayerInput
+var input: MultiplayerSynchronizer
 @onready var anim: AnimationPlayer = get_node("AnimationPlayer")
 
 signal on_add_to_spawner(node: Node)
-
-@export var player_id := 1 :
-	set(id):
-		player_id = id
-		# Give authority over the player input to the appropriate peer.
-		$id.text = "%s" % ship_name
-		$PlayerInput.set_multiplayer_authority(id)
 
 func _ready():
 	progress_bar.value = health
@@ -30,12 +22,10 @@ func _ready():
 		set_physics_process_internal(false)
 		set_physics_process(false)
 	set_process(multiplayer.is_server())
-	if player_id == multiplayer.get_unique_id():
-		$Camera2D.enabled = true
-	else:
-		$Camera2D.enabled = false
 
 func _process(_delta):
+	if !input:
+		return
 	if health != progress_bar.value :
 		progress_bar.value = health
 		if health <= 0:
@@ -45,7 +35,6 @@ func _process(_delta):
 		var station = station_scene.instantiate()
 		station.global_position = input.placement_position + global_position
 		input.place_object = false
-		station.player_id = player_id
 
 		on_add_to_spawner.emit(station)
 	if input.primary_weapon:
@@ -71,6 +60,8 @@ func explode():
 	
 
 func _integrate_forces(state: PhysicsDirectBodyState2D):
+	if !input:
+		return
 	if input.thrust_engaged:
 		var speed_to_add= (Vector2(0, clampf(speed, 0, speed)).rotated(self.rotation))
 		state.linear_velocity -= speed_to_add
