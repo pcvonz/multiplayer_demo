@@ -2,7 +2,6 @@ extends Area2D
 
 @onready var missile_scene = preload("res://ship/Missile/missile.tscn")
 
-signal on_tower_event(node: Node)
 var max_distance = 1000 
 var player_id: int
 
@@ -10,12 +9,9 @@ var player_id: int
 func _ready():
 	$Timer.timeout.connect(_on_timeout)
 
-func setup(world: Node, spawner: Node):
-	on_tower_event.connect(world._on_add_to_spawner)
-
 func _on_timeout():
 		var closest_player 
-		for player in get_tree().get_nodes_in_group("players"):
+		for player in get_tree().get_nodes_in_group("ships"):
 			var distance_to: float = self.global_position.distance_to(player.global_position)
 			if distance_to < max_distance:
 				if !closest_player:
@@ -33,4 +29,4 @@ func _on_timeout():
 		missile.look_at(closest_player.global_position)
 		missile.rotation = missile.rotation + ( PI / 2 )
 		
-		on_tower_event.emit(missile)
+		EventBus.on_add_to_spawner.emit(missile)

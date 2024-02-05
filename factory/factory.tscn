@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cyg4pxfyvhj2u"]
+[gd_scene load_steps=9 format=3 uid="uid://cyg4pxfyvhj2u"]
 
 [ext_resource type="Texture2D" uid="uid://t5lcyvo0c2yw" path="res://icon.svg" id="1_er5sm"]
 [ext_resource type="Script" path="res://factory/factory.gd" id="1_wkpvo"]
@@ -14,9 +14,15 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath(".:build_time")
 properties/1/spawn = true
 properties/1/replication_mode = 1
+properties/2/path = NodePath(".:health")
+properties/2/spawn = true
+properties/2/replication_mode = 1
 
-[node name="factory" type="Node2D"]
-position = Vector2(604, 479)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h4f3g"]
+size = Vector2(113, 119)
+
+[node name="factory" type="StaticBody2D"]
+collision_layer = 2
 script = ExtResource("1_wkpvo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -61,6 +67,10 @@ replication_config = SubResource("SceneReplicationConfig_hom0k")
 _spawnable_scenes = PackedStringArray("res://ship/ship.tscn", "res://ship/slow_ship/slow_ship.tscn", "res://ship/fast_ship/fast_ship.tscn", "res://ship/construction_ship/construction_ship.tscn")
 spawn_path = NodePath("../spawn_pos")
 spawn_limit = 20000
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.5, 4.5)
+shape = SubResource("RectangleShape2D_h4f3g")
 
 [connection signal="purchase" from="GridContainer/spawn_option_card" to="." method="_on_purchase"]
 [connection signal="purchase" from="GridContainer/spawn_option_card2" to="." method="_on_purchase"]

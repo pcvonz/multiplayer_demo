@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 @export var player_name: String
 @onready var camera: Camera2D = $Camera2D
 @onready var unit: Node
@@ -22,7 +22,7 @@ func _ready():
 		camera.enabled = false
 
 func _process(delta):
-	if unit:
+	if unit and not unit.is_queued_for_deletion():
 		camera.global_position = unit.global_position
 	else:
 		if !input:
@@ -39,23 +39,19 @@ func _process(delta):
 func _on_destroyed():
 	unit = null
 
-func _on_add_to_spawner(node: Node):
-	on_add_to_spawner.emit(node)
-
 @rpc("call_local", "reliable", "any_peer")
 func take_control(node: NodePath, player_id_requesting_control: int):
 	for player in get_tree().get_nodes_in_group("players"):
 		if  player.player_id == player_id_requesting_control:
 			if player.unit:
 				player.unit.input = null
-				player.unit.on_destroyed.disconnect(_on_destroyed)
-				player.unit.on_add_to_spawner.disconnect(_on_add_to_spawner)
+				if player.unit.on_destroyed.is_connected(_on_destroyed):
+					player.unit.on_destroyed.disconnect(_on_destroyed)
 
 			player.unit = get_node(node)
 			player.unit.input = player.input
 
-			player.unit.on_add_to_spawner.connect(_on_add_to_spawner)
-			player.unit.on_destroyed.connect(player._on_destroyed)
-
 func _on_take_control(node: Node, player_id_requesting_control: int):
 	take_control.rpc(node.get_path(), player_id_requesting_control)
+	if unit:
+		unit.on_destroyed.connect(_on_destroyed)

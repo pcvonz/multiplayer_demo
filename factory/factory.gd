@@ -1,4 +1,4 @@
-extends Node2D
+extends StaticBody2D
 
 @onready var timer: Timer = get_node("Timer")
 @onready var progress: ProgressBar = get_node("ProgressBar")
@@ -9,6 +9,7 @@ var currently_building: FactoryItem
 @export var percent_left: float
 @export var build_time: float = 0
 @export var maximum_items = 30
+@export var health = 40
 
 signal build_complete
 
@@ -47,7 +48,12 @@ func _process(_delta):
 		percent_left =  (timer.time_left / build_time) * 100
 
 	progress.value = 100 - percent_left
+	if health <= 0:
+		queue_free()
 
+func damage(amount: int):
+	health -= amount
+	
 func start_building():
 	currently_building = build_queue.pop_front()
 	timer.start(currently_building.build_time)

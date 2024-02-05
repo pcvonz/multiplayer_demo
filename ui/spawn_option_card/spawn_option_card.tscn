@@ -1,10 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://8sohtqk4ivgf"]
+[gd_scene load_steps=4 format=3 uid="uid://8sohtqk4ivgf"]
 
 [ext_resource type="Texture2D" uid="uid://t5lcyvo0c2yw" path="res://icon.svg" id="1_13s6a"]
 [ext_resource type="Script" path="res://ui/spawn_option_card/spawn_option_card.gd" id="1_ltnud"]
+[ext_resource type="Resource" uid="uid://bg06ahw1ag4tf" path="res://ui/factory_items/energy_generator.tres" id="2_3ujtg"]
 
 [node name="spawn_option_card" type="VBoxContainer"]
 script = ExtResource("1_ltnud")
+item = ExtResource("2_3ujtg")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2

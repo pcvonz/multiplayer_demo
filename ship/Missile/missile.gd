@@ -18,4 +18,3 @@ func _integrate_forces(state):
 func _on_body_entered(body:Node):
 	if "damage" in body and body.damage is Callable:
 		body.damage(damage)
-

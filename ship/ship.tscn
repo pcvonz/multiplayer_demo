@@ -61,7 +61,7 @@ _data = {
 "damage": SubResource("Animation_3246v")
 }
 
-[node name="ship" type="RigidBody2D"]
+[node name="ship" type="RigidBody2D" groups=["ships"]]
 gravity_scale = 0.0
 can_sleep = false
 script = ExtResource("1_kbfi8")

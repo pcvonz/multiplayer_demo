@@ -27,8 +27,6 @@ var player_info = {
 
 var players_loaded = 0
 
-
-
 func _ready():
 	player_connected.connect(Global._on_player_connected)
 	player_disconnected.connect(Global._on_player_disconnected)

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bmb1q6u04otj5" path="res://ship/player_input.tscn" id="1_yn2i6"]
 [ext_resource type="Script" path="res://ui/top_bar/top_bar.gd" id="3_dfx1x"]
 
-[node name="player" type="Node" groups=["players"]]
+[node name="player" type="Node2D" groups=["players"]]
 script = ExtResource("1_n3lge")
 
 [node name="PlayerInput" parent="." instance=ExtResource("1_yn2i6")]

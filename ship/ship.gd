@@ -13,7 +13,6 @@ extends RigidBody2D
 var input: MultiplayerSynchronizer
 @onready var anim: AnimationPlayer = get_node("AnimationPlayer")
 
-signal on_add_to_spawner(node: Node)
 signal take_control(node: Node, player_id: int)
 signal on_destroyed
 
@@ -46,7 +45,7 @@ func _process(_delta):
 		station.global_position = input.placement_position + global_position
 		input.place_object = false
 
-		on_add_to_spawner.emit(station)
+		EventBus.on_add_to_spawner.emit(station)
 	if input and input.primary_weapon:
 		input.primary_weapon = false
 		var missile = missile_scene.instantiate()
@@ -55,7 +54,7 @@ func _process(_delta):
 		missile.global_position = self.global_position
 		missile.linear_velocity = self.linear_velocity
 		
-		on_add_to_spawner.emit(missile)
+		EventBus.on_add_to_spawner.emit(missile)
 
 func damage(amount: float):
 	health -= amount
@@ -66,7 +65,7 @@ func explode():
 	var explode_instance = explode_scene.instantiate()
 	explode_instance.starting_linear_velocity = linear_velocity
 	explode_instance.global_position = global_position
-	on_add_to_spawner.emit(explode_instance)
+	EventBus.on_add_to_spawner.emit(explode_instance)
 	on_destroyed.emit()
 	for child in get_children():
 		if "visible" in child:

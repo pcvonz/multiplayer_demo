@@ -14,6 +14,7 @@ properties/1/spawn = true
 properties/1/replication_mode = 1
 
 [node name="Missile" type="RigidBody2D"]
+collision_layer = 3
 max_contacts_reported = 4
 contact_monitor = true
 script = ExtResource("1_ej2rr")
