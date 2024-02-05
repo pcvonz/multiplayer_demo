@@ -39,6 +39,7 @@ func spawn_scene():
 	scene.position = get_new_spawn_pos()
 	var spawn_node = spawner.get_node(spawner.spawn_path)
 	spawn_node.call_deferred("add_child", scene, true)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

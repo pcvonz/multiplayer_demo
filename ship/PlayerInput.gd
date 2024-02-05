@@ -54,6 +54,7 @@ func _input(event):
 
 	if event.is_action_pressed("ui_down"):
 		set_brake.rpc( true )
+
 	if event.is_action_released("ui_down"):
 		set_brake.rpc( false )
 
@@ -61,6 +62,7 @@ func _input(event):
 		activate_primary_weapon.rpc()
 
 	if event.is_action_released("click"):
+		# Disabling to work on factory feature
 		return
 		var mouse_event: InputEventMouse = event
 		var mouse_position = mouse_event.position

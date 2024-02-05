@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://1r5lguti5vfn"]
+[gd_scene load_steps=8 format=3 uid="uid://1r5lguti5vfn"]
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_kbfi8"]
 [ext_resource type="Texture2D" uid="uid://t5lcyvo0c2yw" path="res://icon.svg" id="2_bpfnb"]
-[ext_resource type="PackedScene" uid="uid://bmb1q6u04otj5" path="res://ship/player_input.tscn" id="3_r2dtr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mw1cn"]
 size = Vector2(78, 76)
@@ -61,7 +60,7 @@ _data = {
 "damage": SubResource("Animation_3246v")
 }
 
-[node name="ship" type="RigidBody2D" groups=["players"]]
+[node name="ship" type="RigidBody2D"]
 gravity_scale = 0.0
 can_sleep = false
 script = ExtResource("1_kbfi8")
@@ -72,11 +71,6 @@ shape = SubResource("RectangleShape2D_mw1cn")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.471)
 texture = ExtResource("2_bpfnb")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_speed = 100.0
-
-[node name="PlayerInput" parent="." instance=ExtResource("3_r2dtr")]
 
 [node name="ServerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_3ri7u")
@@ -91,3 +85,13 @@ offset_bottom = 83.0
 libraries = {
 "": SubResource("AnimationLibrary_cdtyu")
 }
+
+[node name="Button" type="Button" parent="."]
+offset_left = -52.0
+offset_top = -93.0
+offset_right = 53.0
+offset_bottom = -62.0
+text = "take control
+"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

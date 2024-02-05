@@ -14,19 +14,24 @@ var input: MultiplayerSynchronizer
 @onready var anim: AnimationPlayer = get_node("AnimationPlayer")
 
 signal on_add_to_spawner(node: Node)
+signal take_control(node: Node, player_id: int)
 
 func _ready():
-	progress_bar.value = health
-	progress_bar.max_value = health
+	#progress_bar.value = health
+	#progress_bar.max_value = health
+	for player in get_tree().get_nodes_in_group("players"):
+		take_control.connect(player._on_take_control)
 	if not multiplayer.is_server():
 		set_physics_process_internal(false)
+		# Hack to stop jittery movement from physics
+		freeze = true
 		set_physics_process(false)
 	set_process(multiplayer.is_server())
 
 func _process(_delta):
 	if !input:
 		return
-	if health != progress_bar.value :
+	if health != progress_bar.value and health:
 		progress_bar.value = health
 		if health <= 0:
 			anim.play("damage")
@@ -58,7 +63,6 @@ func explode():
 	explode_instance.global_position = global_position
 	on_add_to_spawner.emit(explode_instance)
 	
-
 func _integrate_forces(state: PhysicsDirectBodyState2D):
 	if !input:
 		return
@@ -69,5 +73,11 @@ func _integrate_forces(state: PhysicsDirectBodyState2D):
 		state.angular_velocity = clampf(state.angular_velocity - angular_speed, -max_angular_speed, max_angular_speed)
 	if input.rotating_starboard:
 		state.angular_velocity = clampf(state.angular_velocity + angular_speed, -max_angular_speed, max_angular_speed)
-	if input.rotating_port:
-		state.linear_velocity -= (state.linear_velocity.normalized() * stopping_speed)
+	if input.brake_engaged:
+		var stoppign_velocity = (linear_velocity.normalized() * stopping_speed)
+		linear_velocity -= stoppign_velocity
+		
+func _on_button_pressed():
+	if input == null:
+		take_control.emit(self, multiplayer.get_unique_id())
+

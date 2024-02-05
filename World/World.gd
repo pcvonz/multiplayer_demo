@@ -31,7 +31,7 @@ func spawn_ship(id: int):
 	var new_player = preload("res://ship/player.tscn").instantiate()
 	new_player.add_child(new_ship)
 	var player_name = Global.players[id].name
-	new_ship.on_add_to_spawner.connect(_on_add_to_spawner)
+	new_player.on_add_to_spawner.connect(_on_add_to_spawner)
 	new_player.player_id = id
 	new_player.name = "%s" % id
 	return new_player
