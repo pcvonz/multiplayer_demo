@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsl3txt1ppspq"]
+
+[ext_resource type="PackedScene" uid="uid://1r5lguti5vfn" path="res://ship/ship.tscn" id="1_c5kaw"]
+
+[node name="ship" instance=ExtResource("1_c5kaw")]
+speed = 3.0
+max_speed = 50.0
+max_angular_speed = 5.0
+stopping_speed = 5.0
+health = 50.0
+
+[node name="Control" type="Control" parent="UI" index="0"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+mouse_filter = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control" index="0"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="UI/Control/HBoxContainer" index="0"]
+layout_mode = 2
+text = "Hello"
+
+[node name="Button" type="Button" parent="UI/Control/HBoxContainer" index="1"]
+layout_mode = 2
+text = "Click me"

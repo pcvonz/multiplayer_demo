@@ -28,6 +28,12 @@ func _ready():
 		freeze = true
 		set_physics_process(false)
 
+func enable_ui():
+	$UI.visible = true
+	
+func disable_ui():
+	$UI.visible = false
+	
 func _process(_delta):
 	if health != progress_bar.value:
 		progress_bar.value = health
@@ -71,6 +77,7 @@ func explode():
 	add_child(timer)
 	timer.start(5.0)
 	timer.timeout.connect(_on_explode_timeout)
+	disable_ui()
 
 func _on_explode_timeout():
 	queue_free()
@@ -92,4 +99,5 @@ func _integrate_forces(state: PhysicsDirectBodyState2D):
 func _on_button_pressed():
 	if input == null:
 		take_control.emit(self, multiplayer.get_unique_id())
+		enable_ui()
 

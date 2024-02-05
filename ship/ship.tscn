@@ -99,4 +99,7 @@ text = "take control
 [node name="explosion" parent="." instance=ExtResource("3_8epct")]
 visible = false
 
+[node name="UI" type="CanvasLayer" parent="."]
+visible = false
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

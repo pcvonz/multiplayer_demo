@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyg4pxfyvhj2u"]
+[gd_scene load_steps=8 format=3 uid="uid://cyg4pxfyvhj2u"]
 
 [ext_resource type="Texture2D" uid="uid://t5lcyvo0c2yw" path="res://icon.svg" id="1_er5sm"]
 [ext_resource type="Script" path="res://factory/factory.gd" id="1_wkpvo"]
 [ext_resource type="PackedScene" uid="uid://8sohtqk4ivgf" path="res://ui/spawn_option_card/spawn_option_card.tscn" id="3_yf4nd"]
 [ext_resource type="Resource" uid="uid://bhpxr2na1gqwy" path="res://ui/factory_items/fast_ship.tres" id="4_cpiiv"]
 [ext_resource type="Resource" uid="uid://dy027rd5vlhry" path="res://ui/factory_items/slow_ship.tres" id="5_odur4"]
+[ext_resource type="Resource" uid="uid://bnlv0pmys47w0" path="res://ui/factory_items/construction_ship.tres" id="6_r60qj"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_hom0k"]
 properties/0/path = NodePath(".:percent_left")
@@ -49,13 +50,18 @@ item = ExtResource("4_cpiiv")
 layout_mode = 2
 item = ExtResource("5_odur4")
 
+[node name="spawn_option_card3" parent="GridContainer" instance=ExtResource("3_yf4nd")]
+layout_mode = 2
+item = ExtResource("6_r60qj")
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_hom0k")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://ship/ship.tscn")
+_spawnable_scenes = PackedStringArray("res://ship/ship.tscn", "res://ship/slow_ship/slow_ship.tscn", "res://ship/fast_ship/fast_ship.tscn", "res://ship/construction_ship/construction_ship.tscn")
 spawn_path = NodePath("../spawn_pos")
 spawn_limit = 20000
 
-[connection signal="purchase" from="GridContainer/spawn_option_card" to="GridContainer/spawn_option_card" method="_on_purchase"]
+[connection signal="purchase" from="GridContainer/spawn_option_card" to="." method="_on_purchase"]
 [connection signal="purchase" from="GridContainer/spawn_option_card2" to="." method="_on_purchase"]
+[connection signal="purchase" from="GridContainer/spawn_option_card3" to="." method="_on_purchase"]

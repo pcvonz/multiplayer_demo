@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 @export var player_name: String
 @onready var camera: Camera2D = $Camera2D
 @onready var unit: Node
@@ -56,7 +56,6 @@ func take_control(node: NodePath, player_id_requesting_control: int):
 
 			player.unit.on_add_to_spawner.connect(_on_add_to_spawner)
 			player.unit.on_destroyed.connect(player._on_destroyed)
-	
 
 func _on_take_control(node: Node, player_id_requesting_control: int):
 	take_control.rpc(node.get_path(), player_id_requesting_control)
