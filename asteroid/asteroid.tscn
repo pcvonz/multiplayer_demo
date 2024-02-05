@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cm8jhjmqpdpkk"]
+
+[ext_resource type="Script" path="res://asteroid/asteroid.gd" id="1_bwqe7"]
+[ext_resource type="Texture2D" uid="uid://cynkrhpdaifbc" path="res://asteroid/asteroid.png" id="1_nuta4"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_wsyoe"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:health")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="asteroid" type="RigidBody2D"]
+script = ExtResource("1_bwqe7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nuta4")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(25, -25.8, 25, -23.8, 27.4, -21.5, 26.3, -19, 25.3, -19, 22.6, -13.1, 30.3, 0, 29.2, 2, 28.5, 2, 24.5, 16, 22.6, 16, 19.1, 18.3, 17, 17.2, 17, 16.4, 10.4, 13.7, 3.2, 28, -0.299999, 28, -20, 21.4, -20, 19.8, -22.4, 17.5, -21.3, 15, -19.8, 15, -14.2, 9.4, -29.3, -10.8, -28.2, -13, -27.1, -13, -17, -28.6, -17, -31.3)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_wsyoe")

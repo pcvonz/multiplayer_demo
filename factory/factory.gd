@@ -57,9 +57,3 @@ func _on_purchase(item: FactoryItem):
 	build_queue.push_back(item)
 	if timer.is_stopped():
 		start_building()
-
-
-
-func _on_spawn_option_card_purchase(item:FactoryItem):
-	pass # Replace with function body.
-

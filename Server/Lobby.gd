@@ -3,7 +3,7 @@ extends Node
 # Autoload named Lobby
 
 # These signals can be connected to by a UI lobby scene or the game scene.
-signal player_connected(peer_id, player_info)
+signal player_connected(peer_id, player_info: Dictionary)
 signal player_disconnected(peer_id)
 signal server_disconnected
 
@@ -20,8 +20,9 @@ var players = {}
 # For example, the value of "name" can be set to something the player
 # entered in a UI scene.
 var player_info = {
-	"name":
-		"Name"
+	"name": "Name",
+	"resources": 100,
+	"energy": 100
 }
 
 var players_loaded = 0

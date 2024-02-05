@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dolfl751uj7u1"]
+[gd_scene load_steps=4 format=3 uid="uid://dolfl751uj7u1"]
 
 [ext_resource type="Script" path="res://ship/player.gd" id="1_n3lge"]
 [ext_resource type="PackedScene" uid="uid://bmb1q6u04otj5" path="res://ship/player_input.tscn" id="1_yn2i6"]
+[ext_resource type="Script" path="res://ui/top_bar/top_bar.gd" id="3_dfx1x"]
 
 [node name="player" type="Node" groups=["players"]]
 script = ExtResource("1_n3lge")
@@ -13,3 +14,40 @@ offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="top_bar" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_dfx1x")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/top_bar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="name" type="Label" parent="CanvasLayer/top_bar/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Name
+"
+horizontal_alignment = 2
+
+[node name="resources" type="Label" parent="CanvasLayer/top_bar/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resources: 0"
+
+[node name="energy" type="Label" parent="CanvasLayer/top_bar/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Energy: 0"

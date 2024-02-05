@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bn1eauccy14wn"]
+[gd_scene load_steps=5 format=3 uid="uid://bn1eauccy14wn"]
 
 [ext_resource type="Script" path="res://World/World.gd" id="1_e77p4"]
-[ext_resource type="PackedScene" uid="uid://cyg4pxfyvhj2u" path="res://factory/factory.tscn" id="2_gkmvu"]
 
 [sub_resource type="Gradient" id="Gradient_rgvd5"]
 offsets = PackedFloat32Array(0.763393, 1)
@@ -28,9 +27,6 @@ spawn_path = NodePath("../PlayerSpawner")
 spawn_limit = 10
 
 [node name="PlayerSpawner" type="Node2D" parent="."]
-
-[node name="factory" parent="." instance=ExtResource("2_gkmvu")]
-position = Vector2(282, 412)
 
 [node name="WeaponSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://ship/Missile/missile.tscn")

@@ -5,6 +5,8 @@ var spawner: MultiplayerSpawner
 func _ready():
 	spawner = $MultiplayerSpawner
 	spawner.spawn_function = spawn_ship
+	Global.player_id = multiplayer.get_unique_id()
+
 	if not multiplayer.is_server():
 		return
 
@@ -30,8 +32,12 @@ func _on_add_to_spawner(node: Node):
 					
 func spawn_ship(id: int):
 	var new_player = preload("res://ship/player.tscn").instantiate()
+	var new_ship = preload("res://ship/construction_ship/construction_ship.tscn").instantiate()
 	var player_name = Global.players[id].name
 	new_player.on_add_to_spawner.connect(_on_add_to_spawner)
 	new_player.player_id = id
 	new_player.name = "%s" % id
+	new_player.unit = new_ship
+	new_ship.input = new_player.input
+	new_player.add_child(new_ship)
 	return new_player
