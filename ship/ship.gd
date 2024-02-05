@@ -67,6 +67,13 @@ func explode():
 			child.visible = false
 	$explosion.visible = true
 	$explosion.explode()
+	var timer = Timer.new()
+	add_child(timer)
+	timer.start(5.0)
+	timer.timeout.connect(_on_explode_timeout)
+
+func _on_explode_timeout():
+	queue_free()
 
 func _integrate_forces(state: PhysicsDirectBodyState2D):
 	if !input:

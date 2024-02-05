@@ -48,9 +48,12 @@ func take_control(node: NodePath, player_id_requesting_control: int):
 		if  player.player_id == player_id_requesting_control:
 			if player.unit:
 				player.unit.input = null
-			print(player.player_id)
+				player.unit.on_destroyed.disconnect(_on_destroyed)
+				player.unit.on_add_to_spawner.disconnect(_on_add_to_spawner)
+
 			player.unit = get_node(node)
 			player.unit.input = player.input
+
 			player.unit.on_add_to_spawner.connect(_on_add_to_spawner)
 			player.unit.on_destroyed.connect(player._on_destroyed)
 	
