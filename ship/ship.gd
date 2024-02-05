@@ -15,10 +15,11 @@ var input: MultiplayerSynchronizer
 
 signal on_add_to_spawner(node: Node)
 signal take_control(node: Node, player_id: int)
+signal on_destroyed
 
 func _ready():
-	#progress_bar.value = health
-	#progress_bar.max_value = health
+	progress_bar.value = health
+	progress_bar.max_value = health
 	for player in get_tree().get_nodes_in_group("players"):
 		take_control.connect(player._on_take_control)
 	if not multiplayer.is_server():
@@ -26,23 +27,21 @@ func _ready():
 		# Hack to stop jittery movement from physics
 		freeze = true
 		set_physics_process(false)
-	set_process(multiplayer.is_server())
 
 func _process(_delta):
-	if !input:
-		return
-	if health != progress_bar.value and health:
+	if health != progress_bar.value:
 		progress_bar.value = health
 		if health <= 0:
 			anim.play("damage")
 			explode()
-	if input.place_object:
+
+	if input and input.place_object:
 		var station = station_scene.instantiate()
 		station.global_position = input.placement_position + global_position
 		input.place_object = false
 
 		on_add_to_spawner.emit(station)
-	if input.primary_weapon:
+	if input and input.primary_weapon:
 		input.primary_weapon = false
 		var missile = missile_scene.instantiate()
 		missile.add_collision_exception_with(self)
@@ -62,7 +61,13 @@ func explode():
 	explode_instance.starting_linear_velocity = linear_velocity
 	explode_instance.global_position = global_position
 	on_add_to_spawner.emit(explode_instance)
-	
+	on_destroyed.emit()
+	for child in get_children():
+		if "visible" in child:
+			child.visible = false
+	$explosion.visible = true
+	$explosion.explode()
+
 func _integrate_forces(state: PhysicsDirectBodyState2D):
 	if !input:
 		return

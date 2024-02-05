@@ -36,6 +36,9 @@ func _process(delta):
 		if input.brake_engaged:
 			camera.global_position += ( Vector2(0, 1) ) * CAMERA_SPEED
 
+func _on_destroyed():
+	unit = null
+
 func _on_add_to_spawner(node: Node):
 	on_add_to_spawner.emit(node)
 
@@ -49,6 +52,7 @@ func take_control(node: NodePath, player_id_requesting_control: int):
 			player.unit = get_node(node)
 			player.unit.input = player.input
 			player.unit.on_add_to_spawner.connect(_on_add_to_spawner)
+			player.unit.on_destroyed.connect(player._on_destroyed)
 	
 
 func _on_take_control(node: Node, player_id_requesting_control: int):

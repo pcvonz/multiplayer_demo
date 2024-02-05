@@ -20,16 +20,16 @@ func spawn(node: Node):
 		spawn_node.call_deferred("add_child", node)
 
 func _on_add_to_spawner(node: Node):
+		if !multiplayer.is_server():
+			return
 		# Setup takes spawner and self as input
 		if "setup" in node:
 			node.setup(self, $WeaponSpawner)
 		var weapon_spawn_node = weapon_spawner.get_node(weapon_spawner.spawn_path)
-		weapon_spawn_node.call_deferred("add_child", node, true)
+		weapon_spawn_node.add_child(node, true)
 					
 func spawn_ship(id: int):
-	var new_ship = preload("res://ship/ship.tscn").instantiate()
 	var new_player = preload("res://ship/player.tscn").instantiate()
-	new_player.add_child(new_ship)
 	var player_name = Global.players[id].name
 	new_player.on_add_to_spawner.connect(_on_add_to_spawner)
 	new_player.player_id = id
