@@ -22,7 +22,7 @@ func _ready():
 		camera.enabled = false
 
 func _process(delta):
-	if unit and not unit.is_queued_for_deletion():
+	if unit and is_instance_valid(unit):
 		camera.global_position = unit.global_position
 	else:
 		if !input:

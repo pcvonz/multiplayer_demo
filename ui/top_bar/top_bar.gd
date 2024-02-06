@@ -11,4 +11,4 @@ func _process(delta):
 	if Global.players.has(player_id):
 		get_node("%resources").text = "Resources: %s" % Global.players[player_id].resources
 		get_node("%energy").text = "Energy: %s" % Global.players[player_id].energy
-		get_node("%name").text = "Name: %s (%s)" % [ Global.players[player_id].name, Global.player_id]
+		get_node("%name").text = "Name: %s (%s) Team: %s" % [ Global.players[player_id].name, Global.player_id, Global.players[player_id].team]

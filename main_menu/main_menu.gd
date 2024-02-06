@@ -32,6 +32,7 @@ func _on_lobby_player_connected(peer_id:Variant, player_info:Variant):
 		get_node("%GameStatus").get_node("StartGame").visible = true
 		
 func _on_start_game_pressed():
+	get_node("%StartGame").disabled = true
 	start_game()
 
 func start_game():

@@ -3,3 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://1r5lguti5vfn" path="res://ship/ship.tscn" id="1_xh7il"]
 
 [node name="slow_ship" instance=ExtResource("1_xh7il")]
+cool_down_time = 10.0
+max_speed = 20.0
+
+[node name="UI" parent="." index="7"]
+visible = false
+
+[node name="Control" parent="UI" index="0"]
+anchors_preset = 1
+anchor_left = 1.0
+grow_horizontal = 0
+
+[node name="HBoxContainer" parent="UI/Control" index="0"]
+alignment = 2

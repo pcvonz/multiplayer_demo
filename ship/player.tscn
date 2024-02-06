@@ -6,6 +6,8 @@
 
 [node name="player" type="Node2D" groups=["players"]]
 script = ExtResource("1_n3lge")
+player_name = null
+player_id = null
 
 [node name="PlayerInput" parent="." instance=ExtResource("1_yn2i6")]
 

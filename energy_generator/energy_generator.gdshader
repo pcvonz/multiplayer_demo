@@ -1,13 +1,15 @@
 shader_type canvas_item;
 
+uniform float red;
+uniform float green;
+
 void vertex() {
 	// Called for every vertex the material is visible on.
 }
 
 void fragment() {
-	vec2 uv = vec2(UV.x + TIME / 100.0, UV.y);
-	COLOR = texture(TEXTURE, uv);
-	COLOR.r = 0.0;
+	COLOR.r = red;
+	COLOR.g = green;
 }
 
 //void light() {

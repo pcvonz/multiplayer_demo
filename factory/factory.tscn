@@ -17,17 +17,20 @@ properties/1/replication_mode = 1
 properties/2/path = NodePath(".:health")
 properties/2/spawn = true
 properties/2/replication_mode = 1
+properties/3/path = NodePath(".:team")
+properties/3/spawn = true
+properties/3/replication_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h4f3g"]
-size = Vector2(113, 119)
+size = Vector2(798.5, 119)
 
 [node name="factory" type="StaticBody2D"]
-collision_layer = 2
 script = ExtResource("1_wkpvo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.737255, 0.517647, 0.278431, 1)
-self_modulate = Color(0.458824, 0.662745, 1, 1)
+modulate = Color(0.988235, 1, 1, 1)
+position = Vector2(18, -182)
+scale = Vector2(6.12, 1)
 texture = ExtResource("1_er5sm")
 
 [node name="Timer" type="Timer" parent="."]
@@ -69,7 +72,8 @@ spawn_path = NodePath("../spawn_pos")
 spawn_limit = 20000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(4.5, 4.5)
+visible = false
+position = Vector2(24.75, -181)
 shape = SubResource("RectangleShape2D_h4f3g")
 
 [connection signal="purchase" from="GridContainer/spawn_option_card" to="." method="_on_purchase"]

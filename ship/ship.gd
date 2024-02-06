@@ -1,5 +1,8 @@
 extends RigidBody2D
 
+@export var cool_down_time: float = 3.0
+# used for game sync
+@export var cool_down_time_left: float
 @export var speed: float = 10.0
 @export var max_speed: float = 100.0
 @export var angular_speed = .1
@@ -10,15 +13,21 @@ extends RigidBody2D
 @onready var station_scene = preload("res://Turret/turret.tscn")
 @onready var explode_scene = preload("res://ship/explode.tscn")
 @onready var progress_bar: ProgressBar = get_node("ProgressBar")
+@onready var cool_down: ProgressBar = get_node("%CoolDown")
 var input: MultiplayerSynchronizer
 @onready var anim: AnimationPlayer = get_node("AnimationPlayer")
 
 signal take_control(node: Node, player_id: int)
 signal on_destroyed
+@export var team: int = -1
 
 func _ready():
 	progress_bar.value = health
 	progress_bar.max_value = health
+	cool_down.max_value = cool_down_time
+	if team != null:
+		$Sprite2D.modulate=Global.team_colors[team]
+
 	for player in get_tree().get_nodes_in_group("players"):
 		take_control.connect(player._on_take_control)
 	if not multiplayer.is_server():
@@ -32,8 +41,13 @@ func enable_ui():
 	
 func disable_ui():
 	$UI.visible = false
+
 	
-func _process(_delta):
+func _process(delta):
+	cool_down.value = cool_down_time_left 
+	if cool_down_time_left > 0:
+		cool_down_time_left -= delta
+		
 	if health != progress_bar.value:
 		progress_bar.value = health
 		if health <= 0:
@@ -48,13 +62,15 @@ func _process(_delta):
 		EventBus.on_add_to_spawner.emit(station)
 	if input and input.primary_weapon:
 		input.primary_weapon = false
-		var missile = missile_scene.instantiate()
-		missile.add_collision_exception_with(self)
-		missile.rotation = self.rotation
-		missile.global_position = self.global_position
-		missile.linear_velocity = self.linear_velocity
-		
-		EventBus.on_add_to_spawner.emit(missile)
+		if not cool_down_time_left > 0:
+			cool_down_time_left = cool_down_time
+			var missile = missile_scene.instantiate()
+			missile.add_collision_exception_with(self)
+			missile.rotation = self.rotation
+			missile.global_position = self.global_position
+			missile.linear_velocity = self.linear_velocity
+			
+			EventBus.on_add_to_spawner.emit(missile)
 
 func damage(amount: float):
 	health -= amount

@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bn1eauccy14wn"]
+[gd_scene load_steps=7 format=3 uid="uid://bn1eauccy14wn"]
 
 [ext_resource type="Script" path="res://World/World.gd" id="1_e77p4"]
+[ext_resource type="PackedScene" uid="uid://cyg4pxfyvhj2u" path="res://factory/factory.tscn" id="2_mqvhr"]
+[ext_resource type="PackedScene" uid="uid://cm8jhjmqpdpkk" path="res://asteroid/asteroid.tscn" id="3_fibwo"]
 
 [sub_resource type="Gradient" id="Gradient_rgvd5"]
-offsets = PackedFloat32Array(0.763393, 1)
+offsets = PackedFloat32Array(0.650909, 0.876364)
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_5ka65"]
@@ -19,6 +21,7 @@ noise = SubResource("FastNoiseLite_5ka65")
 script = ExtResource("1_e77p4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1059, 1449)
 texture = SubResource("NoiseTexture2D_uadub")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
@@ -29,6 +32,334 @@ spawn_limit = 10
 [node name="PlayerSpawner" type="Node2D" parent="."]
 
 [node name="WeaponSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://ship/Missile/missile.tscn", "res://factory/factory.tscn", "res://energy_generator/energy_generator.tscn")
+_spawnable_scenes = PackedStringArray("res://ship/Missile/missile.tscn", "res://factory/factory.tscn", "res://energy_generator/energy_generator.tscn", "res://Turret/turret.tscn")
 spawn_path = NodePath("../PlayerSpawner")
 spawn_limit = 2000
+
+[node name="team_0" type="Marker2D" parent="."]
+position = Vector2(178, 2044)
+
+[node name="team_1" type="Marker2D" parent="."]
+position = Vector2(239, -158)
+
+[node name="factory" parent="." instance=ExtResource("2_mqvhr")]
+position = Vector2(240, 2271)
+
+[node name="factory2" parent="." instance=ExtResource("2_mqvhr")]
+position = Vector2(272, 279)
+team = 1
+
+[node name="asteroid" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-356, 1051)
+
+[node name="asteroid2" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(797, 865)
+
+[node name="asteroid3" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(204, 984)
+
+[node name="asteroid4" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(713, 1332)
+
+[node name="asteroid5" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(60, 1290)
+
+[node name="asteroid6" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-570, 1315)
+
+[node name="asteroid7" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(583, 1129)
+
+[node name="asteroid8" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-10, 1248)
+
+[node name="asteroid9" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(499, 1596)
+
+[node name="asteroid10" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-154, 1554)
+
+[node name="asteroid11" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(495, 1360)
+
+[node name="asteroid12" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(1648, 1174)
+
+[node name="asteroid13" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(1055, 1293)
+
+[node name="asteroid14" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(1564, 1641)
+
+[node name="asteroid15" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(911, 1599)
+
+[node name="asteroid16" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-1204, 763)
+
+[node name="asteroid17" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-51, 577)
+
+[node name="asteroid18" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-644, 696)
+
+[node name="asteroid19" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-135, 1044)
+
+[node name="asteroid20" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-788, 1002)
+
+[node name="asteroid21" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-1551, 1609)
+
+[node name="asteroid22" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-398, 1423)
+
+[node name="asteroid23" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-991, 1542)
+
+[node name="asteroid24" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-482, 1890)
+
+[node name="asteroid25" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-1135, 1848)
+
+[node name="asteroid26" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(1122, 1124)
+
+[node name="asteroid27" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(2275, 938)
+
+[node name="asteroid28" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(1682, 1057)
+
+[node name="asteroid29" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(2191, 1405)
+
+[node name="asteroid30" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(1538, 1363)
+
+[node name="asteroid31" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(998, 1771)
+
+[node name="asteroid32" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(2151, 1585)
+
+[node name="asteroid33" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(1558, 1704)
+
+[node name="asteroid34" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(2067, 2052)
+
+[node name="asteroid35" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(1414, 2010)
+
+[node name="asteroid36" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(169, 1280)
+
+[node name="asteroid37" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(1322, 1094)
+
+[node name="asteroid38" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(729, 1213)
+
+[node name="asteroid39" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(1238, 1561)
+
+[node name="asteroid40" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(585, 1519)
+
+[node name="asteroid41" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-45, 1544)
+
+[node name="asteroid42" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(1108, 1358)
+
+[node name="asteroid43" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(515, 1477)
+
+[node name="asteroid44" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(1024, 1825)
+
+[node name="asteroid45" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(371, 1783)
+
+[node name="asteroid46" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(1020, 1589)
+
+[node name="asteroid47" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(2173, 1403)
+
+[node name="asteroid48" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(1580, 1522)
+
+[node name="asteroid49" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(2089, 1870)
+
+[node name="asteroid50" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(1436, 1828)
+
+[node name="asteroid51" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-679, 992)
+
+[node name="asteroid52" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(474, 806)
+
+[node name="asteroid53" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-119, 925)
+
+[node name="asteroid54" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(390, 1273)
+
+[node name="asteroid55" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-263, 1231)
+
+[node name="asteroid56" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-1026, 1838)
+
+[node name="asteroid57" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(127, 1652)
+
+[node name="asteroid58" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-466, 1771)
+
+[node name="asteroid59" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(43, 2119)
+
+[node name="asteroid60" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-610, 2077)
+
+[node name="asteroid61" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(1647, 1353)
+
+[node name="asteroid62" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(2800, 1167)
+
+[node name="asteroid63" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(2207, 1286)
+
+[node name="asteroid64" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(2716, 1634)
+
+[node name="asteroid65" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(2063, 1592)
+
+[node name="asteroid66" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(1523, 2000)
+
+[node name="asteroid67" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(2676, 1814)
+
+[node name="asteroid68" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(2083, 1933)
+
+[node name="asteroid69" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(2592, 2281)
+
+[node name="asteroid70" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(1939, 2239)
+
+[node name="asteroid71" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-1407, 1187)
+
+[node name="asteroid72" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-254, 1001)
+
+[node name="asteroid73" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-847, 1120)
+
+[node name="asteroid74" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-338, 1468)
+
+[node name="asteroid75" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-991, 1426)
+
+[node name="asteroid76" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-1621, 1451)
+
+[node name="asteroid77" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-468, 1265)
+
+[node name="asteroid78" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-1061, 1384)
+
+[node name="asteroid79" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-552, 1732)
+
+[node name="asteroid80" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-1205, 1690)
+
+[node name="asteroid81" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-556, 1496)
+
+[node name="asteroid82" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(597, 1310)
+
+[node name="asteroid83" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(4, 1429)
+
+[node name="asteroid84" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(513, 1777)
+
+[node name="asteroid85" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-140, 1735)
+
+[node name="asteroid86" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-2255, 899)
+
+[node name="asteroid87" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-1102, 713)
+
+[node name="asteroid88" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-1695, 832)
+
+[node name="asteroid89" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-1186, 1180)
+
+[node name="asteroid90" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-1839, 1138)
+
+[node name="asteroid91" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-2602, 1745)
+
+[node name="asteroid92" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-1449, 1559)
+
+[node name="asteroid93" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-2042, 1678)
+
+[node name="asteroid94" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-1533, 2026)
+
+[node name="asteroid95" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-2186, 1984)
+
+[node name="asteroid96" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(71, 1260)
+
+[node name="asteroid97" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(1224, 1074)
+
+[node name="asteroid98" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(631, 1193)
+
+[node name="asteroid99" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(1140, 1541)
+
+[node name="asteroid100" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(487, 1499)
+
+[node name="asteroid101" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(-53, 1907)
+
+[node name="asteroid102" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(1100, 1721)
+
+[node name="asteroid103" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(507, 1840)
+
+[node name="asteroid104" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(1016, 2188)
+
+[node name="asteroid105" parent="." instance=ExtResource("3_fibwo")]
+position = Vector2(363, 2146)

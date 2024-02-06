@@ -4,6 +4,8 @@ var players: Dictionary = {}
 
 var player_id: int = -1
 
+var team_colors = [Color(1, 0, 0), Color(0, 1, 0)]
+
 func get_player():
 	if players.has(player_id):
 		return players[player_id]

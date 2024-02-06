@@ -10,9 +10,6 @@ max_angular_speed = 5.0
 stopping_speed = 5.0
 health = 50.0
 
-[node name="UI" parent="." index="7"]
-visible = true
-
 [node name="construction_ship_ui" type="Control" parent="UI" index="0"]
 layout_mode = 3
 anchors_preset = 12
@@ -50,5 +47,12 @@ layout_mode = 2
 focus_mode = 0
 text = "Build energy generator"
 
+[node name="build_turret" type="Button" parent="UI/construction_ship_ui/HBoxContainer" index="3"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+text = "Build Turret"
+
 [connection signal="pressed" from="UI/construction_ship_ui/HBoxContainer/build_factory" to="UI/construction_ship_ui" method="_on_build_factory_pressed"]
 [connection signal="pressed" from="UI/construction_ship_ui/HBoxContainer/build_energy" to="UI/construction_ship_ui" method="_on_build_energy_pressed"]
+[connection signal="pressed" from="UI/construction_ship_ui/HBoxContainer/build_turret" to="UI/construction_ship_ui" method="_on_build_turret_pressed"]

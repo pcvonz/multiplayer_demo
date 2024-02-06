@@ -22,7 +22,8 @@ var players = {}
 var player_info = {
 	"name": "Name",
 	"resources": 100,
-	"energy": 100
+	"energy": 100,
+	"team": -1
 }
 
 var players_loaded = 0

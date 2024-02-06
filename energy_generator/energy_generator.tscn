@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://dorbf13ybpuqe"]
+[gd_scene load_steps=27 format=3 uid="uid://dorbf13ybpuqe"]
 
 [ext_resource type="Script" path="res://energy_generator/energy_generator.gd" id="1_02ucr"]
 [ext_resource type="Texture2D" uid="uid://ccpblaw5ih2uc" path="res://energy_generator/sprite_frames/0001.png" id="1_6mjyf"]
+[ext_resource type="Shader" path="res://energy_generator/energy_generator.gdshader" id="1_s11hh"]
 [ext_resource type="Texture2D" uid="uid://doour1pa76gne" path="res://energy_generator/sprite_frames/0002.png" id="2_rjmna"]
 [ext_resource type="Texture2D" uid="uid://clixoe1lc0pc0" path="res://energy_generator/sprite_frames/0003.png" id="3_fvgdo"]
 [ext_resource type="Texture2D" uid="uid://c1ymrtwio78og" path="res://energy_generator/sprite_frames/0004.png" id="4_62lxy"]
@@ -21,6 +22,11 @@
 [ext_resource type="Texture2D" uid="uid://be26tsn6g8im8" path="res://energy_generator/sprite_frames/0018.png" id="18_gn6ro"]
 [ext_resource type="Texture2D" uid="uid://2ylwsj7gutym" path="res://energy_generator/sprite_frames/0019.png" id="19_fk121"]
 [ext_resource type="Texture2D" uid="uid://cq26g574sq8vg" path="res://energy_generator/sprite_frames/0020.png" id="20_x7lmm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h01dp"]
+shader = ExtResource("1_s11hh")
+shader_parameter/red = 0.0
+shader_parameter/green = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yewry"]
 animations = [{
@@ -97,11 +103,18 @@ radius = 81.0432
 properties/0/path = NodePath(".:health")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+properties/1/path = NodePath(".:player_id")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:position")
+properties/2/spawn = true
+properties/2/replication_mode = 1
 
 [node name="energy_generator" type="StaticBody2D"]
 script = ExtResource("1_02ucr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_h01dp")
 sprite_frames = SubResource("SpriteFrames_yewry")
 autoplay = "default"
 
@@ -110,6 +123,7 @@ wait_time = 10.0
 autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_l2emv")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

@@ -10,11 +10,14 @@ var currently_building: FactoryItem
 @export var build_time: float = 0
 @export var maximum_items = 30
 @export var health = 40
+@export var team: int
 
 signal build_complete
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Sprite2D.modulate=Global.team_colors[team]
+
 	if multiplayer.is_server():
 		timer.timeout.connect(_on_timeout)
 
@@ -37,6 +40,7 @@ func get_new_spawn_pos():
 		
 func spawn_scene():
 	var scene = currently_building.scene.instantiate()
+	scene.team = team
 	scene.position = get_new_spawn_pos()
 	var spawn_node = spawner.get_node(spawner.spawn_path)
 	spawn_node.call_deferred("add_child", scene, true)
