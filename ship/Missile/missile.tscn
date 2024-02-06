@@ -15,6 +15,7 @@ properties/1/replication_mode = 1
 
 [node name="Missile" type="RigidBody2D"]
 collision_layer = 3
+mass = 0.2
 max_contacts_reported = 4
 contact_monitor = true
 script = ExtResource("1_ej2rr")
@@ -30,4 +31,11 @@ texture = ExtResource("1_evlio")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_j0v5a")
 
+[node name="particle" type="CPUParticles2D" parent="."]
+emitting = false
+lifetime = 0.4
+emission_shape = 1
+emission_sphere_radius = 8.05
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="particle" to="." method="_on_particle_finished"]

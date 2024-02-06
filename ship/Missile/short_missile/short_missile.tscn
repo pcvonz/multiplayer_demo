@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cf5rwigcv11gh"]
+
+[ext_resource type="PackedScene" uid="uid://cs1hmnvc3ulyt" path="res://ship/Missile/missile.tscn" id="1_kn3rl"]
+
+[node name="short_missile" instance=ExtResource("1_kn3rl")]
+speed = 2000.0
+damage = 20.0
+max_distance = 400.0

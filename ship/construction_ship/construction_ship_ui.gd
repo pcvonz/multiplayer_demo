@@ -44,7 +44,6 @@ func _on_build_turret_pressed():
 func build_factory(pos: Vector2, player_id: int):
 	var factory_scene = factory.scene.instantiate()
 	factory_scene.team = Global.players[player_id].team
-	factory_scene.player_id = player_id
 	factory_scene.global_position = pos
 	EventBus.on_add_to_spawner.emit(factory_scene)
 

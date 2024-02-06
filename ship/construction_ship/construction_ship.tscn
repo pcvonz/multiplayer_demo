@@ -1,14 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsl3txt1ppspq"]
+[gd_scene load_steps=4 format=3 uid="uid://dsl3txt1ppspq"]
 
 [ext_resource type="PackedScene" uid="uid://1r5lguti5vfn" path="res://ship/ship.tscn" id="1_c5kaw"]
+[ext_resource type="PackedScene" uid="uid://nsmrv16j0234" path="res://ship/Missile/weak_missile/weak_missile.tscn" id="2_fv8aw"]
 [ext_resource type="Script" path="res://ship/construction_ship/construction_ship_ui.gd" id="2_svqkx"]
 
 [node name="ship" instance=ExtResource("1_c5kaw")]
-speed = 3.0
-max_speed = 50.0
-max_angular_speed = 5.0
+cool_down_time = 2.0
+max_speed = 80.0
+max_angular_speed = 3.0
 stopping_speed = 5.0
 health = 50.0
+missile_scene = ExtResource("2_fv8aw")
 
 [node name="construction_ship_ui" type="Control" parent="UI" index="0"]
 layout_mode = 3

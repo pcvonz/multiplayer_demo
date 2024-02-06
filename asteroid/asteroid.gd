@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 @export var health = 20
+@export var value = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

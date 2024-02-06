@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://brfiog6phtab2"]
+[gd_scene load_steps=3 format=3 uid="uid://brfiog6phtab2"]
 
 [ext_resource type="PackedScene" uid="uid://1r5lguti5vfn" path="res://ship/ship.tscn" id="1_sqnxu"]
+[ext_resource type="PackedScene" uid="uid://cf5rwigcv11gh" path="res://ship/Missile/short_missile/short_missile.tscn" id="2_mfejr"]
 
 [node name="fast_ship" instance=ExtResource("1_sqnxu")]
-cool_down_time = 1.0
+cool_down_time = 0.5
+speed = 4.0
+max_speed = 200.0
+angular_speed = 0.2
+max_angular_speed = 1.0
+stopping_speed = 4.0
+health = 30.0
+missile_scene = ExtResource("2_mfejr")

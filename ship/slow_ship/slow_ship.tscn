@@ -1,18 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsxlnkpflb3nf"]
+[gd_scene load_steps=3 format=3 uid="uid://dsxlnkpflb3nf"]
 
 [ext_resource type="PackedScene" uid="uid://1r5lguti5vfn" path="res://ship/ship.tscn" id="1_xh7il"]
+[ext_resource type="PackedScene" uid="uid://270aautoykgi" path="res://ship/Missile/long_missile/long_missile.tscn" id="2_siy6j"]
 
 [node name="slow_ship" instance=ExtResource("1_xh7il")]
 cool_down_time = 10.0
-max_speed = 20.0
-
-[node name="UI" parent="." index="7"]
-visible = false
+speed = 2.0
+max_speed = 90.0
+max_angular_speed = 2.0
+stopping_speed = 5.0
+missile_scene = ExtResource("2_siy6j")
 
 [node name="Control" parent="UI" index="0"]
 anchors_preset = 1
 anchor_left = 1.0
 grow_horizontal = 0
-
-[node name="HBoxContainer" parent="UI/Control" index="0"]
-alignment = 2

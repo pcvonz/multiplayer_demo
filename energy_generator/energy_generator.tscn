@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dorbf13ybpuqe"]
+[gd_scene load_steps=28 format=3 uid="uid://dorbf13ybpuqe"]
 
 [ext_resource type="Script" path="res://energy_generator/energy_generator.gd" id="1_02ucr"]
 [ext_resource type="Texture2D" uid="uid://ccpblaw5ih2uc" path="res://energy_generator/sprite_frames/0001.png" id="1_6mjyf"]
@@ -110,17 +110,21 @@ properties/2/path = NodePath(".:position")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
-[node name="energy_generator" type="StaticBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_xmmgr"]
+radius = 870.506
+
+[node name="energy_generator" type="RigidBody2D"]
+mass = 10000.0
+freeze = true
+freeze_mode = 1
+max_contacts_reported = 5
+contact_monitor = true
 script = ExtResource("1_02ucr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_h01dp")
 sprite_frames = SubResource("SpriteFrames_yewry")
 autoplay = "default"
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
-autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -129,4 +133,14 @@ shape = SubResource("CircleShape2D_l2emv")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_5ddro")
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="well" type="Area2D" parent="."]
+gravity_space_override = 3
+gravity_point = true
+gravity_point_center = Vector2(0, 0)
+gravity_direction = Vector2(0, 0)
+gravity = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="well"]
+shape = SubResource("CircleShape2D_xmmgr")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

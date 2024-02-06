@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="FactoryItem" load_steps=3 format=3 uid="uid://bhpxr2na1gqwy"]
 
-[ext_resource type="PackedScene" uid="uid://1r5lguti5vfn" path="res://ship/ship.tscn" id="1_akqkh"]
+[ext_resource type="PackedScene" uid="uid://brfiog6phtab2" path="res://ship/fast_ship/fast_ship.tscn" id="1_jpd8j"]
 [ext_resource type="Script" path="res://ui/spawn_option_card/spawn_option_resource.gd" id="2_e68wm"]
 
 [resource]
 script = ExtResource("2_e68wm")
 cost = 20.0
-build_time = 120.0
+build_time = 10.0
 item_name = "fast_ship"
-scene = ExtResource("1_akqkh")
+scene = ExtResource("1_jpd8j")

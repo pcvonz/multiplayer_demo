@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://270aautoykgi"]
+
+[ext_resource type="PackedScene" uid="uid://cs1hmnvc3ulyt" path="res://ship/Missile/missile.tscn" id="1_6mjw3"]
+
+[node name="long_missile" instance=ExtResource("1_6mjw3")]
+speed = 500.0
+damage = 5.0
+max_distance = 2000.0

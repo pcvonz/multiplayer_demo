@@ -15,6 +15,7 @@ properties/2/spawn = true
 properties/2/replication_mode = 1
 
 [node name="asteroid" type="RigidBody2D"]
+can_sleep = false
 script = ExtResource("1_bwqe7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

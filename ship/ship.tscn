@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://1r5lguti5vfn"]
+[gd_scene load_steps=10 format=3 uid="uid://1r5lguti5vfn"]
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_kbfi8"]
 [ext_resource type="Texture2D" uid="uid://t5lcyvo0c2yw" path="res://icon.svg" id="2_bpfnb"]
+[ext_resource type="PackedScene" uid="uid://cs1hmnvc3ulyt" path="res://ship/Missile/missile.tscn" id="2_o8v1s"]
 [ext_resource type="PackedScene" uid="uid://cebys673sqrdx" path="res://ship/explode.tscn" id="3_8epct"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mw1cn"]
@@ -72,6 +73,7 @@ gravity_scale = 0.0
 can_sleep = false
 script = ExtResource("1_kbfi8")
 health = 10.0
+missile_scene = ExtResource("2_o8v1s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_mw1cn")
@@ -106,7 +108,6 @@ text = "take control
 visible = false
 
 [node name="UI" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Control" type="Control" parent="UI"]
 layout_mode = 3
@@ -116,10 +117,12 @@ grow_horizontal = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Control"]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 1
+anchor_left = 1.0
 anchor_right = 1.0
+offset_left = -200.0
 offset_bottom = 27.0
-grow_horizontal = 2
+grow_horizontal = 0
 alignment = 2
 
 [node name="Label" type="Label" parent="UI/Control/HBoxContainer"]
@@ -128,6 +131,7 @@ text = "cool down:   "
 
 [node name="CoolDown" type="ProgressBar" parent="UI/Control/HBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

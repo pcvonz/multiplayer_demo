@@ -9,7 +9,7 @@ extends RigidBody2D
 @export var max_angular_speed = 10.0
 @export var stopping_speed = 2.0
 @export var health = 100.0
-@onready var missile_scene = preload("res://ship/Missile/missile.tscn")
+@export var missile_scene: PackedScene
 @onready var station_scene = preload("res://Turret/turret.tscn")
 @onready var explode_scene = preload("res://ship/explode.tscn")
 @onready var progress_bar: ProgressBar = get_node("ProgressBar")
@@ -22,6 +22,7 @@ signal on_destroyed
 @export var team: int = -1
 
 func _ready():
+	disable_ui()
 	progress_bar.value = health
 	progress_bar.max_value = health
 	cool_down.max_value = cool_down_time
@@ -101,15 +102,16 @@ func _integrate_forces(state: PhysicsDirectBodyState2D):
 	if !input:
 		return
 	if input.thrust_engaged:
-		var speed_to_add= (Vector2(0, clampf(speed, 0, speed)).rotated(self.rotation))
-		state.linear_velocity -= speed_to_add
+			var speed_to_add = (Vector2(0, clampf(speed, 0, speed)).rotated(self.rotation))
+			state.linear_velocity -= speed_to_add
 	if input.rotating_port:
 		state.angular_velocity = clampf(state.angular_velocity - angular_speed, -max_angular_speed, max_angular_speed)
 	if input.rotating_starboard:
 		state.angular_velocity = clampf(state.angular_velocity + angular_speed, -max_angular_speed, max_angular_speed)
 	if input.brake_engaged:
-		var stoppign_velocity = (linear_velocity.normalized() * stopping_speed)
-		linear_velocity -= stoppign_velocity
+		var stopping_velocity = (linear_velocity.normalized() * stopping_speed)
+		linear_velocity -= stopping_velocity
+	state.linear_velocity = Vector2(clampf(state.linear_velocity.x, -max_speed, max_speed), clampf(state.linear_velocity.y, -max_speed, max_speed))
 		
 func _on_button_pressed():
 	if input == null:
