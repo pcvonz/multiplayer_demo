@@ -1,12 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cyg4pxfyvhj2u"]
+[gd_scene load_steps=7 format=3 uid="uid://cyg4pxfyvhj2u"]
 
 [ext_resource type="Script" path="res://factory/factory.gd" id="1_wkpvo"]
 [ext_resource type="Texture2D" uid="uid://bms8s8pfs1tuv" path="res://factory/factory.png" id="2_84f6l"]
 [ext_resource type="Texture2D" uid="uid://bysj4qvyyuo7o" path="res://factory/factory_normal.png" id="3_64ab4"]
-[ext_resource type="PackedScene" uid="uid://8sohtqk4ivgf" path="res://ui/spawn_option_card/spawn_option_card.tscn" id="3_yf4nd"]
-[ext_resource type="Resource" uid="uid://bhpxr2na1gqwy" path="res://ui/factory_items/fast_ship.tres" id="4_cpiiv"]
-[ext_resource type="Resource" uid="uid://dy027rd5vlhry" path="res://ui/factory_items/slow_ship.tres" id="5_odur4"]
-[ext_resource type="Resource" uid="uid://bnlv0pmys47w0" path="res://ui/factory_items/construction_ship.tres" id="6_r60qj"]
 [ext_resource type="Texture2D" uid="uid://bnf6ulvji84rw" path="res://light_2d/light.png" id="8_oo8vn"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_a0f6v"]
@@ -81,19 +77,3 @@ offset_top = -366.0
 offset_right = 143.0
 offset_bottom = -211.0
 columns = 5
-
-[node name="spawn_option_card" parent="GridContainer" instance=ExtResource("3_yf4nd")]
-layout_mode = 2
-item = ExtResource("4_cpiiv")
-
-[node name="spawn_option_card2" parent="GridContainer" instance=ExtResource("3_yf4nd")]
-layout_mode = 2
-item = ExtResource("5_odur4")
-
-[node name="spawn_option_card3" parent="GridContainer" instance=ExtResource("3_yf4nd")]
-layout_mode = 2
-item = ExtResource("6_r60qj")
-
-[connection signal="purchase" from="GridContainer/spawn_option_card" to="." method="_on_purchase"]
-[connection signal="purchase" from="GridContainer/spawn_option_card2" to="." method="_on_purchase"]
-[connection signal="purchase" from="GridContainer/spawn_option_card3" to="." method="_on_purchase"]

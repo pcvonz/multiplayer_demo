@@ -1,4 +1,4 @@
-extends StaticBody2D
+class_name Factory extends StaticBody2D
 
 @onready var timer: Timer = get_node("Timer")
 @onready var progress: ProgressBar = get_node("ProgressBar")
@@ -14,9 +14,11 @@ var currently_building: FactoryItem
 
 signal build_complete
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Sprite2D.modulate=Global.team_colors[team]
+	EventBus.emit("on_add_static_body", self)
 
 	if multiplayer.is_server():
 		timer.timeout.connect(_on_timeout)

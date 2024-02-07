@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxp5gaycop30x"]
+
+[ext_resource type="PackedScene" uid="uid://cyg4pxfyvhj2u" path="res://factory/factory.tscn" id="1_ce1da"]
+[ext_resource type="PackedScene" uid="uid://8sohtqk4ivgf" path="res://ui/spawn_option_card/spawn_option_card.tscn" id="2_5waby"]
+[ext_resource type="Script" path="res://factory/harvester_factory/harvester_factory.gd" id="2_yn73c"]
+[ext_resource type="Resource" uid="uid://dwkkef8m8y7v0" path="res://ui/factory_items/harvester.tres" id="4_5lc5t"]
+
+[node name="harvester_factory" groups=["harvest_factories"] instance=ExtResource("1_ce1da")]
+script = ExtResource("2_yn73c")
+player_id = -1
+
+[node name="MultiplayerSpawner" parent="." index="5"]
+_spawnable_scenes = PackedStringArray("res://ship/ship.tscn", "res://ship/slow_ship/slow_ship.tscn", "res://ship/fast_ship/fast_ship.tscn", "res://ship/construction_ship/construction_ship.tscn", "res://harvester/harvester.tscn")
+
+[node name="spawn_option_card" parent="GridContainer" index="0" instance=ExtResource("2_5waby")]
+layout_mode = 2
+item = ExtResource("4_5lc5t")
+
+[connection signal="purchase" from="GridContainer/spawn_option_card" to="." method="_on_purchase"]

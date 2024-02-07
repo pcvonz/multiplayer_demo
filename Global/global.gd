@@ -1,6 +1,13 @@
 extends Node
 
-var players: Dictionary = {}
+# -1 is the testing player
+var players: Dictionary = {
+-1:{
+		"resources": 1000,
+		"name": "test",
+		"energy": 1000
+	}
+}
 
 var player_id: int = -1
 

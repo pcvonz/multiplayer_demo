@@ -39,7 +39,6 @@ func _on_build_turret_pressed():
 	resource_cost = turret.cost
 	to_place_func = build_turret
 
-
 @rpc("reliable", "any_peer", "call_local")
 func build_factory(pos: Vector2, player_id: int):
 	var factory_scene = factory.scene.instantiate()
