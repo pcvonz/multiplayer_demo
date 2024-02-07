@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://vsvskh7u3xfp"]
+[gd_scene load_steps=6 format=3 uid="uid://vsvskh7u3xfp"]
 
 [ext_resource type="Script" path="res://Turret/turret.gd" id="1_s47my"]
 [ext_resource type="Texture2D" uid="uid://t5lcyvo0c2yw" path="res://icon.svg" id="2_a4njg"]
+[ext_resource type="PackedScene" uid="uid://vheyu3bf6whv" path="res://ship/Missile/homing_missile/homing_missile.tscn" id="2_tsbst"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1vbmc"]
 
@@ -12,9 +13,13 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath(".:team")
 properties/1/spawn = true
 properties/1/replication_mode = 1
+properties/2/path = NodePath(".:health")
+properties/2/spawn = true
+properties/2/replication_mode = 1
 
-[node name="turret" type="Area2D"]
+[node name="turret" type="StaticBody2D"]
 script = ExtResource("1_s47my")
+missile_scene = ExtResource("2_tsbst")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1vbmc")
@@ -30,3 +35,10 @@ autostart = true
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_kllmy")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(100, 0)
+offset_left = -51.0
+offset_top = 30.0
+offset_right = 49.0
+offset_bottom = 57.0

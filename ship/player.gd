@@ -43,7 +43,7 @@ func _on_destroyed():
 func take_control(node: NodePath, player_id_requesting_control: int):
 	for player in get_tree().get_nodes_in_group("players"):
 		if  player.player_id == player_id_requesting_control:
-			if player.unit:
+			if player.unit and is_instance_valid(player.unit):
 				player.unit.input = null
 				if player.unit.on_destroyed.is_connected(_on_destroyed):
 					player.unit.on_destroyed.disconnect(_on_destroyed)

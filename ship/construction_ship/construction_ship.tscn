@@ -6,6 +6,7 @@
 
 [node name="ship" instance=ExtResource("1_c5kaw")]
 cool_down_time = 2.0
+speed = 2.0
 max_speed = 80.0
 max_angular_speed = 3.0
 stopping_speed = 5.0
