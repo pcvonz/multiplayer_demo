@@ -53,5 +53,5 @@ func take_control(node: NodePath, player_id_requesting_control: int):
 
 func _on_take_control(node: Node, player_id_requesting_control: int):
 	take_control.rpc(node.get_path(), player_id_requesting_control)
-	if unit:
+	if unit and is_instance_valid(unit):
 		unit.on_destroyed.connect(_on_destroyed)

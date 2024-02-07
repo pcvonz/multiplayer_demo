@@ -1,13 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsxlnkpflb3nf"]
+[gd_scene load_steps=7 format=3 uid="uid://dsxlnkpflb3nf"]
 
 [ext_resource type="PackedScene" uid="uid://1r5lguti5vfn" path="res://ship/ship.tscn" id="1_xh7il"]
 [ext_resource type="PackedScene" uid="uid://270aautoykgi" path="res://ship/Missile/long_missile/long_missile.tscn" id="2_siy6j"]
+[ext_resource type="Texture2D" uid="uid://3oyflwepmmn5" path="res://ship/fast_ship/fast_ship.png" id="3_qvk0f"]
+[ext_resource type="Texture2D" uid="uid://ck6x8k3u4apae" path="res://ship/fast_ship/fast_ship_normal.png" id="4_7f1vd"]
+[ext_resource type="Texture2D" uid="uid://sf43eykhrtle" path="res://light_2d/point_light.png" id="5_8ftlr"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_wrxhe"]
+diffuse_texture = ExtResource("3_qvk0f")
+normal_texture = ExtResource("4_7f1vd")
 
 [node name="slow_ship" instance=ExtResource("1_xh7il")]
 cool_down_time = 10.0
 speed = 2.0
 max_speed = 90.0
-max_angular_speed = 2.0
+max_angular_speed = 0.8
 stopping_speed = 5.0
 missile_scene = ExtResource("2_siy6j")
 
@@ -15,3 +22,10 @@ missile_scene = ExtResource("2_siy6j")
 anchors_preset = 1
 anchor_left = 1.0
 grow_horizontal = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="7"]
+texture = SubResource("CanvasTexture_wrxhe")
+
+[node name="PointLight2D" type="PointLight2D" parent="." index="8"]
+position = Vector2(-5, -290)
+texture = ExtResource("5_8ftlr")

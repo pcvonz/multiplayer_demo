@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://di0fn3fmrsw05"]
+
+[ext_resource type="PackedScene" uid="uid://vheyu3bf6whv" path="res://ship/Missile/homing_missile/homing_missile.tscn" id="2_uywhk"]
+[ext_resource type="PackedScene" uid="uid://brfiog6phtab2" path="res://ship/fast_ship/fast_ship.tscn" id="3_gvrds"]
+[ext_resource type="PackedScene" uid="uid://vsvskh7u3xfp" path="res://Turret/turret.tscn" id="3_orx0h"]
+
+[sub_resource type="Animation" id="Animation_68kwo"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_cprr3"]
+resource_name = "new_animation"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ovauf"]
+_data = {
+"RESET": SubResource("Animation_68kwo"),
+"new_animation": SubResource("Animation_cprr3")
+}
+
+[node name="test" type="Node2D"]
+
+[node name="homing_missile" parent="." instance=ExtResource("2_uywhk")]
+position = Vector2(527, 278)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ovauf")
+}
+autoplay = "new_animation"
+
+[node name="turret" parent="." instance=ExtResource("3_orx0h")]
+position = Vector2(750, 269)
+team = 1
+
+[node name="fast_ship" parent="." instance=ExtResource("3_gvrds")]
+position = Vector2(178, 246)

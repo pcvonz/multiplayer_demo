@@ -1,11 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://cyg4pxfyvhj2u"]
+[gd_scene load_steps=11 format=3 uid="uid://cyg4pxfyvhj2u"]
 
-[ext_resource type="Texture2D" uid="uid://t5lcyvo0c2yw" path="res://icon.svg" id="1_er5sm"]
 [ext_resource type="Script" path="res://factory/factory.gd" id="1_wkpvo"]
+[ext_resource type="Texture2D" uid="uid://bms8s8pfs1tuv" path="res://factory/factory.png" id="2_84f6l"]
+[ext_resource type="Texture2D" uid="uid://bysj4qvyyuo7o" path="res://factory/factory_normal.png" id="3_64ab4"]
 [ext_resource type="PackedScene" uid="uid://8sohtqk4ivgf" path="res://ui/spawn_option_card/spawn_option_card.tscn" id="3_yf4nd"]
 [ext_resource type="Resource" uid="uid://bhpxr2na1gqwy" path="res://ui/factory_items/fast_ship.tres" id="4_cpiiv"]
 [ext_resource type="Resource" uid="uid://dy027rd5vlhry" path="res://ui/factory_items/slow_ship.tres" id="5_odur4"]
 [ext_resource type="Resource" uid="uid://bnlv0pmys47w0" path="res://ui/factory_items/construction_ship.tres" id="6_r60qj"]
+[ext_resource type="Texture2D" uid="uid://bnf6ulvji84rw" path="res://light_2d/light.png" id="8_oo8vn"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_a0f6v"]
+diffuse_texture = ExtResource("2_84f6l")
+normal_texture = ExtResource("3_64ab4")
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_hom0k"]
 properties/0/path = NodePath(".:percent_left")
@@ -21,35 +27,59 @@ properties/3/path = NodePath(".:team")
 properties/3/spawn = true
 properties/3/replication_mode = 1
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h4f3g"]
-size = Vector2(798.5, 119)
-
 [node name="factory" type="StaticBody2D"]
 script = ExtResource("1_wkpvo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.988235, 1, 1, 1)
-position = Vector2(18, -182)
-scale = Vector2(6.12, 1)
-texture = ExtResource("1_er5sm")
+position = Vector2(-2, -61)
+texture = SubResource("CanvasTexture_a0f6v")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 custom_minimum_size = Vector2(200, 0)
-offset_left = -101.0
-offset_top = -108.0
-offset_right = 99.0
-offset_bottom = -81.0
+offset_left = -104.0
+offset_top = -32.0
+offset_right = 96.0
+offset_bottom = -5.0
 
 [node name="spawn_pos" type="Node2D" parent="."]
+position = Vector2(-89, 67)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_hom0k")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://ship/ship.tscn", "res://ship/slow_ship/slow_ship.tscn", "res://ship/fast_ship/fast_ship.tscn", "res://ship/construction_ship/construction_ship.tscn")
+spawn_path = NodePath("../spawn_pos")
+spawn_limit = 20000
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+position = Vector2(-2, -61)
+polygon = PackedVector2Array(-185, -166, -172, -156, -172, -148, -171.5, -146, -136.7, -146, -134.7, -158, 64, -158, 64, -155.4, 65.7, -146, 238, -146, 238, -143, 240, 51, 237.1, 51, 211, 52.9, 211, 57.9, 214, 59.9, 214, 73, 212.1, 73, 210.1, 76, 193.7, 76, 189, 74.4, 189, 73.1, 186, 71.1, 186, 53, 185.3, 53, 180, 49, 180, 13, 57.9, 13, 52.9, 19, 49.3, 19, 36.3, 23, -102.3, 23, -115, 19.6, -115, 20.3, -145.4, 139, -147.2, 139, -156.2, 148, -171, 148, -171, 150.2, -172.3, 158, -174.2, 158, -185.2, 169, -209, 169, -209, 166, -210.8, 148, -228.8, 148, -232, 144.8, -232, -144, -229.2, -144, -211, -145.8, -211, -164.1, -208, -166.1, -208, -168, -185, -168)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-223, -208)
+energy = 2.0
+texture = ExtResource("8_oo8vn")
+texture_scale = 5.0
+height = 100.0
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(213, -28)
+energy = 2.0
+texture = ExtResource("8_oo8vn")
+texture_scale = 5.0
+height = 100.0
 
 [node name="GridContainer" type="GridContainer" parent="."]
 offset_left = -249.0
 offset_top = -366.0
-offset_right = -209.0
-offset_bottom = -326.0
+offset_right = 143.0
+offset_bottom = -211.0
 columns = 5
 
 [node name="spawn_option_card" parent="GridContainer" instance=ExtResource("3_yf4nd")]
@@ -63,19 +93,6 @@ item = ExtResource("5_odur4")
 [node name="spawn_option_card3" parent="GridContainer" instance=ExtResource("3_yf4nd")]
 layout_mode = 2
 item = ExtResource("6_r60qj")
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_hom0k")
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://ship/ship.tscn", "res://ship/slow_ship/slow_ship.tscn", "res://ship/fast_ship/fast_ship.tscn", "res://ship/construction_ship/construction_ship.tscn")
-spawn_path = NodePath("../spawn_pos")
-spawn_limit = 20000
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(24.75, -181)
-shape = SubResource("RectangleShape2D_h4f3g")
 
 [connection signal="purchase" from="GridContainer/spawn_option_card" to="." method="_on_purchase"]
 [connection signal="purchase" from="GridContainer/spawn_option_card2" to="." method="_on_purchase"]

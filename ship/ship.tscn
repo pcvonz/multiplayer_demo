@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://1r5lguti5vfn"]
+[gd_scene load_steps=9 format=3 uid="uid://1r5lguti5vfn"]
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_kbfi8"]
-[ext_resource type="Texture2D" uid="uid://t5lcyvo0c2yw" path="res://icon.svg" id="2_bpfnb"]
 [ext_resource type="PackedScene" uid="uid://cs1hmnvc3ulyt" path="res://ship/Missile/missile.tscn" id="2_o8v1s"]
 [ext_resource type="PackedScene" uid="uid://cebys673sqrdx" path="res://ship/explode.tscn" id="3_8epct"]
 
@@ -33,34 +32,10 @@ properties/6/replication_mode = 1
 
 [sub_resource type="Animation" id="Animation_8qjcx"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_3246v"]
 resource_name = "damage"
 length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0.0352941, 0.137255, 1), Color(1, 1, 1, 1)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cdtyu"]
 _data = {
@@ -77,10 +52,6 @@ missile_scene = ExtResource("2_o8v1s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_mw1cn")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.471)
-texture = ExtResource("2_bpfnb")
 
 [node name="ServerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_3ri7u")

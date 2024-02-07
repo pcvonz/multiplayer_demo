@@ -19,8 +19,11 @@ func _ready():
 	if team != null:
 		$Sprite2D.modulate=Global.team_colors[team]
 
-func _process(_delta):
+func _process(delta):
 	progress_bar.value = health
+	var closest_player = get_closest_node_in_group.run("ships", team, self, max_distance)
+	if closest_player != null:
+		look_at(closest_player.global_position)
 	if health <= 0:
 		queue_free()
 

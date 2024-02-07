@@ -7,6 +7,7 @@
 script = ExtResource("1_ltnud")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+light_mask = 2
 layout_mode = 2
 texture = ExtResource("1_13s6a")
 
