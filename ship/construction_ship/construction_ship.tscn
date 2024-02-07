@@ -63,6 +63,11 @@ layout_mode = 2
 focus_mode = 0
 text = "Build Turret"
 
+[node name="build_harvester_factory" type="Button" parent="UI/construction_ship_ui/HBoxContainer" index="4"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "build harvester factory"
+
 [node name="PointLight2D" type="PointLight2D" parent="." index="7"]
 position = Vector2(6, -263)
 texture = ExtResource("4_11uni")
@@ -73,3 +78,4 @@ texture = SubResource("CanvasTexture_0q1ky")
 [connection signal="pressed" from="UI/construction_ship_ui/HBoxContainer/build_factory" to="UI/construction_ship_ui" method="_on_build_factory_pressed"]
 [connection signal="pressed" from="UI/construction_ship_ui/HBoxContainer/build_energy" to="UI/construction_ship_ui" method="_on_build_energy_pressed"]
 [connection signal="pressed" from="UI/construction_ship_ui/HBoxContainer/build_turret" to="UI/construction_ship_ui" method="_on_build_turret_pressed"]
+[connection signal="pressed" from="UI/construction_ship_ui/HBoxContainer/build_harvester_factory" to="UI/construction_ship_ui" method="_on_build_harvester_factory_pressed"]

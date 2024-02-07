@@ -1,12 +1,11 @@
-extends RigidBody2D
+extends Structure 
 
-@export var health = 40
 @export var player_id = -1
-@export var team: int
 @onready var anim: AnimatedSprite2D = get_node("AnimatedSprite2D")
 @onready var well: Area2D = $well
 
 func _ready():
+	super()
 	if not multiplayer.is_server():
 		well.gravity_space_override = Area2D.SPACE_OVERRIDE_DISABLED
 	if team == 0:

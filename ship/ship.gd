@@ -117,4 +117,3 @@ func _on_button_pressed():
 	if input == null:
 		take_control.emit(self, multiplayer.get_unique_id())
 		enable_ui()
-

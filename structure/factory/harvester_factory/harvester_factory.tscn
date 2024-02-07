@@ -16,4 +16,7 @@ _spawnable_scenes = PackedStringArray("res://ship/ship.tscn", "res://ship/slow_s
 layout_mode = 2
 item = ExtResource("4_5lc5t")
 
+[node name="home_position" type="Marker2D" parent="." index="10"]
+position = Vector2(-31, -281)
+
 [connection signal="purchase" from="GridContainer/spawn_option_card" to="." method="_on_purchase"]

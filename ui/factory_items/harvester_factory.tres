@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FactoryItem" load_steps=3 format=3 uid="uid://xlyli8ma03fn"]
+
+[ext_resource type="PackedScene" uid="uid://dxp5gaycop30x" path="res://structure/factory/harvester_factory/harvester_factory.tscn" id="1_k2n2j"]
+[ext_resource type="Script" path="res://ui/spawn_option_card/spawn_option_resource.gd" id="2_i1gmw"]
+
+[resource]
+script = ExtResource("2_i1gmw")
+cost = 20.0
+build_time = 20.0
+item_name = "Harvester Factory"
+scene = ExtResource("1_k2n2j")

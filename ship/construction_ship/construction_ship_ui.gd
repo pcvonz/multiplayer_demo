@@ -3,6 +3,7 @@ extends Control
 var factory: FactoryItem = ResourceLoader.load("res://ui/factory_items/factory.tres")
 var energy_generator: FactoryItem = ResourceLoader.load("res://ui/factory_items/energy_generator.tres")
 var turret: FactoryItem = ResourceLoader.load("res://ui/factory_items/turret.tres")
+var harvester_factory: FactoryItem = ResourceLoader.load("res://ui/factory_items/harvester_factory.tres")
 
 var placing = false
 var to_place_func: Callable
@@ -39,12 +40,25 @@ func _on_build_turret_pressed():
 	resource_cost = turret.cost
 	to_place_func = build_turret
 
+func _on_build_harvester_factory_pressed():
+	placing = true
+	resource_cost = turret.cost
+	to_place_func = build_harvester_factory
+
 @rpc("reliable", "any_peer", "call_local")
 func build_factory(pos: Vector2, player_id: int):
 	var factory_scene = factory.scene.instantiate()
 	factory_scene.team = Global.players[player_id].team
 	factory_scene.global_position = pos
 	EventBus.on_add_to_spawner.emit(factory_scene)
+
+@rpc("reliable", "any_peer", "call_local")
+func build_harvester_factory(pos: Vector2, player_id: int):
+	var harvester_factory_scene = harvester_factory.scene.instantiate()
+	harvester_factory_scene.player_id = player_id
+	harvester_factory_scene.team = Global.players[player_id].team
+	harvester_factory_scene.global_position = pos
+	EventBus.on_add_to_spawner.emit(harvester_factory_scene)
 
 @rpc("reliable", "any_peer", "call_local")
 func build_turret(pos: Vector2, player_id: int):

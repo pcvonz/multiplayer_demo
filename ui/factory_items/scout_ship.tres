@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FactoryItem" load_steps=3 format=3 uid="uid://dm5dliru2tphh"]
+
+[ext_resource type="PackedScene" uid="uid://b644r2shml4wm" path="res://ship/scout_ship/scout_ship.tscn" id="1_aq4vv"]
+[ext_resource type="Script" path="res://ui/spawn_option_card/spawn_option_resource.gd" id="2_h7jik"]
+
+[resource]
+script = ExtResource("2_h7jik")
+cost = 30.0
+build_time = 5.0
+item_name = "Scout Ship"
+scene = ExtResource("1_aq4vv")

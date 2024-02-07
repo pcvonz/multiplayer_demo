@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://b644r2shml4wm"]
+
+[ext_resource type="PackedScene" uid="uid://1r5lguti5vfn" path="res://ship/ship.tscn" id="1_5ogxu"]
+[ext_resource type="Texture2D" uid="uid://3oyflwepmmn5" path="res://ship/fast_ship/fast_ship.png" id="2_4aq1p"]
+[ext_resource type="Texture2D" uid="uid://ck6x8k3u4apae" path="res://ship/fast_ship/fast_ship_normal.png" id="3_xrt1y"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_3lyp5"]
+diffuse_texture = ExtResource("2_4aq1p")
+normal_texture = ExtResource("3_xrt1y")
+
+[node name="scout_ship" instance=ExtResource("1_5ogxu")]
+cool_down_time = 10.0
+speed = 20.0
+max_speed = 400.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="7"]
+texture = SubResource("CanvasTexture_3lyp5")

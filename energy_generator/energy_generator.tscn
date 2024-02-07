@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dorbf13ybpuqe"]
+[gd_scene load_steps=29 format=3 uid="uid://dorbf13ybpuqe"]
 
 [ext_resource type="Script" path="res://energy_generator/energy_generator.gd" id="1_02ucr"]
 [ext_resource type="Texture2D" uid="uid://ccpblaw5ih2uc" path="res://energy_generator/sprite_frames/0001.png" id="1_6mjyf"]
@@ -22,6 +22,9 @@
 [ext_resource type="Texture2D" uid="uid://be26tsn6g8im8" path="res://energy_generator/sprite_frames/0018.png" id="18_gn6ro"]
 [ext_resource type="Texture2D" uid="uid://2ylwsj7gutym" path="res://energy_generator/sprite_frames/0019.png" id="19_fk121"]
 [ext_resource type="Texture2D" uid="uid://cq26g574sq8vg" path="res://energy_generator/sprite_frames/0020.png" id="20_x7lmm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vqaep"]
+radius = 107.378
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h01dp"]
 shader = ExtResource("1_s11hh")
@@ -113,13 +116,13 @@ properties/2/replication_mode = 1
 [sub_resource type="CircleShape2D" id="CircleShape2D_xmmgr"]
 radius = 441.409
 
-[node name="energy_generator" type="RigidBody2D"]
-mass = 10000.0
-freeze = true
-freeze_mode = 1
-max_contacts_reported = 5
-contact_monitor = true
+[node name="energy_generator" type="StaticBody2D"]
 script = ExtResource("1_02ucr")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_vqaep")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_h01dp")
@@ -143,4 +146,4 @@ gravity = 200.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="well"]
 shape = SubResource("CircleShape2D_xmmgr")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

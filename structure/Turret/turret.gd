@@ -1,18 +1,16 @@
-extends StaticBody2D
+extends Structure
 
 var progress_bar: ProgressBar
 var get_closest_node_in_group = preload("res://util/get_closest_node_in_group.gd")
 
-@export var health = 100
-@export var team: int
 @export var max_distance = 1000 
 @export var missile_scene: PackedScene
 
 func damage(amount: int):
 	health -= amount
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
+	super()
 	progress_bar = $ProgressBar
 	progress_bar.max_value = health
 	$Timer.timeout.connect(_on_timeout)

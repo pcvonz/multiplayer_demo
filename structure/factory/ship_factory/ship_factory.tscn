@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dh5gytp07eqos"]
+[gd_scene load_steps=7 format=3 uid="uid://dh5gytp07eqos"]
 
 [ext_resource type="PackedScene" uid="uid://cyg4pxfyvhj2u" path="res://structure/factory/factory.tscn" id="1_e666h"]
 [ext_resource type="PackedScene" uid="uid://8sohtqk4ivgf" path="res://ui/spawn_option_card/spawn_option_card.tscn" id="2_84sfd"]
 [ext_resource type="Resource" uid="uid://bnlv0pmys47w0" path="res://ui/factory_items/construction_ship.tres" id="3_rbl4b"]
 [ext_resource type="Resource" uid="uid://bhpxr2na1gqwy" path="res://ui/factory_items/fast_ship.tres" id="4_6rmj6"]
 [ext_resource type="Resource" uid="uid://dy027rd5vlhry" path="res://ui/factory_items/slow_ship.tres" id="5_w508q"]
+[ext_resource type="Resource" uid="uid://dm5dliru2tphh" path="res://ui/factory_items/scout_ship.tres" id="6_lcjnn"]
 
 [node name="ship_factory" instance=ExtResource("1_e666h")]
 
@@ -20,6 +21,11 @@ item = ExtResource("4_6rmj6")
 layout_mode = 2
 item = ExtResource("5_w508q")
 
+[node name="spawn_option_card4" parent="GridContainer" index="3" instance=ExtResource("2_84sfd")]
+layout_mode = 2
+item = ExtResource("6_lcjnn")
+
 [connection signal="purchase" from="GridContainer/spawn_option_card" to="." method="_on_purchase"]
 [connection signal="purchase" from="GridContainer/spawn_option_card2" to="." method="_on_purchase"]
 [connection signal="purchase" from="GridContainer/spawn_option_card3" to="." method="_on_purchase"]
+[connection signal="purchase" from="GridContainer/spawn_option_card4" to="." method="_on_purchase"]

@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxvngmbg4n6ql"]
+[gd_scene load_steps=11 format=3 uid="uid://dxvngmbg4n6ql"]
 
 [ext_resource type="Script" path="res://harvester/harvester.gd" id="1_0slsc"]
 [ext_resource type="Texture2D" uid="uid://3oyflwepmmn5" path="res://ship/fast_ship/fast_ship.png" id="1_2c36l"]
+[ext_resource type="Texture2D" uid="uid://bnf6ulvji84rw" path="res://light_2d/light.png" id="3_2dr8g"]
+[ext_resource type="Texture2D" uid="uid://sf43eykhrtle" path="res://light_2d/point_light.png" id="3_uy5jq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2vqi2"]
 
@@ -12,17 +14,108 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
+properties/2/path = NodePath(".:player_id")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:currently_stored_resources")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath(".:resource_limit")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jpcd0"]
+radius = 183.883
+
+[sub_resource type="Animation" id="Animation_4na2h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("red_light:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5.0]
+}
+
+[sub_resource type="Animation" id="Animation_wgf02"]
+resource_name = "blink"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("red_light:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [5.0, 0.0, 5.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5pbki"]
+_data = {
+"RESET": SubResource("Animation_4na2h"),
+"blink": SubResource("Animation_wgf02")
+}
 
 [node name="harvester" type="RigidBody2D"]
 script = ExtResource("1_0slsc")
 
+[node name="ProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(100, 0)
+offset_left = -45.0
+offset_top = 73.0
+offset_right = 55.0
+offset_bottom = 100.0
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
 shape = SubResource("CircleShape2D_2vqi2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
 texture = ExtResource("1_2c36l")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_uuutp")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="MineArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MineArea"]
+visible = false
+shape = SubResource("CircleShape2D_jpcd0")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(297, 0)
+rotation = 1.5708
+texture = ExtResource("3_uy5jq")
+height = 50.0
+
+[node name="red_light" type="PointLight2D" parent="."]
+position = Vector2(-40, 0)
+rotation = 1.5708
+color = Color(0.627451, 0, 0, 1)
+energy = 5.0
+texture = ExtResource("3_2dr8g")
+texture_scale = 0.1
+height = 50.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5pbki")
+}
+autoplay = "blink"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

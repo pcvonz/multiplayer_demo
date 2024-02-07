@@ -1,4 +1,4 @@
-class_name Factory extends StaticBody2D
+class_name Factory extends Structure
 
 @onready var timer: Timer = get_node("Timer")
 @onready var progress: ProgressBar = get_node("ProgressBar")
@@ -9,17 +9,12 @@ var currently_building: FactoryItem
 @export var percent_left: float
 @export var build_time: float = 0
 @export var maximum_items = 30
-@export var health = 40
-@export var team: int
 
 signal build_complete
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Sprite2D.modulate=Global.team_colors[team]
-	EventBus.on_add_static_body.emit(self)
-
+	super()
 	if multiplayer.is_server():
 		timer.timeout.connect(_on_timeout)
 
@@ -49,7 +44,7 @@ func spawn_scene():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if currently_building and multiplayer.is_server:
+	if currently_building and multiplayer.is_server():
 		build_time = currently_building.build_time
 		percent_left =  (timer.time_left / build_time) * 100
 
