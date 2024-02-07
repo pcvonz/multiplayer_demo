@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://vsvskh7u3xfp"]
 
-[ext_resource type="Script" path="res://Turret/turret.gd" id="1_s47my"]
+[ext_resource type="Script" path="res://structure/Turret/turret.gd" id="1_s47my"]
 [ext_resource type="PackedScene" uid="uid://vheyu3bf6whv" path="res://ship/Missile/homing_missile/homing_missile.tscn" id="2_tsbst"]
-[ext_resource type="Texture2D" uid="uid://dux1l4f2pllk7" path="res://Turret/turret.png" id="3_654vi"]
-[ext_resource type="Texture2D" uid="uid://b8k1oxki2lr1u" path="res://Turret/turret_normal.png" id="4_b0sry"]
+[ext_resource type="Texture2D" uid="uid://dux1l4f2pllk7" path="res://structure/Turret/turret.png" id="3_654vi"]
+[ext_resource type="Texture2D" uid="uid://b8k1oxki2lr1u" path="res://structure/Turret/turret_normal.png" id="4_b0sry"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1vbmc"]
 

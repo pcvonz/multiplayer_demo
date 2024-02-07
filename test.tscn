@@ -1,35 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://di0fn3fmrsw05"]
+[gd_scene load_steps=5 format=3 uid="uid://di0fn3fmrsw05"]
 
-[ext_resource type="PackedScene" uid="uid://vheyu3bf6whv" path="res://ship/Missile/homing_missile/homing_missile.tscn" id="2_uywhk"]
-[ext_resource type="PackedScene" uid="uid://brfiog6phtab2" path="res://ship/fast_ship/fast_ship.tscn" id="3_gvrds"]
-[ext_resource type="PackedScene" uid="uid://vsvskh7u3xfp" path="res://Turret/turret.tscn" id="3_orx0h"]
+[ext_resource type="PackedScene" uid="uid://dxp5gaycop30x" path="res://structure/factory/harvester_factory/harvester_factory.tscn" id="1_xfq0p"]
+[ext_resource type="PackedScene" uid="uid://drfqdvv0cg2bo" path="res://structure/rich_asteroid/rich_asteroid.tscn" id="2_6222i"]
+[ext_resource type="PackedScene" uid="uid://dh5gytp07eqos" path="res://structure/factory/ship_factory/ship_factory.tscn" id="3_1a47n"]
 
-[sub_resource type="Animation" id="Animation_68kwo"]
-length = 0.001
-
-[sub_resource type="Animation" id="Animation_cprr3"]
-resource_name = "new_animation"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ovauf"]
-_data = {
-"RESET": SubResource("Animation_68kwo"),
-"new_animation": SubResource("Animation_cprr3")
-}
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_y6ti3"]
+vertices = PackedVector2Array(630, 430, 1415, -156, 1272, 838, 604, 452, 628, 196, 628, 153, 21, -14, 454, 141, 454, 153, 205, 141, 205, 131, 102, 131, 99, 154, 99, 155, 78, 155, 427, 392, 490, 392, 490, 407, 422, 398, 604, 430, 236, 518, 266, 402, 392, 402, 499, 440, -136, 657, 581, 455, 102, 152, 78, 501, 101, 524, 101, 548, 496, 411, 496, 431, 405, 398, 499, 433, 583, 452, 536, 455, 182, 548, 213, 537, 214, 522, 220, 518, 193, 537)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(1, 0, 4, 5), PackedInt32Array(6, 1, 5, 7), PackedInt32Array(5, 8, 7), PackedInt32Array(7, 9, 10), PackedInt32Array(6, 7, 10), PackedInt32Array(6, 10, 11), PackedInt32Array(12, 13, 14), PackedInt32Array(15, 16, 17, 18), PackedInt32Array(3, 19, 0), PackedInt32Array(20, 21, 22, 23), PackedInt32Array(3, 2, 24, 25), PackedInt32Array(11, 26, 12, 14, 6), PackedInt32Array(24, 6, 14, 27), PackedInt32Array(24, 27, 28, 29), PackedInt32Array(17, 30, 31, 18), PackedInt32Array(32, 18, 31, 33, 23, 22), PackedInt32Array(25, 34, 3), PackedInt32Array(35, 25, 24), PackedInt32Array(23, 35, 24, 36), PackedInt32Array(37, 38, 39, 20), PackedInt32Array(36, 40, 37), PackedInt32Array(24, 29, 36), PackedInt32Array(23, 36, 37), PackedInt32Array(23, 37, 20)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-11, -52, 1463, -202, 1307, 884, -186, 692)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 40.0
 
 [node name="test" type="Node2D"]
 
-[node name="homing_missile" parent="." instance=ExtResource("2_uywhk")]
-position = Vector2(527, 278)
+[node name="rich_asteroid" parent="." instance=ExtResource("2_6222i")]
+position = Vector2(993, 190)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ovauf")
-}
-autoplay = "new_animation"
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_y6ti3")
 
-[node name="turret" parent="." instance=ExtResource("3_orx0h")]
-position = Vector2(750, 269)
-team = 1
+[node name="harvester_factory" parent="NavigationRegion2D" instance=ExtResource("1_xfq0p")]
+position = Vector2(352, 400)
 
-[node name="fast_ship" parent="." instance=ExtResource("3_gvrds")]
-position = Vector2(178, 246)
+[node name="ship_factory" parent="." instance=ExtResource("3_1a47n")]
+position = Vector2(880, 647)

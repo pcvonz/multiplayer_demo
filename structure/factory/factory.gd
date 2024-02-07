@@ -18,7 +18,7 @@ signal build_complete
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Sprite2D.modulate=Global.team_colors[team]
-	EventBus.emit("on_add_static_body", self)
+	EventBus.on_add_static_body.emit(self)
 
 	if multiplayer.is_server():
 		timer.timeout.connect(_on_timeout)

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FactoryItem" load_steps=3 format=3 uid="uid://cf23i8mop5wpq"]
 
-[ext_resource type="PackedScene" uid="uid://vsvskh7u3xfp" path="res://Turret/turret.tscn" id="1_e10tq"]
+[ext_resource type="PackedScene" uid="uid://vsvskh7u3xfp" path="res://structure/Turret/turret.tscn" id="1_e10tq"]
 [ext_resource type="Script" path="res://ui/spawn_option_card/spawn_option_resource.gd" id="2_nfsd3"]
 
 [resource]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dxp5gaycop30x"]
 
-[ext_resource type="PackedScene" uid="uid://cyg4pxfyvhj2u" path="res://factory/factory.tscn" id="1_ce1da"]
+[ext_resource type="PackedScene" uid="uid://cyg4pxfyvhj2u" path="res://structure/factory/factory.tscn" id="1_ce1da"]
 [ext_resource type="PackedScene" uid="uid://8sohtqk4ivgf" path="res://ui/spawn_option_card/spawn_option_card.tscn" id="2_5waby"]
-[ext_resource type="Script" path="res://factory/harvester_factory/harvester_factory.gd" id="2_yn73c"]
+[ext_resource type="Script" path="res://structure/factory/harvester_factory/harvester_factory.gd" id="2_yn73c"]
 [ext_resource type="Resource" uid="uid://dwkkef8m8y7v0" path="res://ui/factory_items/harvester.tres" id="4_5lc5t"]
 
 [node name="harvester_factory" groups=["harvest_factories"] instance=ExtResource("1_ce1da")]

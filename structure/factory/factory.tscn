@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://cyg4pxfyvhj2u"]
 
-[ext_resource type="Script" path="res://factory/factory.gd" id="1_wkpvo"]
-[ext_resource type="Texture2D" uid="uid://bms8s8pfs1tuv" path="res://factory/factory.png" id="2_84f6l"]
-[ext_resource type="Texture2D" uid="uid://bysj4qvyyuo7o" path="res://factory/factory_normal.png" id="3_64ab4"]
+[ext_resource type="Script" path="res://structure/factory/factory.gd" id="1_wkpvo"]
+[ext_resource type="Texture2D" uid="uid://bms8s8pfs1tuv" path="res://structure/factory/factory.png" id="2_84f6l"]
+[ext_resource type="Texture2D" uid="uid://bysj4qvyyuo7o" path="res://structure/factory/factory_normal.png" id="3_64ab4"]
 [ext_resource type="Texture2D" uid="uid://bnf6ulvji84rw" path="res://light_2d/light.png" id="8_oo8vn"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_a0f6v"]

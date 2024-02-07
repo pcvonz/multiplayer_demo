@@ -10,7 +10,7 @@ extends RigidBody2D
 @export var stopping_speed = 2.0
 @export var health = 100.0
 @export var missile_scene: PackedScene
-@onready var station_scene = preload("res://Turret/turret.tscn")
+@onready var turret_scene = preload("res://structure/Turret/turret.tscn")
 @onready var explode_scene = preload("res://ship/explode.tscn")
 @onready var progress_bar: ProgressBar = get_node("ProgressBar")
 @onready var cool_down: ProgressBar = get_node("%CoolDown")
@@ -56,7 +56,7 @@ func _process(delta):
 			explode()
 
 	if input and input.place_object:
-		var station = station_scene.instantiate()
+		var station = turret_scene.instantiate()
 		station.global_position = input.placement_position + global_position
 		input.place_object = false
 
