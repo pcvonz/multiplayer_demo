@@ -6,6 +6,7 @@
 script = ExtResource("1_m4x42")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://asteroid/asteroid.tscn")
 spawn_path = NodePath("..")
 spawn_limit = 1000
 

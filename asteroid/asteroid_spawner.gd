@@ -12,8 +12,9 @@ func spawn_asteroid():
 	var pos_y = randf_range(-1000, 1000)
 	asteroid.linear_velocity = Vector2(x, y)
 	asteroid.global_position = Vector2(pos_x, pos_y)
-	add_child(asteroid)
+	add_child(asteroid, true)
 
 func _on_timer_timeout():
-	spawn_asteroid()
+	if multiplayer.is_server():
+		spawn_asteroid()
 

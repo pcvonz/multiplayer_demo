@@ -21,14 +21,15 @@ func _process(_delta):
 	if health <= 0:
 		queue_free()
 
-
 func _on_body_entered(body:Node):
 	if "value" in body:
 		var value = body.value
-		var player = Global.get_player()
-		if player and Global.player_id == player_id:
-			player.energy += value
-			player.resources += value
+		add_resources.rpc(player_id, value)
 		body.queue_free()
 
+@rpc("authority", "call_local")
+func add_resources(id: int, value: int):
+	var player = Global.players[id]
+	player.energy += value
+	player.resources += value
 

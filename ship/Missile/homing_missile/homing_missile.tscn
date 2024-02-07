@@ -5,7 +5,7 @@
 [node name="homing_missile" instance=ExtResource("1_fgkkw")]
 linear_damp = 3.0
 speed = 150.0
-max_speed = 400.0
-damage = 5.0
+max_speed = 800.0
+damage = 30.0
 max_distance = 200000.0
 homing = true

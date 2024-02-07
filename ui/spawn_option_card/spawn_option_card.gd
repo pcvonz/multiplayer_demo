@@ -8,7 +8,10 @@ func _ready():
 
 func _on_gui_input(event:InputEvent):
 	if event.is_action_released("click"):
-		select_item.rpc()
+		var player = Global.get_player()
+		if player.resources >= item.cost:
+			player.resources -= item.cost
+			select_item.rpc()
 	
 @rpc("any_peer", "call_local", "reliable", 0)
 func select_item():

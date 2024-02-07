@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_8ag54")
-cost = 10.0
-build_time = 1.0
+cost = 100.0
+build_time = 30.0
 item_name = "Slow Ship"
 scene = ExtResource("1_ut1bu")

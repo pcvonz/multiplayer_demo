@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("2_lpx4g")
 cost = 10.0
-build_time = 1.0
+build_time = 10.0
 item_name = "Construction Ship"
 scene = ExtResource("1_8bdso")
