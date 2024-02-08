@@ -17,7 +17,6 @@ func _on_gui_input(event:InputEvent):
 func select_item(player_id: int):
 	if multiplayer.is_server():
 		item.player_id = player_id
-		print("ITEM PLAYER: ", item.player_id)
 		purchase.emit(item)
 
 		

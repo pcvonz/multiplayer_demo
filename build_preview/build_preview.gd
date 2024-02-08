@@ -4,7 +4,7 @@ var item: FactoryItem
 @onready var timer: Timer = $Timer
 @onready var preview: Sprite2D = $Sprite2D
 @onready var progress_bar: ProgressBar = $ProgressBar
-@onready var team: int = -1
+@export var team: int = -1
 @export var player_id: int = -1
 @export var percent_complete: float
 @export var resource_path: String
@@ -38,6 +38,7 @@ func _on_scene_built():
 func _on_timer_timeout():
 	if multiplayer.is_server():
 		scene_to_build.player_id = player_id
+		scene_to_build.team = team
 		scene_to_build.global_position = self.global_position
 		scene_to_build.tree_entered.connect(_on_scene_built)
 		EventBus.on_add_to_spawner.emit(scene_to_build)

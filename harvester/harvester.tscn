@@ -81,7 +81,7 @@ replication_config = SubResource("SceneReplicationConfig_uuutp")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
-radius = 60.0
+radius = 20.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

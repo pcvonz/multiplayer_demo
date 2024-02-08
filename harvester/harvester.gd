@@ -60,10 +60,13 @@ func _physics_process(delta):
 	if reached:
 		linear_velocity = Vector2.ZERO
 		return
+	# TODO: Rotation needs to be done correctly
+	#var moving_to = Vector2.RIGHT.rotated(rotation).angle_to_point(linear_velocity)
+	# rotation = lerp_angle(self.rotation, moving_to, delta)
+	# look_at(navigation_agent.get_next_path_position())
 
 	var current_agent_position: Vector2 = global_position
 	var next_path_position: Vector2 = navigation_agent.get_next_path_position()
-	look_at(next_path_position)
 	navigation_agent.velocity = current_agent_position.direction_to(next_path_position) * movement_speed
 
 func _on_timer_timeout():
@@ -81,11 +84,11 @@ func _on_timer_timeout():
 				body.store_resource(player_id, resource_amount_to_store)
 				if currently_stored_resources <= 0:
 					mining = true
+		else:
+			reached = false
 
 func _on_mine_area_body_entered(body:Node2D):
 	navigation_agent.get_final_position()
-
-
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity:Vector2):
 	linear_velocity = safe_velocity

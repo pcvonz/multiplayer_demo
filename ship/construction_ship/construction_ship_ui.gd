@@ -40,12 +40,12 @@ func _on_build_harvester_factory_pressed():
 
 func build(resource_path: String, pos: Vector2, player_id: int):
 		var build_preview_scene: BuildPreview = build_preview.instantiate()
+		print("Construction Ship: ", player_id)
 		build_preview_scene.resource_path = resource_path
 		build_preview_scene.team = Global.players[player_id].team
 		build_preview_scene.player_id = player_id
 		build_preview_scene.global_position = pos
 		EventBus.on_add_to_spawner.emit(build_preview_scene)
-		
 
 @rpc("reliable", "any_peer", "call_local")
 func build_factory(pos: Vector2, player_id: int):
