@@ -10,6 +10,7 @@ func set_zoom(value):
 
 @export var player_texture: Texture2D
 @export var ship_texture: Texture2D
+@export var harvester: Texture2D
 @export var structure_texture: Texture2D
 var grid_scale: Vector2
 
@@ -24,8 +25,9 @@ func _process(_delta):
 	queue_redraw()
 
 func filter_func(node: Node2D):
-	if "player_id" in node:
-		return node.player_id == Global.player_id
+	var player = Global.get_player()
+	if "player_id" in node and "team" in node:
+		return node.player_id == Global.player_id or player.team == node.team
 	return false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -45,6 +47,10 @@ func _draw():
 		if node is Structure:
 			var structure_pos = get_map_position(player_pos, node.global_position)
 			draw_texture(structure_texture, structure_pos)
+		if node is Harvester:
+			var harvester_pos = get_map_position(player_pos, node.global_position)
+			draw_texture(harvester, harvester_pos)
+
 		draw_texture(player_texture, get_map_position(player_pos, player_pos))
 	
 

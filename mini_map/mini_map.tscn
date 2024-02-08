@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c56kmcgl6sr0b"]
+[gd_scene load_steps=6 format=3 uid="uid://c56kmcgl6sr0b"]
 
 [ext_resource type="Script" path="res://mini_map/mini_map.gd" id="1_lc337"]
 [ext_resource type="Texture2D" uid="uid://b7yovu2l1hqso" path="res://mini_map/player.png" id="2_gdmit"]
 [ext_resource type="Texture2D" uid="uid://mm64nyxm4c43" path="res://mini_map/ship.png" id="3_6hwyv"]
 [ext_resource type="Texture2D" uid="uid://bp6yxmeji63b6" path="res://mini_map/structure.png" id="4_587ts"]
+[ext_resource type="Texture2D" uid="uid://dwdoujl8oaet7" path="res://mini_map/harvester.png" id="4_xkilr"]
 
 [node name="mini_map" type="TextureRect"]
 anchors_preset = 15
@@ -14,6 +15,7 @@ grow_vertical = 2
 script = ExtResource("1_lc337")
 player_texture = ExtResource("2_gdmit")
 ship_texture = ExtResource("3_6hwyv")
+harvester = ExtResource("4_xkilr")
 structure_texture = ExtResource("4_587ts")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

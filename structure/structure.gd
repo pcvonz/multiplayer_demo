@@ -1,6 +1,6 @@
 class_name Structure extends StaticBody2D
 @export var health = 40
-@export var team: int
+@export var team: int = -1
 @export var player_id = -1
 @export var preview_texture: Texture2D
 

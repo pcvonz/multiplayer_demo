@@ -44,7 +44,7 @@ offset_right = 96.0
 offset_bottom = -5.0
 
 [node name="spawn_pos" type="Node2D" parent="."]
-position = Vector2(-89, 67)
+position = Vector2(-52, 212)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_hom0k")
@@ -55,8 +55,6 @@ spawn_path = NodePath("../spawn_pos")
 spawn_limit = 20000
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-visible = false
-position = Vector2(-2, -61)
 polygon = PackedVector2Array(-185, -166, -172, -156, -172, -148, -171.5, -146, -136.7, -146, -134.7, -158, 64, -158, 64, -155.4, 65.7, -146, 238, -146, 238, -143, 240, 51, 237.1, 51, 211, 52.9, 211, 57.9, 214, 59.9, 214, 73, 212.1, 73, 210.1, 76, 193.7, 76, 189, 74.4, 189, 73.1, 186, 71.1, 186, 53, 185.3, 53, 180, 49, 180, 13, 57.9, 13, 52.9, 19, 49.3, 19, 36.3, 23, -102.3, 23, -115, 19.6, -115, 20.3, -145.4, 139, -147.2, 139, -156.2, 148, -171, 148, -171, 150.2, -172.3, 158, -174.2, 158, -185.2, 169, -209, 169, -209, 166, -210.8, 148, -228.8, 148, -232, 144.8, -232, -144, -229.2, -144, -211, -145.8, -211, -164.1, -208, -166.1, -208, -168, -185, -168)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

@@ -58,6 +58,7 @@ team = 1
 
 [node name="ship_factory" parent="." instance=ExtResource("2_7ji7o")]
 position = Vector2(735, 14306)
+team = 0
 
 [node name="asteroid_spawner" parent="." instance=ExtResource("3_j3m0i")]
 position = Vector2(-1858, 242)
