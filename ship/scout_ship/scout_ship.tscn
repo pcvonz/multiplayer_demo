@@ -8,7 +8,7 @@
 diffuse_texture = ExtResource("2_4aq1p")
 normal_texture = ExtResource("3_xrt1y")
 
-[node name="scout_ship" instance=ExtResource("1_5ogxu")]
+[node name="scout_ship" groups=["radar"] instance=ExtResource("1_5ogxu")]
 cool_down_time = 10.0
 speed = 20.0
 max_speed = 400.0

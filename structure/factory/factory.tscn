@@ -22,13 +22,15 @@ properties/2/replication_mode = 1
 properties/3/path = NodePath(".:team")
 properties/3/spawn = true
 properties/3/replication_mode = 1
+properties/4/path = NodePath(".:position")
+properties/4/spawn = true
+properties/4/replication_mode = 1
 
-[node name="factory" type="StaticBody2D"]
+[node name="factory" type="StaticBody2D" groups=["radar"]]
 script = ExtResource("1_wkpvo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.988235, 1, 1, 1)
-position = Vector2(-2, -61)
 texture = SubResource("CanvasTexture_a0f6v")
 
 [node name="Timer" type="Timer" parent="."]
@@ -48,7 +50,7 @@ position = Vector2(-89, 67)
 replication_config = SubResource("SceneReplicationConfig_hom0k")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://ship/ship.tscn", "res://ship/slow_ship/slow_ship.tscn", "res://ship/fast_ship/fast_ship.tscn", "res://ship/construction_ship/construction_ship.tscn")
+_spawnable_scenes = PackedStringArray("res://ship/ship.tscn", "res://ship/slow_ship/slow_ship.tscn", "res://ship/fast_ship/fast_ship.tscn", "res://ship/construction_ship/construction_ship.tscn", "res://ship/scout_ship/scout_ship.tscn")
 spawn_path = NodePath("../spawn_pos")
 spawn_limit = 20000
 

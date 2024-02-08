@@ -5,7 +5,8 @@ var players: Dictionary = {
 -1:{
 		"resources": 1000,
 		"name": "test",
-		"energy": 1000
+		"energy": 1000,
+		"team": 0
 	}
 }
 

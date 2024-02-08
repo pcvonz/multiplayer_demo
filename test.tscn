@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://di0fn3fmrsw05"]
+[gd_scene load_steps=8 format=3 uid="uid://di0fn3fmrsw05"]
 
 [ext_resource type="PackedScene" uid="uid://dxp5gaycop30x" path="res://structure/factory/harvester_factory/harvester_factory.tscn" id="1_xfq0p"]
 [ext_resource type="PackedScene" uid="uid://drfqdvv0cg2bo" path="res://structure/rich_asteroid/rich_asteroid.tscn" id="2_6222i"]
 [ext_resource type="PackedScene" uid="uid://dh5gytp07eqos" path="res://structure/factory/ship_factory/ship_factory.tscn" id="3_1a47n"]
+[ext_resource type="PackedScene" uid="uid://brfiog6phtab2" path="res://ship/fast_ship/fast_ship.tscn" id="4_ht8gj"]
+[ext_resource type="PackedScene" uid="uid://c56kmcgl6sr0b" path="res://mini_map/mini_map.tscn" id="5_npu4l"]
+[ext_resource type="PackedScene" uid="uid://dolfl751uj7u1" path="res://ship/player.tscn" id="6_vx3ie"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_y6ti3"]
 vertices = PackedVector2Array(1421, -157, 1357, 1724, 1239, 955, 1237, 721, 1237, 678, 630, 430, 986, 342, 1031, 342, 1063, 666, 814, 656, 1121, 294, 1140, 228, 1160, 188, 1063, 678, 873, 305, 873, 286, 628, 196, 854, 269, 1130, 139, 1152, 95, 1071, 309, 1095, 294, 1052, 299, 628, 153, 454, 153, 454, 141, 205, 141, 205, 131, 99, 154, 99, 155, 78, 155, 427, 392, 490, 392, 490, 407, 422, 398, 711, 656, 604, 452, 604, 430, 814, 666, 708, 679, 708, 680, 687, 680, 1036, 917, 1099, 917, 1099, 932, 1031, 923, 1213, 977, 1213, 955, 1133, 77, 1133, 52, 830, 152, 878, 218, 1192, 977, 1190, 980, 1145, 980, 536, 455, 236, 518, 266, 402, 392, 402, 499, 440, 845, 1043, 875, 927, 1001, 927, 21, -14, 854, 98, 583, 452, 581, 455, 885, 63, 863, 98, 885, 19, 213, 537, 711, 677, 182, 548, 102, 131, 102, 152, 496, 411, 496, 431, 499, 433, 405, 398, 1105, 936, 1105, 956, 1108, 958, 1108, 965, 214, 522, 220, 518, 822, 1062, 823, 1047, 829, 1043, 78, 501, 101, 524, 101, 548, -140, 674, 193, 537, 687, 1026, 710, 1049, 710, 1073, 791, 1073, 802, 1062, 1014, 923)
@@ -25,5 +28,16 @@ position = Vector2(993, 190)
 [node name="ship_factory" parent="NavigationRegion2D" instance=ExtResource("3_1a47n")]
 position = Vector2(961, 925)
 
+[node name="fast_ship" parent="NavigationRegion2D" instance=ExtResource("4_ht8gj")]
+
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.160784, 0.160784, 0.160784, 1)
+
+[node name="Control" parent="." instance=ExtResource("5_npu4l")]
+offset_left = 446.0
+offset_top = 112.0
+offset_right = 946.0
+offset_bottom = 612.0
+
+[node name="player" parent="." instance=ExtResource("6_vx3ie")]
+player_name = "test"

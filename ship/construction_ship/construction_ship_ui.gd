@@ -1,9 +1,6 @@
 extends Control
 
-var factory: FactoryItem = ResourceLoader.load("res://ui/factory_items/factory.tres")
-var energy_generator: FactoryItem = ResourceLoader.load("res://ui/factory_items/energy_generator.tres")
-var turret: FactoryItem = ResourceLoader.load("res://ui/factory_items/turret.tres")
-var harvester_factory: FactoryItem = ResourceLoader.load("res://ui/factory_items/harvester_factory.tres")
+var build_preview: PackedScene = preload("res://build_preview/build_preview.tscn")
 
 var placing = false
 var to_place_func: Callable
@@ -11,7 +8,7 @@ var to_place_func: Callable
 func get_position_of_ship():
 	return get_parent().get_parent().global_position
 
-var resource_cost: int = 0
+var resource_cost: float = 0
 
 func _input(event):
 	if placing and event.is_action_released("click"):
@@ -27,54 +24,41 @@ func _input(event):
 
 func _on_build_factory_pressed():
 	placing = true
-	resource_cost = factory.cost
 	to_place_func = build_factory
 
 func _on_build_energy_pressed():
 	placing = true
-	resource_cost = energy_generator.cost
 	to_place_func = build_energy_generator
 
 func _on_build_turret_pressed():
 	placing = true
-	resource_cost = turret.cost
 	to_place_func = build_turret
 
 func _on_build_harvester_factory_pressed():
 	placing = true
-	resource_cost = turret.cost
 	to_place_func = build_harvester_factory
+
+func build(resource_path: String, pos: Vector2, player_id: int):
+		var build_preview_scene: BuildPreview = build_preview.instantiate()
+		build_preview_scene.resource_path = resource_path
+		build_preview_scene.team = Global.players[player_id].team
+		build_preview_scene.player_id = player_id
+		build_preview_scene.global_position = pos
+		EventBus.on_add_to_spawner.emit(build_preview_scene)
+		
 
 @rpc("reliable", "any_peer", "call_local")
 func build_factory(pos: Vector2, player_id: int):
-	var factory_scene = factory.scene.instantiate()
-	factory_scene.team = Global.players[player_id].team
-	factory_scene.global_position = pos
-	EventBus.on_add_to_spawner.emit(factory_scene)
+	build("res://ui/factory_items/factory.tres", pos, player_id)
 
 @rpc("reliable", "any_peer", "call_local")
 func build_harvester_factory(pos: Vector2, player_id: int):
-	var harvester_factory_scene = harvester_factory.scene.instantiate()
-	harvester_factory_scene.player_id = player_id
-	harvester_factory_scene.team = Global.players[player_id].team
-	harvester_factory_scene.global_position = pos
-	EventBus.on_add_to_spawner.emit(harvester_factory_scene)
+	build("res://ui/factory_items/harvester_factory.tres", pos, player_id)
 
 @rpc("reliable", "any_peer", "call_local")
 func build_turret(pos: Vector2, player_id: int):
-	if multiplayer.is_server():
-		var turret_scene = turret.scene.instantiate()
-		turret_scene.team = Global.players[player_id].team
-		turret_scene.global_position = pos
-		EventBus.on_add_to_spawner.emit(turret_scene)
+	build("res://ui/factory_items/turret.tres", pos, player_id)
 
 @rpc("reliable", "any_peer", "call_local")
 func build_energy_generator(pos: Vector2, player_id: int):
-	if multiplayer.is_server():
-		var generator = energy_generator.scene.instantiate()
-		generator.team = Global.players[player_id].team
-		generator.player_id = player_id
-		generator.global_position = pos
-		print("Position: ", pos)
-		EventBus.on_add_to_spawner.emit(generator)
-
+	build("res://ui/factory_items/energy_generator.tres", pos, player_id)

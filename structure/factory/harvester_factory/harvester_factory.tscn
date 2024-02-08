@@ -7,7 +7,6 @@
 
 [node name="harvester_factory" groups=["harvest_factories"] instance=ExtResource("1_ce1da")]
 script = ExtResource("2_yn73c")
-player_id = -1
 
 [node name="MultiplayerSpawner" parent="." index="5"]
 _spawnable_scenes = PackedStringArray("res://ship/ship.tscn", "res://ship/slow_ship/slow_ship.tscn", "res://ship/fast_ship/fast_ship.tscn", "res://ship/construction_ship/construction_ship.tscn", "res://harvester/harvester.tscn")

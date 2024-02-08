@@ -1,6 +1,5 @@
 extends Structure 
 
-@export var player_id = -1
 @onready var anim: AnimatedSprite2D = get_node("AnimatedSprite2D")
 @onready var well: Area2D = $well
 

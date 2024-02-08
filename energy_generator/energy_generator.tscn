@@ -118,6 +118,7 @@ radius = 441.409
 
 [node name="energy_generator" type="StaticBody2D"]
 script = ExtResource("1_02ucr")
+preview_texture = ExtResource("1_6mjyf")
 
 [node name="Area2D" type="Area2D" parent="."]
 

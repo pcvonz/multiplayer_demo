@@ -45,14 +45,15 @@ spawn_limit = 10
 position = Vector2(734, 14424)
 
 [node name="WeaponSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://ship/Missile/missile.tscn", "res://energy_generator/energy_generator.tscn", "res://ship/Missile/homing_missile/homing_missile.tscn", "res://ship/Missile/long_missile/long_missile.tscn", "res://ship/Missile/short_missile/short_missile.tscn", "res://ship/Missile/weak_missile/weak_missile.tscn")
+_spawnable_scenes = PackedStringArray("res://ship/Missile/missile.tscn", "res://energy_generator/energy_generator.tscn", "res://ship/Missile/homing_missile/homing_missile.tscn", "res://ship/Missile/long_missile/long_missile.tscn", "res://ship/Missile/short_missile/short_missile.tscn", "res://ship/Missile/weak_missile/weak_missile.tscn", "res://build_preview/build_preview.tscn", "res://structure/factory/ship_factory/ship_factory.tscn", "res://structure/factory/harvester_factory/harvester_factory.tscn", "res://harvester/harvester.tscn", "res://structure/Turret/turret.tscn")
 spawn_path = NodePath("../PlayerSpawner")
 spawn_limit = 2000
 
 [node name="team_1" type="Marker2D" parent="."]
-position = Vector2(239, -158)
+position = Vector2(1620, 14136)
 
 [node name="ship_factory2" parent="." instance=ExtResource("2_7ji7o")]
+position = Vector2(1381, 14294)
 team = 1
 
 [node name="ship_factory" parent="." instance=ExtResource("2_7ji7o")]

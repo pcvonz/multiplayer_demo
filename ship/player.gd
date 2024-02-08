@@ -1,4 +1,4 @@
-extends Node2D
+class_name Player extends Node2D
 @export var player_name: String
 @onready var camera: Camera2D = $Camera2D
 @onready var unit: Node
@@ -14,9 +14,12 @@ signal on_add_to_spawner(node: Node)
 		$id.text = "%s" % player_name
 		$PlayerInput.set_multiplayer_authority(id)
 
+func get_player_position() -> Vector2:
+	return camera.global_position
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if player_id == multiplayer.get_unique_id() and camera:
+	if player_id == Global.player_id and camera:
 		camera.enabled = true
 	elif camera:
 		camera.enabled = false

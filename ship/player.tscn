@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dolfl751uj7u1"]
+[gd_scene load_steps=5 format=3 uid="uid://dolfl751uj7u1"]
 
 [ext_resource type="Script" path="res://ship/player.gd" id="1_n3lge"]
 [ext_resource type="PackedScene" uid="uid://bmb1q6u04otj5" path="res://ship/player_input.tscn" id="1_yn2i6"]
 [ext_resource type="Script" path="res://ui/top_bar/top_bar.gd" id="3_dfx1x"]
+[ext_resource type="PackedScene" uid="uid://c56kmcgl6sr0b" path="res://mini_map/mini_map.tscn" id="4_n4mk4"]
 
 [node name="player" type="Node2D" groups=["players"]]
 script = ExtResource("1_n3lge")
@@ -28,13 +29,16 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("3_dfx1x")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/top_bar"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/top_bar"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/top_bar/VBoxContainer"]
+layout_mode = 2
 mouse_filter = 2
 
-[node name="name" type="Label" parent="CanvasLayer/top_bar/HBoxContainer"]
+[node name="name" type="Label" parent="CanvasLayer/top_bar/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
@@ -42,12 +46,23 @@ text = "Name
 "
 horizontal_alignment = 2
 
-[node name="resources" type="Label" parent="CanvasLayer/top_bar/HBoxContainer"]
+[node name="resources" type="Label" parent="CanvasLayer/top_bar/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Resources: 0"
 
-[node name="energy" type="Label" parent="CanvasLayer/top_bar/HBoxContainer"]
+[node name="energy" type="Label" parent="CanvasLayer/top_bar/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Energy: 0"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/top_bar/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="mini_map" parent="CanvasLayer/top_bar/VBoxContainer/MarginContainer" instance=ExtResource("4_n4mk4")]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2

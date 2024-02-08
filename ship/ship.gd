@@ -1,4 +1,4 @@
-extends RigidBody2D
+class_name Ship extends RigidBody2D
 
 @export var cool_down_time: float = 3.0
 # used for game sync
@@ -16,12 +16,14 @@ extends RigidBody2D
 @onready var cool_down: ProgressBar = get_node("%CoolDown")
 var input: MultiplayerSynchronizer
 @onready var anim: AnimationPlayer = get_node("AnimationPlayer")
+@export var player_id = -1
 
 signal take_control(node: Node, player_id: int)
 signal on_destroyed
 @export var team: int = -1
 
 func _ready():
+	add_to_group("radar")
 	disable_ui()
 	progress_bar.value = health
 	progress_bar.max_value = health
@@ -42,7 +44,6 @@ func enable_ui():
 	
 func disable_ui():
 	$UI.visible = false
-
 	
 func _process(delta):
 	cool_down.value = cool_down_time_left 

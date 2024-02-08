@@ -1,7 +1,6 @@
 class_name HarvestFactory extends Factory
 
 var mine_location: Node2D
-@export var player_id = -1
 
 func _ready():
 	super()

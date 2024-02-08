@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcfunisx47db2"]
+
+[ext_resource type="Script" path="res://build_preview/build_preview.gd" id="1_3ghpf"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3vpfw"]
+properties/0/path = NodePath(".:percent_complete")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:resource_path")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:position")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:player_id")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[node name="build_preview" type="Node2D"]
+script = ExtResource("1_3ghpf")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(100, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -13.5
+offset_right = 50.0
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_3vpfw")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

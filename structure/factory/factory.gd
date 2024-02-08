@@ -38,6 +38,9 @@ func get_new_spawn_pos():
 func spawn_scene():
 	var scene = currently_building.scene.instantiate()
 	scene.team = team
+	print(currently_building.player_id)
+	if "player_id" in scene:
+		scene.player_id = currently_building.player_id
 	scene.position = get_new_spawn_pos()
 	var spawn_node = spawner.get_node(spawner.spawn_path)
 	spawn_node.call_deferred("add_child", scene, true)

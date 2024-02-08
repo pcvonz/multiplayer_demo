@@ -29,6 +29,9 @@ properties/5/replication_mode = 1
 properties/6/path = NodePath(".:cool_down_time_left")
 properties/6/spawn = true
 properties/6/replication_mode = 1
+properties/7/path = NodePath(".:player_id")
+properties/7/spawn = true
+properties/7/replication_mode = 1
 
 [sub_resource type="Animation" id="Animation_8qjcx"]
 length = 0.001
