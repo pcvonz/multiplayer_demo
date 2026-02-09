@@ -23,7 +23,7 @@ properties/4/spawn = true
 properties/4/replication_mode = 1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jpcd0"]
-radius = 183.883
+radius = 213.15
 
 [sub_resource type="Animation" id="Animation_4na2h"]
 length = 0.001
@@ -90,7 +90,6 @@ autostart = true
 [node name="MineArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MineArea"]
-visible = false
 shape = SubResource("CircleShape2D_jpcd0")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -118,6 +117,7 @@ autoplay = "blink"
 rotation = 1.5708
 polygon = PackedVector2Array(10, -61.7, 19, -50.7, 19, -38.1, 19.1, -39, 21.2, -39, 24.5, -42.4, 27, -41.3, 27, -40.1, 32, -37.1, 32, -30, 34.7, -5.8, 38, -9.7, 38, -13.3, 44.5, -38, 45.9, -38, 47.9, -41, 51.8, -41, 55, -37.8, 55, 23, 52.3, 23, 24, 35.3, 24, 36.3, 32, 42, 32, 46.3, 28.5, 59, 15.4, 59, 6.4, 53, -6.4, 53, -15.4, 59, -27.8, 59, -31, 55.8, -31, 45.7, -28.4, 38, -25.5, 38, -23, 36.8, -23.3, 36, -24.7, 36, -32.7, 30, -37.4, 30, -55, 22.3, -55, -39, -52.6, -39, -49.1, -41.3, -47, -40.2, -47, -39.1, -44, -37.1, -44, -34, -38.5, -11, -34.7, -7.5, -31.8, -38, -29.7, -38, -24.3, -42.3, -22, -41.3, -22, -40.1, -19, -38.1, -19, -50.7, -10, -61.7, -10, -64, 10, -64)
 
+[connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="MineArea" to="." method="_on_mine_area_body_entered"]
