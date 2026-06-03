@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://1r5lguti5vfn"]
+[gd_scene format=3 uid="uid://1r5lguti5vfn"]
 
-[ext_resource type="Script" path="res://ship/ship.gd" id="1_kbfi8"]
+[ext_resource type="Script" uid="uid://v52xiv8ka3p" path="res://ship/ship.gd" id="1_kbfi8"]
 [ext_resource type="PackedScene" uid="uid://cs1hmnvc3ulyt" path="res://ship/Missile/missile.tscn" id="2_o8v1s"]
 [ext_resource type="PackedScene" uid="uid://cebys673sqrdx" path="res://ship/explode.tscn" id="3_8epct"]
 
@@ -42,35 +42,33 @@ length = 0.3
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cdtyu"]
 _data = {
-"RESET": SubResource("Animation_8qjcx"),
-"damage": SubResource("Animation_3246v")
+&"RESET": SubResource("Animation_8qjcx"),
+&"damage": SubResource("Animation_3246v")
 }
 
-[node name="ship" type="RigidBody2D" groups=["ships"]]
+[node name="ship" type="RigidBody2D" unique_id=1805223587 groups=["ships"]]
 gravity_scale = 0.0
 can_sleep = false
 script = ExtResource("1_kbfi8")
 health = 10.0
 missile_scene = ExtResource("2_o8v1s")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1414368108]
 shape = SubResource("RectangleShape2D_mw1cn")
 
-[node name="ServerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="ServerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1708502742]
 replication_config = SubResource("SceneReplicationConfig_3ri7u")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=902292802]
 offset_left = -1.0
 offset_top = 56.0
 offset_right = 3.0
 offset_bottom = 83.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_cdtyu")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=790406609]
+libraries/ = SubResource("AnimationLibrary_cdtyu")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=1264610292]
 offset_left = -52.0
 offset_top = -93.0
 offset_right = 53.0
@@ -78,18 +76,18 @@ offset_bottom = -62.0
 text = "take control
 "
 
-[node name="explosion" parent="." instance=ExtResource("3_8epct")]
+[node name="explosion" parent="." unique_id=1609659615 instance=ExtResource("3_8epct")]
 visible = false
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=220174660]
 
-[node name="Control" type="Control" parent="UI"]
+[node name="Control" type="Control" parent="UI" unique_id=1074656625]
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control" unique_id=11839971]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -99,11 +97,11 @@ offset_bottom = 27.0
 grow_horizontal = 0
 alignment = 2
 
-[node name="Label" type="Label" parent="UI/Control/HBoxContainer"]
+[node name="Label" type="Label" parent="UI/Control/HBoxContainer" unique_id=2108371284]
 layout_mode = 2
 text = "cool down:   "
 
-[node name="CoolDown" type="ProgressBar" parent="UI/Control/HBoxContainer"]
+[node name="CoolDown" type="ProgressBar" parent="UI/Control/HBoxContainer" unique_id=1653197525]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2

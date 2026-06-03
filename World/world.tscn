@@ -1,125 +1,76 @@
-[gd_scene load_steps=9 format=3 uid="uid://bn1eauccy14wn"]
+[gd_scene format=3 uid="uid://bn1eauccy14wn"]
 
-[ext_resource type="Script" path="res://World/World.gd" id="1_e77p4"]
+[ext_resource type="Script" uid="uid://bi07p4i7ph3ex" path="res://World/World.gd" id="1_e77p4"]
 [ext_resource type="PackedScene" uid="uid://dh5gytp07eqos" path="res://structure/factory/ship_factory/ship_factory.tscn" id="2_7ji7o"]
 [ext_resource type="PackedScene" uid="uid://ca1lil8vcesb6" path="res://asteroid/asteroid_spawner.tscn" id="3_j3m0i"]
 [ext_resource type="PackedScene" uid="uid://drfqdvv0cg2bo" path="res://structure/rich_asteroid/rich_asteroid.tscn" id="4_3m0aq"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_v6oyd"]
-vertices = PackedVector2Array(-1116, 9275, -1091, 9189, -1066, 9138, 8994, 7604, 9062, 7604, 502, 13002, 11480, -1129, 11924, 18378, 9207, 7419, 9202, 7320, 3162, 4166, 3188, 4115, 9176, 7258, 8868, 7217, 3138, 4252, 8856, 7559, 1079, 14080, 1079, 14468, 1046, 14427, 1043, 14162, 1043, 14090, 9181, 7470, 9157, 7556, 791, 13341, 815, 13255, 841, 13204, 1689, 14078, 811, 13154, 836, 13105, -4243, 7106, -4226, 7073, -4219, 7077, -1443, 9227, -1211, 9323, -1194, 9290, -1187, 9294, 696, 13389, 712, 13356, 720, 13360, 620, 14068, 3043, 4300, 3059, 4267, 3067, 4271, 9078, 7571, 9086, 7575, 1515, 14078, 1515, 14066, 1266, 14066, 1266, 14056, 1103, 14056, 1103, 14080, 869, 14090, 869, 14078, 750, 13341, 620, 14078, 457, 14068, 457, 14092, 433, 14092, 1019, 14449, 1019, 14427, 1102, 14533, 1665, 14437, 1665, 14415, 1692, 14415, -4098, 6921, -4127, 6871, -4103, 6822, 8868, 7287, 8860, 7300, 8848, 7300, -4148, 7058, -4123, 6972, 8808, 7388, -1097, 8977, -1405, 8936, 625, 14534, 627, 14515, 645, 14515, 1271, 14522, 1273, 14503, 1291, 14503, 8830, 7508, 8856, 7531, -1095, 9088, -1071, 9039, 810, 13081, 810, 13043, 674, 14399, 782, 14399, 854, 14427, 916, 14452, 1320, 14387, 1428, 14387, 1500, 14415, 1562, 14440, 1689, 14150, 628, 13389, 490, 13344, -7134, 18315, -4497, 6890, -4447, 6955, -4475, 7010, -4189, 7058, -1465, 9107, -1415, 9172, 442, 13173, 491, 13238, 464, 13293, 2789, 4084, 2838, 4149, 2811, 4204, -7262, -1129, 8857, 7453, -1097, 9015, 1628, 14440, 502, 13072, 494, 13085, 482, 13085, 2849, 3983, 2841, 3996, 2829, 3996, 2849, 3913, -4437, 6719, -4437, 6789, -4445, 6802, -4457, 6802, -1405, 9006, -1413, 9019, -1425, 9019, 9177, 7369, 9176, 7296, 3158, 4065, 3183, 4016, 3157, 3992, 3157, 3954, 826, 14389, 845, 14389, 851, 14393, 851, 14414, 821, 14395, 795, 14395, 854, 14416, 982, 14452, 984, 14449, 1472, 14377, 1491, 14377, 1497, 14381, 1497, 14402, 1467, 14383, 1441, 14383, 1500, 14404, 1630, 14437, 490, 13316, 2837, 4227, 2837, 4255, -4129, 6760, -4449, 7033, -4449, 7061, -4311, 7106, -1417, 9250, -1417, 9278, -4129, 6798, 2975, 4300, 433, 14480, 456, 14503, 456, 14545, 579, 14545, 590, 14534, 1102, 14491, 1225, 14533, 1236, 14522, 3097, 4252, -1279, 9323, -1157, 9275, 9116, 7556)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(10, 11, 6, 12, 13, 14), PackedInt32Array(15, 3, 2), PackedInt32Array(16, 17, 18, 19, 20), PackedInt32Array(21, 8, 7, 22), PackedInt32Array(23, 24, 25, 22, 7, 26), PackedInt32Array(22, 25, 27, 28), PackedInt32Array(29, 30, 31, 32), PackedInt32Array(33, 34, 35), PackedInt32Array(36, 37, 38, 39), PackedInt32Array(40, 41, 42, 13), PackedInt32Array(4, 43, 44), PackedInt32Array(26, 45, 46), PackedInt32Array(46, 47, 48), PackedInt32Array(49, 50, 16, 23), PackedInt32Array(20, 51, 52), PackedInt32Array(53, 23, 52, 54, 39, 38), PackedInt32Array(55, 56, 57), PackedInt32Array(58, 59, 18, 17, 60), PackedInt32Array(61, 62, 63, 7), PackedInt32Array(64, 65, 66, 13, 67, 68, 69), PackedInt32Array(70, 71, 64, 69, 72, 73, 74), PackedInt32Array(75, 76, 77, 60), PackedInt32Array(78, 79, 80), PackedInt32Array(81, 82, 15, 2, 83, 84), PackedInt32Array(22, 28, 85, 86), PackedInt32Array(77, 87, 88, 89, 90, 60), PackedInt32Array(80, 91, 92, 93, 94), PackedInt32Array(7, 63, 95, 26), PackedInt32Array(23, 26, 46), PackedInt32Array(23, 46, 48), PackedInt32Array(23, 48, 49), PackedInt32Array(23, 16, 20, 52), PackedInt32Array(96, 36, 39, 55), PackedInt32Array(97, 96, 55, 57, 98), PackedInt32Array(99, 100, 101), PackedInt32Array(102, 70, 103, 104, 32, 31), PackedInt32Array(105, 106, 107, 98), PackedInt32Array(108, 109, 110, 111), PackedInt32Array(72, 112, 81, 84, 113, 73), PackedInt32Array(61, 7, 98, 114), PackedInt32Array(115, 116, 117, 5), PackedInt32Array(118, 119, 120, 111, 121), PackedInt32Array(122, 123, 124, 125, 111), PackedInt32Array(74, 126, 127, 128, 70), PackedInt32Array(8, 129, 9), PackedInt32Array(6, 9, 130, 12), PackedInt32Array(6, 11, 131, 132), PackedInt32Array(6, 132, 133, 134), PackedInt32Array(111, 6, 134, 121), PackedInt32Array(111, 120, 108), PackedInt32Array(135, 136, 137, 138, 139), PackedInt32Array(140, 139, 138, 141, 89, 88), PackedInt32Array(142, 143, 58, 60), PackedInt32Array(144, 145, 146, 147, 148), PackedInt32Array(149, 148, 147, 150, 93, 92), PackedInt32Array(114, 151, 61), PackedInt32Array(94, 114, 98, 78), PackedInt32Array(70, 128, 103), PackedInt32Array(107, 152, 97, 98), PackedInt32Array(111, 110, 153, 154, 155, 122), PackedInt32Array(101, 156, 157, 98), PackedInt32Array(158, 32, 159, 160, 98, 157), PackedInt32Array(40, 13, 66, 161, 155, 162), PackedInt32Array(163, 164, 165, 98), PackedInt32Array(166, 167, 75), PackedInt32Array(17, 168, 60), PackedInt32Array(169, 170, 78), PackedInt32Array(22, 86, 5, 4), PackedInt32Array(158, 29, 32), PackedInt32Array(90, 142, 60), PackedInt32Array(42, 171, 14, 13), PackedInt32Array(154, 162, 155), PackedInt32Array(111, 125, 99), PackedInt32Array(98, 111, 99, 101), PackedInt32Array(98, 160, 172), PackedInt32Array(98, 172, 33, 5, 117, 105), PackedInt32Array(33, 35, 173, 0, 5), PackedInt32Array(44, 174, 22, 4), PackedInt32Array(98, 57, 163), PackedInt32Array(78, 80, 94), PackedInt32Array(169, 78, 98), PackedInt32Array(75, 60, 169, 98, 166), PackedInt32Array(98, 165, 166)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-7332, -1199, -7204, 18385, 11996, 18449, 11548, -1199)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-agent_radius = 70.0
-
-[sub_resource type="Gradient" id="Gradient_rgvd5"]
-offsets = PackedFloat32Array(0.752727, 0.981818)
-colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_5ka65"]
-frequency = 0.0116
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uadub"]
-width = 5000
-height = 5000
-color_ramp = SubResource("Gradient_rgvd5")
-noise = SubResource("FastNoiseLite_5ka65")
-
-[node name="World" type="NavigationRegion2D"]
-navigation_polygon = SubResource("NavigationPolygon_v6oyd")
+[node name="World" type="Node2D" unique_id=1471495961]
 script = ExtResource("1_e77p4")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-light_mask = 2
-position = Vector2(-116, 1125)
-texture = SubResource("NoiseTexture2D_uadub")
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://ship/ship.tscn")
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1534653577]
+_spawnable_scenes = PackedStringArray("uid://1r5lguti5vfn")
 spawn_path = NodePath("../PlayerSpawner")
 spawn_limit = 10
 
-[node name="PlayerSpawner" type="Node2D" parent="."]
+[node name="PlayerSpawner" type="Node2D" parent="." unique_id=2061773373]
 
-[node name="team_0" type="Marker2D" parent="."]
+[node name="team_0" type="Marker2D" parent="." unique_id=2112554364]
 position = Vector2(734, 14424)
 
-[node name="WeaponSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://ship/Missile/missile.tscn", "res://energy_generator/energy_generator.tscn", "res://ship/Missile/homing_missile/homing_missile.tscn", "res://ship/Missile/long_missile/long_missile.tscn", "res://ship/Missile/short_missile/short_missile.tscn", "res://ship/Missile/weak_missile/weak_missile.tscn", "res://build_preview/build_preview.tscn", "res://structure/factory/ship_factory/ship_factory.tscn", "res://structure/factory/harvester_factory/harvester_factory.tscn", "res://harvester/harvester.tscn", "res://structure/Turret/turret.tscn")
+[node name="WeaponSpawner" type="MultiplayerSpawner" parent="." unique_id=1574435342]
+_spawnable_scenes = PackedStringArray("uid://cs1hmnvc3ulyt", "uid://dorbf13ybpuqe", "uid://vheyu3bf6whv", "uid://270aautoykgi", "uid://cf5rwigcv11gh", "uid://nsmrv16j0234", "uid://dcfunisx47db2", "uid://dh5gytp07eqos", "uid://dxp5gaycop30x", "uid://dxvngmbg4n6ql", "uid://vsvskh7u3xfp")
 spawn_path = NodePath("../PlayerSpawner")
 spawn_limit = 2000
 
-[node name="team_1" type="Marker2D" parent="."]
+[node name="team_1" type="Marker2D" parent="." unique_id=1595979564]
 position = Vector2(1620, 14136)
 
-[node name="ship_factory2" parent="." instance=ExtResource("2_7ji7o")]
+[node name="ship_factory2" parent="." unique_id=1709867533 instance=ExtResource("2_7ji7o")]
 position = Vector2(1381, 14294)
+health = 40
 team = 1
+destroyed_texture = null
 
-[node name="ship_factory" parent="." instance=ExtResource("2_7ji7o")]
+[node name="ship_factory" parent="." unique_id=97742237 instance=ExtResource("2_7ji7o")]
 position = Vector2(735, 14306)
+health = 40
 team = 0
+destroyed_texture = null
 
-[node name="asteroid_spawner" parent="." instance=ExtResource("3_j3m0i")]
-position = Vector2(-1858, 242)
-
-[node name="asteroid_spawner7" parent="." instance=ExtResource("3_j3m0i")]
-position = Vector2(-3924, 9552)
-
-[node name="asteroid_spawner8" parent="." instance=ExtResource("3_j3m0i")]
-position = Vector2(3926, 9821)
-
-[node name="asteroid_spawner9" parent="." instance=ExtResource("3_j3m0i")]
-position = Vector2(2506, 11014)
-
-[node name="asteroid_spawner10" parent="." instance=ExtResource("3_j3m0i")]
-position = Vector2(7006, 10304)
-
-[node name="asteroid_spawner11" parent="." instance=ExtResource("3_j3m0i")]
-position = Vector2(6991, 8733)
-
-[node name="asteroid_spawner12" parent="." instance=ExtResource("3_j3m0i")]
-position = Vector2(5783, 7631)
-
-[node name="asteroid_spawner13" parent="." instance=ExtResource("3_j3m0i")]
-position = Vector2(4590, 7993)
-
-[node name="asteroid_spawner14" parent="." instance=ExtResource("3_j3m0i")]
-position = Vector2(-4277, 9045)
-
-[node name="asteroid_spawner15" parent="." instance=ExtResource("3_j3m0i")]
+[node name="asteroid_spawner15" parent="." unique_id=73693318 instance=ExtResource("3_j3m0i")]
 position = Vector2(616, 10691)
 
-[node name="asteroid_spawner2" parent="." instance=ExtResource("3_j3m0i")]
+[node name="asteroid_spawner2" parent="." unique_id=261421615 instance=ExtResource("3_j3m0i")]
 position = Vector2(574, 4567)
 
-[node name="asteroid_spawner3" parent="." instance=ExtResource("3_j3m0i")]
+[node name="asteroid_spawner3" parent="." unique_id=1852178759 instance=ExtResource("3_j3m0i")]
 position = Vector2(-3443, 6576)
 
-[node name="asteroid_spawner4" parent="." instance=ExtResource("3_j3m0i")]
+[node name="asteroid_spawner4" parent="." unique_id=1225698427 instance=ExtResource("3_j3m0i")]
 position = Vector2(650, 6516)
 
-[node name="asteroid_spawner5" parent="." instance=ExtResource("3_j3m0i")]
+[node name="asteroid_spawner5" parent="." unique_id=182132914 instance=ExtResource("3_j3m0i")]
 position = Vector2(-3292, 3647)
 
-[node name="asteroid_spawner6" parent="." instance=ExtResource("3_j3m0i")]
+[node name="asteroid_spawner6" parent="." unique_id=524612564 instance=ExtResource("3_j3m0i")]
 position = Vector2(679, 1044)
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=577118948]
 position = Vector2(864, 14833)
-color = Color(0.207843, 0.235294, 0.411765, 1)
+color = Color(0.45863247, 0.44766217, 0.5016905, 1)
 
-[node name="rich_asteroid" parent="." instance=ExtResource("4_3m0aq")]
+[node name="rich_asteroid" parent="." unique_id=930885423 instance=ExtResource("4_3m0aq")]
 position = Vector2(-4299, 6924)
 
-[node name="rich_asteroid3" parent="." instance=ExtResource("4_3m0aq")]
+[node name="rich_asteroid3" parent="." unique_id=370601634 instance=ExtResource("4_3m0aq")]
 position = Vector2(2987, 4118)
 
-[node name="rich_asteroid4" parent="." instance=ExtResource("4_3m0aq")]
+[node name="rich_asteroid4" parent="." unique_id=1288610136 instance=ExtResource("4_3m0aq")]
 position = Vector2(-1267, 9141)
 
-[node name="rich_asteroid2" parent="." instance=ExtResource("4_3m0aq")]
+[node name="rich_asteroid2" parent="." unique_id=1804479697 instance=ExtResource("4_3m0aq")]
 position = Vector2(9006, 7422)
 
-[node name="rich_asteroid5" parent="." instance=ExtResource("4_3m0aq")]
+[node name="rich_asteroid5" parent="." unique_id=791454400 instance=ExtResource("4_3m0aq")]
 position = Vector2(640, 13207)

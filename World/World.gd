@@ -1,4 +1,4 @@
-extends NavigationRegion2D
+extends Node2D
 @onready var spawner: MultiplayerSpawner = $MultiplayerSpawner
 @onready var weapon_spawner: MultiplayerSpawner = get_node("WeaponSpawner")
 var team = 0
@@ -6,7 +6,7 @@ var team = 0
 func _ready():
 	Global.player_id = multiplayer.get_unique_id()
 	EventBus.on_add_to_spawner.connect(_on_add_to_spawner)
-	EventBus.on_add_static_body.connect(_on_add_static_body)
+	# EventBus.on_add_static_body.connect(_on_add_static_body)
 	spawner.spawn_function = spawn_player
 
 	if not multiplayer.is_server():
@@ -20,8 +20,9 @@ func _ready():
 	if not OS.has_feature("dedicated_server"):
 		spawner.spawn(1)
 
-func _on_add_static_body(node: Node):
-	bake_navigation_polygon()
+#func _on_add_static_body(node: Node):
+#	pass
+#	#bake_navigation_polygon()
 
 func spawn(node: Node):
 		var spawn_node = spawner.get_node(spawner.spawn_path)

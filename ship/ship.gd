@@ -31,6 +31,8 @@ func _ready():
 	if team != null:
 		$Sprite2D.modulate=Global.team_colors[team]
 
+	$Button.visible = multiplayer.get_unique_id() == player_id
+
 	for player in get_tree().get_nodes_in_group("players"):
 		take_control.connect(player._on_take_control)
 	if not multiplayer.is_server():

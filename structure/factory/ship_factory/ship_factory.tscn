@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dh5gytp07eqos"]
+[gd_scene format=3 uid="uid://dh5gytp07eqos"]
 
 [ext_resource type="PackedScene" uid="uid://cyg4pxfyvhj2u" path="res://structure/factory/factory.tscn" id="1_e666h"]
 [ext_resource type="PackedScene" uid="uid://8sohtqk4ivgf" path="res://ui/spawn_option_card/spawn_option_card.tscn" id="2_84sfd"]
@@ -7,21 +7,27 @@
 [ext_resource type="Resource" uid="uid://dy027rd5vlhry" path="res://ui/factory_items/slow_ship.tres" id="5_w508q"]
 [ext_resource type="Resource" uid="uid://dm5dliru2tphh" path="res://ui/factory_items/scout_ship.tres" id="6_lcjnn"]
 
-[node name="ship_factory" instance=ExtResource("1_e666h")]
+[node name="ship_factory" unique_id=114618026 instance=ExtResource("1_e666h")]
 
-[node name="spawn_option_card" parent="GridContainer" index="0" instance=ExtResource("2_84sfd")]
+[node name="CollisionPolygon2D" parent="." index="6" unique_id=1950878673]
+visible = true
+
+[node name="PointLight2D" parent="." index="7" unique_id=1561623807]
+visible = true
+
+[node name="spawn_option_card" parent="GridContainer" parent_id_path=PackedInt32Array(550330266) index="0" unique_id=127700851 instance=ExtResource("2_84sfd")]
 layout_mode = 2
 item = ExtResource("3_rbl4b")
 
-[node name="spawn_option_card2" parent="GridContainer" index="1" instance=ExtResource("2_84sfd")]
+[node name="spawn_option_card2" parent="GridContainer" parent_id_path=PackedInt32Array(550330266) index="1" unique_id=1605504792 instance=ExtResource("2_84sfd")]
 layout_mode = 2
 item = ExtResource("4_6rmj6")
 
-[node name="spawn_option_card3" parent="GridContainer" index="2" instance=ExtResource("2_84sfd")]
+[node name="spawn_option_card3" parent="GridContainer" parent_id_path=PackedInt32Array(550330266) index="2" unique_id=2010942032 instance=ExtResource("2_84sfd")]
 layout_mode = 2
 item = ExtResource("5_w508q")
 
-[node name="spawn_option_card4" parent="GridContainer" index="3" instance=ExtResource("2_84sfd")]
+[node name="spawn_option_card4" parent="GridContainer" parent_id_path=PackedInt32Array(550330266) index="3" unique_id=2097752237 instance=ExtResource("2_84sfd")]
 layout_mode = 2
 item = ExtResource("6_lcjnn")
 

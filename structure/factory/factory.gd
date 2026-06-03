@@ -9,7 +9,6 @@ var currently_building: FactoryItem
 @export var percent_left: float
 @export var build_time: float = 0
 @export var maximum_items = 30
-
 signal build_complete
 
 # Called when the node enters the scene tree for the first time.
@@ -24,7 +23,11 @@ func _on_timeout():
 	build_queue.pop_front()
 	timer.stop()
 	if not is_spawner_full() and len(build_queue) > 0:
+		self.progress.show()
 		start_building()
+	else:
+		self.currently_building = null
+		self.progress.hide()
 		
 func is_spawner_full():
 	return get_node("spawn_pos").get_child_count() >= maximum_items
@@ -36,31 +39,37 @@ func get_new_spawn_pos():
 	return Vector2(x, y)
 		
 func spawn_scene():
-	var scene = currently_building.scene.instantiate()
+	var scene = self.currently_building.scene.instantiate()
 	scene.team = team
-	print(currently_building.player_id)
+	print(self.currently_building.player_id)
 	if "player_id" in scene:
-		scene.player_id = currently_building.player_id
+		scene.player_id = self.currently_building.player_id
 	scene.position = get_new_spawn_pos()
 	var spawn_node = spawner.get_node(spawner.spawn_path)
 	spawn_node.call_deferred("add_child", scene, true)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if currently_building and multiplayer.is_server():
-		build_time = currently_building.build_time
+	if self.currently_building and multiplayer.is_server():
+		progress.show()
+		build_time = self.currently_building.build_time
 		percent_left =  (timer.time_left / build_time) * 100
-
-	progress.value = 100 - percent_left
+		progress.value = 100 - percent_left
+	elif !self.currently_building and multiplayer.is_server():
+		progress.hide()
 	if health <= 0:
-		queue_free()
+		destruct()
 
 func damage(amount: int):
 	health -= amount
-	
+
+func destruct():
+	set_process(false)
+	$Sprite2D.texture = self.destroyed_texture
+
 func start_building():
-	currently_building = build_queue.pop_front()
-	timer.start(currently_building.build_time)
+	self.currently_building = build_queue.pop_front()
+	timer.start(self.currently_building.build_time)
 	spawner.add_spawnable_scene(currently_building.scene.resource_path)
 
 func _on_purchase(item: FactoryItem):

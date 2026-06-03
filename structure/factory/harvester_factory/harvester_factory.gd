@@ -27,4 +27,3 @@ func spawn_scene():
 	scene.home_position = $home_position.global_position
 	var spawn_node = spawner.get_node(spawner.spawn_path)
 	spawn_node.call_deferred("add_child", scene, true)
-

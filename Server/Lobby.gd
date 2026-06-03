@@ -65,6 +65,7 @@ func create_game(player_name: String):
 
 func remove_multiplayer_peer():
 	multiplayer.multiplayer_peer = null
+	players.clear()
 
 
 # When the server decides to start the game from a UI scene,
@@ -109,7 +110,6 @@ func _on_connected_fail():
 
 
 func _on_server_disconnected():
-	multiplayer.multiplayer_peer = null
+	remove_multiplayer_peer()
 	players.clear()
 	server_disconnected.emit()
-

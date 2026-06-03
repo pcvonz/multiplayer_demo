@@ -3,7 +3,7 @@ extends Control
 @export var MAX_CLIENTS = 10
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 func _on_client_pressed():
 	var address: String = get_node("%Adress").text
@@ -45,8 +45,11 @@ func start_game():
 	if multiplayer.is_server():
 		change_level.call_deferred(load("res://World/world.tscn"))
 
-
-@rpc("authority", "reliable")
+# An unreliable connection is the only one that works here
+# If you set it to reliable and the world takes a long time load, then it
+# will fail to acknowledge this call and timeout the connection
+# TODO: look into setting a timeout rather than setting this to unreliable?
+@rpc("authority", "unreliable")
 func hide_menu():
 	self.hide()
 
@@ -62,7 +65,10 @@ func change_level(scene: PackedScene):
 
 # The server can restart the level by pressing Home.
 func _input(event):
-	if not multiplayer.is_server():
-		return
-	if event.is_action("ui_home") and Input.is_action_just_pressed("ui_home"):
-		change_level.call_deferred(load("res://level.tscn"))
+	if multiplayer.has_multiplayer_peer():
+		if not multiplayer.is_server():
+			return
+		if event.is_action("ui_home") and Input.is_action_just_pressed("ui_home"):
+			change_level.call_deferred(load("res://World/world.tscn"))
+		else:
+			print("Disconnected")

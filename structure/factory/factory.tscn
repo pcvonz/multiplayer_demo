@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyg4pxfyvhj2u"]
+[gd_scene format=3 uid="uid://cyg4pxfyvhj2u"]
 
 [ext_resource type="Script" uid="uid://dybyyrsseclt" path="res://structure/factory/factory.gd" id="1_wkpvo"]
 [ext_resource type="Texture2D" uid="uid://bms8s8pfs1tuv" path="res://structure/factory/factory.png" id="2_84f6l"]
+[ext_resource type="Texture2D" uid="uid://vi5aqn3ompor" path="res://structure/factory/factory_broken.png" id="2_y4ac5"]
 [ext_resource type="Texture2D" uid="uid://bysj4qvyyuo7o" path="res://structure/factory/factory_normal.png" id="3_64ab4"]
 [ext_resource type="Texture2D" uid="uid://bnf6ulvji84rw" path="res://light_2d/light.png" id="8_oo8vn"]
 
@@ -27,39 +28,41 @@ properties/4/path = NodePath(".:position")
 properties/4/spawn = true
 properties/4/replication_mode = 1
 
-[node name="factory" type="StaticBody2D" groups=["radar"]]
+[node name="factory" type="StaticBody2D" unique_id=1024826326 groups=["radar"]]
 script = ExtResource("1_wkpvo")
+health = 5
+destroyed_texture = ExtResource("2_y4ac5")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=972617441]
 modulate = Color(0.988235, 1, 1, 1)
 texture = SubResource("CanvasTexture_a0f6v")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=285196184]
 wait_time = 10.0
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1223337227]
 custom_minimum_size = Vector2(200, 0)
 offset_left = -104.0
 offset_top = -32.0
 offset_right = 96.0
 offset_bottom = -5.0
 
-[node name="spawn_pos" type="Node2D" parent="."]
+[node name="spawn_pos" type="Node2D" parent="." unique_id=677792598]
 position = Vector2(-52, 212)
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=372160362]
 replication_config = SubResource("SceneReplicationConfig_hom0k")
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=182704814]
 _spawnable_scenes = PackedStringArray("uid://1r5lguti5vfn", "uid://dsxlnkpflb3nf", "uid://brfiog6phtab2", "uid://dsl3txt1ppspq", "uid://b644r2shml4wm")
 spawn_path = NodePath("../spawn_pos")
 spawn_limit = 20000
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1950878673]
 visible = false
 polygon = PackedVector2Array(-185, -166, -172, -156, -172, -148, -171.5, -146, -136.7, -146, -134.7, -158, 64, -158, 64, -155.4, 65.7, -146, 238, -146, 238, -143, 240, 51, 237.1, 51, 211, 52.9, 211, 57.9, 214, 59.9, 214, 73, 212.1, 73, 210.1, 76, 193.7, 76, 189, 74.4, 189, 73.1, 186, 71.1, 186, 53, 185.3, 53, 180, 49, 180, 13, 57.9, 13, 52.9, 19, 49.3, 19, 36.3, 23, -102.3, 23, -115, 19.6, -115, 20.3, -145.4, 139, -147.2, 139, -156.2, 148, -171, 148, -171, 150.2, -172.3, 158, -174.2, 158, -185.2, 169, -209, 169, -209, 166, -210.8, 148, -228.8, 148, -232, 144.8, -232, -144, -229.2, -144, -211, -145.8, -211, -164.1, -208, -166.1, -208, -168, -185, -168)
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1561623807]
 visible = false
 position = Vector2(-223, -208)
 energy = 2.0
@@ -67,14 +70,14 @@ texture = ExtResource("8_oo8vn")
 texture_scale = 5.0
 height = 100.0
 
-[node name="PointLight2D2" type="PointLight2D" parent="."]
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=1288313826]
 position = Vector2(-279, -156)
 energy = 2.0
 texture = ExtResource("8_oo8vn")
 texture_scale = 5.0
 height = 100.0
 
-[node name="GridContainer" type="GridContainer" parent="."]
+[node name="GridContainer" type="GridContainer" parent="." unique_id=550330266]
 offset_left = -249.0
 offset_top = -366.0
 offset_right = 143.0
