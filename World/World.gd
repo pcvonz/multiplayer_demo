@@ -1,4 +1,4 @@
-extends Node2D
+extends NavigationRegion2D
 @onready var spawner: MultiplayerSpawner = $MultiplayerSpawner
 @onready var weapon_spawner: MultiplayerSpawner = get_node("WeaponSpawner")
 var team = 0
@@ -6,23 +6,15 @@ var team = 0
 func _ready():
 	Global.player_id = multiplayer.get_unique_id()
 	EventBus.on_add_to_spawner.connect(_on_add_to_spawner)
-	# EventBus.on_add_static_body.connect(_on_add_static_body)
-	spawner.spawn_function = spawn_player
+	EventBus.on_add_static_body.connect(_on_add_static_body)
 
 	if not multiplayer.is_server():
 		return
 
-	for id in multiplayer.get_peers():
-		spawner.spawn(id)
-		team += 1
+	Lobby.player_connected.connect(spawn_player)
 
-	# Spawn the local player unless this is a dedicated server export.
-	if not OS.has_feature("dedicated_server"):
-		spawner.spawn(1)
-
-#func _on_add_static_body(node: Node):
-#	pass
-#	#bake_navigation_polygon()
+func _on_add_static_body(_node: Node):
+	bake_navigation_polygon()
 
 func spawn(node: Node):
 		var spawn_node = spawner.get_node(spawner.spawn_path)
@@ -35,11 +27,13 @@ func _on_add_to_spawner(node: Node):
 			node.setup(self, $WeaponSpawner)
 		var weapon_spawn_node = weapon_spawner.get_node(weapon_spawner.spawn_path)
 		weapon_spawn_node.add_child(node, true)
-					
-func spawn_player(id: int):
+
+# TODO: Type player info
+func spawn_player(id: Variant):
 	Global.players[id].team = team
-	var new_player = preload("res://ship/player.tscn").instantiate()
+	var new_player: Player = preload("res://ship/player.tscn").instantiate()
+	new_player.set_multiplayer_authority(id)
 	new_player.player_id = id
 	new_player.name = "%s" % id
 	new_player.global_position = get_node("team_%s" % team).global_position
-	return new_player
+	$PlayerSpawner.add_child(new_player)

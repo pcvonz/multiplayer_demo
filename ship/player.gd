@@ -19,7 +19,7 @@ func get_player_position() -> Vector2:
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if player_id == Global.player_id and camera:
+	if player_id == multiplayer.get_unique_id() and camera:
 		camera.enabled = true
 	elif camera:
 		camera.enabled = false

@@ -46,17 +46,19 @@ func actor_setup():
 
 func _process(_delta):
 	progress_bar.value = (currently_stored_resources / resource_limit) * 100
-	reached = navigation_agent.is_target_reached()
-	if mining == false:
-		set_movement_target(home_position)
-	else:
-		if current_mine and is_instance_valid(current_mine):
-			set_movement_target(current_mine.global_position)
+	var moving = linear_velocity.length() > 0
+	if not moving:
+		if mining == false:
+			set_movement_target(home_position)
+		else:
+			if current_mine and is_instance_valid(current_mine):
+				set_movement_target(current_mine.global_position)
 
 func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
 
 func _physics_process(delta):
+	reached = navigation_agent.is_target_reached()
 	if reached:
 		linear_velocity = Vector2.ZERO
 		return
@@ -70,8 +72,6 @@ func _physics_process(delta):
 	navigation_agent.velocity = current_agent_position.direction_to(next_path_position) * movement_speed
 
 func _on_timer_timeout():
-	if not reached:
-		return
 	for body in mine_area.get_overlapping_bodies():
 		if "mine_resource" in body:
 			currently_stored_resources += body.mine_resource(resource_chunk_size)
@@ -92,4 +92,3 @@ func _on_mine_area_body_entered(body:Node2D):
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity:Vector2):
 	linear_velocity = safe_velocity
-

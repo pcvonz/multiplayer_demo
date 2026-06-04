@@ -4,12 +4,4 @@
 
 [node name="Game" type="Node" unique_id=364759020]
 
-[node name="MainMenu" parent="." unique_id=1120005099 instance=ExtResource("2_v3g4g")]
-size_flags_horizontal = 0
-
-[node name="LevelSpawner" type="MultiplayerSpawner" parent="." unique_id=733303092]
-_spawnable_scenes = PackedStringArray("uid://bn1eauccy14wn", "uid://brfiog6phtab2")
-spawn_path = NodePath("../Level")
-spawn_limit = 1
-
-[node name="Level" type="Node2D" parent="." unique_id=1212206583]
+[node name="Main" parent="." unique_id=1120005099 instance=ExtResource("2_v3g4g")]

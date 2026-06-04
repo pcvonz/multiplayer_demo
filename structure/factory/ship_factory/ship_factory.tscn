@@ -7,7 +7,18 @@
 [ext_resource type="Resource" uid="uid://dy027rd5vlhry" path="res://ui/factory_items/slow_ship.tres" id="5_w508q"]
 [ext_resource type="Resource" uid="uid://dm5dliru2tphh" path="res://ui/factory_items/scout_ship.tres" id="6_lcjnn"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_a05sm"]
+properties/0/path = NodePath(".:value")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:visible")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="ship_factory" unique_id=114618026 instance=ExtResource("1_e666h")]
+
+[node name="MultiplayerSynchronizer2" type="MultiplayerSynchronizer" parent="ProgressBar" parent_id_path=PackedInt32Array(1223337227) index="0" unique_id=1240105672]
+replication_config = SubResource("SceneReplicationConfig_a05sm")
 
 [node name="CollisionPolygon2D" parent="." index="6" unique_id=1950878673]
 visible = true

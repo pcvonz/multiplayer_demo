@@ -1,24 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://dolfl751uj7u1"]
+[gd_scene format=3 uid="uid://dolfl751uj7u1"]
 
-[ext_resource type="Script" path="res://ship/player.gd" id="1_n3lge"]
+[ext_resource type="Script" uid="uid://b8kv8ynjw0dvs" path="res://ship/player.gd" id="1_n3lge"]
 [ext_resource type="PackedScene" uid="uid://bmb1q6u04otj5" path="res://ship/player_input.tscn" id="1_yn2i6"]
-[ext_resource type="Script" path="res://ui/top_bar/top_bar.gd" id="3_dfx1x"]
+[ext_resource type="Script" uid="uid://dc73nd3roe32p" path="res://ui/top_bar/top_bar.gd" id="3_dfx1x"]
 [ext_resource type="PackedScene" uid="uid://c56kmcgl6sr0b" path="res://mini_map/mini_map.tscn" id="4_n4mk4"]
 
-[node name="player" type="Node2D" groups=["players"]]
+[node name="player" type="Node2D" unique_id=670971991 groups=["players"]]
 script = ExtResource("1_n3lge")
 
-[node name="PlayerInput" parent="." instance=ExtResource("1_yn2i6")]
+[node name="PlayerInput" parent="." unique_id=741451298 instance=ExtResource("1_yn2i6")]
 
-[node name="id" type="Label" parent="."]
+[node name="id" type="Label" parent="." unique_id=151235676]
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=868919178]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1591180849]
 
-[node name="top_bar" type="Control" parent="CanvasLayer"]
+[node name="top_bar" type="Control" parent="CanvasLayer" unique_id=667547740]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -29,16 +29,16 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("3_dfx1x")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/top_bar"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/top_bar" unique_id=1450307521]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/top_bar/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/top_bar/VBoxContainer" unique_id=1909617072]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="name" type="Label" parent="CanvasLayer/top_bar/VBoxContainer/HBoxContainer"]
+[node name="name" type="Label" parent="CanvasLayer/top_bar/VBoxContainer/HBoxContainer" unique_id=1793729145]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
@@ -46,23 +46,23 @@ text = "Name
 "
 horizontal_alignment = 2
 
-[node name="resources" type="Label" parent="CanvasLayer/top_bar/VBoxContainer/HBoxContainer"]
+[node name="resources" type="Label" parent="CanvasLayer/top_bar/VBoxContainer/HBoxContainer" unique_id=82844021]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Resources: 0"
 
-[node name="energy" type="Label" parent="CanvasLayer/top_bar/VBoxContainer/HBoxContainer"]
+[node name="energy" type="Label" parent="CanvasLayer/top_bar/VBoxContainer/HBoxContainer" unique_id=309638922]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Energy: 0"
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/top_bar/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/top_bar/VBoxContainer" unique_id=598542155]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="mini_map" parent="CanvasLayer/top_bar/VBoxContainer/MarginContainer" instance=ExtResource("4_n4mk4")]
+[node name="mini_map" parent="CanvasLayer/top_bar/VBoxContainer/MarginContainer" unique_id=1614384548 instance=ExtResource("4_n4mk4")]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2

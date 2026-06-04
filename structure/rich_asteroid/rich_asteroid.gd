@@ -2,6 +2,9 @@ extends Structure
 
 @export var ore_value = 3000
 
+#TODO:
+# - Remove asteroid and update nav mesh when depleted
+
 func _ready():
 	super()
 

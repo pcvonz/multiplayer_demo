@@ -58,14 +58,15 @@ func _process(_delta):
 	elif !self.currently_building and multiplayer.is_server():
 		progress.hide()
 	if health <= 0:
-		destruct()
+		destruct.rpc()
 
 func damage(amount: int):
 	health -= amount
 
+@rpc("authority", "call_local", "reliable")
 func destruct():
-	set_process(false)
 	$Sprite2D.texture = self.destroyed_texture
+	set_process(false)
 
 func start_building():
 	self.currently_building = build_queue.pop_front()

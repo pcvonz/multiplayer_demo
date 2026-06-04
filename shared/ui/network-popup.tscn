@@ -1,0 +1,156 @@
+[gd_scene format=3 uid="uid://badtpsxn5lago"]
+
+[ext_resource type="Script" uid="uid://c4smm8wlkhagj" path="res://shared/scripts/lan-bootstrapper.gd" id="1_dy86e"]
+[ext_resource type="Script" uid="uid://dbib5njqdsuc2" path="res://shared/scripts/noray-bootstrapper.gd" id="2_fgck5"]
+
+[node name="Network Popup" type="TabContainer" unique_id=325287942]
+custom_minimum_size = Vector2(360, 240)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.5
+offset_top = -48.5
+offset_right = 125.5
+offset_bottom = 48.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="LAN" type="VBoxContainer" parent="." unique_id=1498734291]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Address Row" type="HBoxContainer" parent="LAN" unique_id=1005226379]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="Address Label" type="Label" parent="LAN/Address Row" unique_id=1941885147]
+layout_mode = 2
+text = "Address:"
+
+[node name="Address LineEdit" type="LineEdit" parent="LAN/Address Row" unique_id=941073277]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "localhost"
+
+[node name="Port Label" type="Label" parent="LAN/Address Row" unique_id=975351085]
+layout_mode = 2
+text = "Port:"
+
+[node name="Port LineEdit" type="LineEdit" parent="LAN/Address Row" unique_id=153349830]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "16384"
+
+[node name="Actions Row" type="HBoxContainer" parent="LAN" unique_id=1570529135]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Host Button" type="Button" parent="LAN/Actions Row" unique_id=773372630]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Host"
+
+[node name="Join Button" type="Button" parent="LAN/Actions Row" unique_id=1953224080]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Join"
+
+[node name="Noray" type="VBoxContainer" parent="." unique_id=97306959]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Noray Address Row" type="HBoxContainer" parent="Noray" unique_id=1626373066]
+layout_mode = 2
+
+[node name="Address Label" type="Label" parent="Noray/Noray Address Row" unique_id=750234428]
+layout_mode = 2
+text = "noray host:"
+
+[node name="Address LineEdit" type="LineEdit" parent="Noray/Noray Address Row" unique_id=2120032962]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "tomfol.io:8890"
+placeholder_text = "noray.example.com:8890"
+
+[node name="OID Row" type="HBoxContainer" parent="Noray" unique_id=1364922323]
+layout_mode = 2
+
+[node name="OID Label" type="Label" parent="Noray/OID Row" unique_id=229963485]
+layout_mode = 2
+text = "Open ID: "
+
+[node name="OID Value" type="LineEdit" parent="Noray/OID Row" unique_id=1124864883]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "123456789"
+editable = false
+
+[node name="Noray Actions Row" type="HBoxContainer" parent="Noray" unique_id=2005120390]
+layout_mode = 2
+
+[node name="Connect Button" type="Button" parent="Noray/Noray Actions Row" unique_id=272923925]
+layout_mode = 2
+text = "Connect"
+
+[node name="Disconnect Button" type="Button" parent="Noray/Noray Actions Row" unique_id=1361178270]
+layout_mode = 2
+text = "Disconnect"
+
+[node name="HSeparator" type="HSeparator" parent="Noray" unique_id=852961572]
+layout_mode = 2
+
+[node name="Connect Host Row" type="HBoxContainer" parent="Noray" unique_id=363483708]
+layout_mode = 2
+
+[node name="Host Label" type="Label" parent="Noray/Connect Host Row" unique_id=336746264]
+layout_mode = 2
+text = "Target Host: "
+
+[node name="Host LineEdit" type="LineEdit" parent="Noray/Connect Host Row" unique_id=2047770058]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Host OID"
+
+[node name="Connect Actions Row" type="HBoxContainer" parent="Noray" unique_id=331628032]
+layout_mode = 2
+
+[node name="Host Button" type="Button" parent="Noray/Connect Actions Row" unique_id=1467664326]
+layout_mode = 2
+text = "Host"
+
+[node name="Join Button" type="Button" parent="Noray/Connect Actions Row" unique_id=2039821513]
+layout_mode = 2
+text = "Join"
+
+[node name="Force Relay Checkbox" type="CheckBox" parent="Noray/Connect Actions Row" unique_id=1179782014]
+layout_mode = 2
+text = "Force Relay"
+
+[node name="LAN Bootstrapper" type="Node" parent="." unique_id=1129397059 node_paths=PackedStringArray("connect_ui", "address_input", "port_input")]
+script = ExtResource("1_dy86e")
+connect_ui = NodePath("..")
+address_input = NodePath("../LAN/Address Row/Address LineEdit")
+port_input = NodePath("../LAN/Address Row/Port LineEdit")
+
+[node name="Noray Bootstrapper" type="Node" parent="." unique_id=114896617 node_paths=PackedStringArray("connect_ui", "noray_address_input", "oid_input", "host_oid_input", "force_relay_check")]
+script = ExtResource("2_fgck5")
+connect_ui = NodePath("..")
+noray_address_input = NodePath("../Noray/Noray Address Row/Address LineEdit")
+oid_input = NodePath("../Noray/OID Row/OID Value")
+host_oid_input = NodePath("../Noray/Connect Host Row/Host LineEdit")
+force_relay_check = NodePath("../Noray/Connect Actions Row/Force Relay Checkbox")
+
+[connection signal="pressed" from="LAN/Actions Row/Host Button" to="LAN Bootstrapper" method="host"]
+[connection signal="pressed" from="LAN/Actions Row/Join Button" to="LAN Bootstrapper" method="join"]
+[connection signal="pressed" from="Noray/Noray Actions Row/Connect Button" to="Noray Bootstrapper" method="connect_to_noray"]
+[connection signal="pressed" from="Noray/Noray Actions Row/Disconnect Button" to="Noray Bootstrapper" method="disconnect_from_noray"]
+[connection signal="pressed" from="Noray/Connect Actions Row/Host Button" to="Noray Bootstrapper" method="host"]
+[connection signal="pressed" from="Noray/Connect Actions Row/Join Button" to="Noray Bootstrapper" method="join"]
