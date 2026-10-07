@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://dhjo4c6b7xb5c"]
 
+[ext_resource type="Script" uid="uid://bcc28dvk0pufe" path="res://addons/netfox.extras/physics/rapier_driver_2d.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cioc5obgwqwtp" path="res://main_menu/main_menu.tscn" id="2_v3g4g"]
 
-[node name="Game" type="Node" unique_id=364759020]
+[node name="Game" type="Node" unique_id=319265123]
+script = ExtResource("1_0xm2m")
+metadata/_custom_type_script = "uid://bcc28dvk0pufe"
 
 [node name="Main" parent="." unique_id=1120005099 instance=ExtResource("2_v3g4g")]

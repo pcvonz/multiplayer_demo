@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends NetworkRigidBody2D
 
 @export var health = 20
 @export var value = 10
@@ -8,18 +8,17 @@ extends RigidBody2D
 func _ready():
 	timer.timeout.connect(_on_timeout)
 	timer.wait_time = randf_range(30, 50)
-	if not multiplayer.is_server():
-		freeze = true
 
 func _on_timeout():
 	queue_free()
 
 func damage(amount: int):
+	timer.paused = true
 	health -= amount
 
 func explode():
 	queue_free()
 
-func _process(delta):
+func _physics_rollback_tick(_delta, _tick):
 	if health <= 0:
 		explode()

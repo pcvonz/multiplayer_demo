@@ -1,4 +1,4 @@
-class_name Ship extends RigidBody2D
+class_name Ship extends NetworkRigidBody2D
 
 @export var cool_down_time: float = 3.0
 # used for game sync
@@ -14,7 +14,7 @@ class_name Ship extends RigidBody2D
 @onready var explode_scene = preload("res://ship/explode.tscn")
 @onready var progress_bar: ProgressBar = get_node("ProgressBar")
 @onready var cool_down: ProgressBar = get_node("%CoolDown")
-var input: MultiplayerSynchronizer
+var input: PlayerInput
 @onready var anim: AnimationPlayer = get_node("AnimationPlayer")
 @export var player_id = -1
 
@@ -101,21 +101,24 @@ func explode():
 func _on_explode_timeout():
 	queue_free()
 
-func _integrate_forces(state: PhysicsDirectBodyState2D):
+func _physics_rollback_tick(delta: float, tick: float):
 	if !input:
 		return
 	if input.thrust_engaged:
-			var speed_to_add = (Vector2(0, clampf(speed, 0, speed)).rotated(self.rotation))
-			state.linear_velocity -= speed_to_add
+		var speed_to_add = (Vector2(0, clampf(speed, 0, speed)).rotated(self.rotation))
+		linear_velocity -= speed_to_add
 	if input.rotating_port:
-		state.angular_velocity = clampf(state.angular_velocity - angular_speed, -max_angular_speed, max_angular_speed)
+		angular_velocity = clampf(angular_velocity - angular_speed, -max_angular_speed, max_angular_speed)
 	if input.rotating_starboard:
-		state.angular_velocity = clampf(state.angular_velocity + angular_speed, -max_angular_speed, max_angular_speed)
+		angular_velocity = clampf(angular_velocity + angular_speed, -max_angular_speed, max_angular_speed)
 	if input.brake_engaged:
 		var stopping_velocity = (linear_velocity.normalized() * stopping_speed)
 		linear_velocity -= stopping_velocity
-	state.linear_velocity = Vector2(clampf(state.linear_velocity.x, -max_speed, max_speed), clampf(state.linear_velocity.y, -max_speed, max_speed))
-		
+	linear_velocity = Vector2(clampf(linear_velocity.x, -max_speed, max_speed), clampf(linear_velocity.y, -max_speed, max_speed))
+
+func add_input(node: Node, property: String):
+	$RollbackSynchronizer.add_input(node, property)
+	
 func _on_button_pressed():
 	if input == null:
 		take_control.emit(self, multiplayer.get_unique_id())

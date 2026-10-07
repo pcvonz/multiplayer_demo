@@ -15,7 +15,7 @@ navigation_polygon = SubResource("NavigationPolygon_3f78f")
 script = ExtResource("1_e77p4")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1534653577]
-_spawnable_scenes = PackedStringArray("uid://1r5lguti5vfn")
+_spawnable_scenes = PackedStringArray("uid://1r5lguti5vfn", "uid://dsl3txt1ppspq")
 spawn_path = NodePath("../PlayerSpawner")
 spawn_limit = 10
 
@@ -44,24 +44,6 @@ health = 40
 team = 0
 destroyed_texture = null
 
-[node name="asteroid_spawner15" parent="." unique_id=73693318 instance=ExtResource("3_j3m0i")]
-position = Vector2(616, 10691)
-
-[node name="asteroid_spawner2" parent="." unique_id=261421615 instance=ExtResource("3_j3m0i")]
-position = Vector2(574, 4567)
-
-[node name="asteroid_spawner3" parent="." unique_id=1852178759 instance=ExtResource("3_j3m0i")]
-position = Vector2(-3443, 6576)
-
-[node name="asteroid_spawner4" parent="." unique_id=1225698427 instance=ExtResource("3_j3m0i")]
-position = Vector2(650, 6516)
-
-[node name="asteroid_spawner5" parent="." unique_id=182132914 instance=ExtResource("3_j3m0i")]
-position = Vector2(-3292, 3647)
-
-[node name="asteroid_spawner6" parent="." unique_id=524612564 instance=ExtResource("3_j3m0i")]
-position = Vector2(679, 1044)
-
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=577118948]
 position = Vector2(864, 14833)
 color = Color(0.45863247, 0.44766217, 0.5016905, 1)
@@ -80,3 +62,18 @@ position = Vector2(9006, 7422)
 
 [node name="rich_asteroid5" parent="." unique_id=791454400 instance=ExtResource("4_3m0aq")]
 position = Vector2(640, 13207)
+
+[node name="asteroid_spawner" parent="." unique_id=252554438 instance=ExtResource("3_j3m0i")]
+position = Vector2(1067, 14484)
+
+[node name="asteroid_spawner2" parent="." unique_id=742124074 instance=ExtResource("3_j3m0i")]
+position = Vector2(4315, 14399)
+
+[node name="asteroid_spawner3" parent="." unique_id=37496290 instance=ExtResource("3_j3m0i")]
+position = Vector2(-1655, 13915)
+
+[node name="asteroid_spawner4" parent="." unique_id=1536917436 instance=ExtResource("3_j3m0i")]
+position = Vector2(-3400, 11090)
+
+[node name="asteroid_spawner5" parent="." unique_id=224987239 instance=ExtResource("3_j3m0i")]
+position = Vector2(2527, 10752)

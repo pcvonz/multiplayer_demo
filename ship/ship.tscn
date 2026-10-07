@@ -3,35 +3,10 @@
 [ext_resource type="Script" uid="uid://v52xiv8ka3p" path="res://ship/ship.gd" id="1_kbfi8"]
 [ext_resource type="PackedScene" uid="uid://cs1hmnvc3ulyt" path="res://ship/Missile/missile.tscn" id="2_o8v1s"]
 [ext_resource type="PackedScene" uid="uid://cebys673sqrdx" path="res://ship/explode.tscn" id="3_8epct"]
+[ext_resource type="Script" uid="uid://d350u8evihs1u" path="res://addons/netfox/rollback/rollback-synchronizer.gd" id="3_r4tgf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mw1cn"]
 size = Vector2(78, 76)
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3ri7u"]
-properties/0/path = NodePath(".:linear_velocity")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:rotation")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath(".:position")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-properties/3/path = NodePath(".:angular_velocity")
-properties/3/spawn = true
-properties/3/replication_mode = 1
-properties/4/path = NodePath(".:health")
-properties/4/spawn = true
-properties/4/replication_mode = 1
-properties/5/path = NodePath(".:team")
-properties/5/spawn = true
-properties/5/replication_mode = 1
-properties/6/path = NodePath(".:cool_down_time_left")
-properties/6/spawn = true
-properties/6/replication_mode = 1
-properties/7/path = NodePath(".:player_id")
-properties/7/spawn = true
-properties/7/replication_mode = 1
 
 [sub_resource type="Animation" id="Animation_8qjcx"]
 length = 0.001
@@ -55,9 +30,6 @@ missile_scene = ExtResource("2_o8v1s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1414368108]
 shape = SubResource("RectangleShape2D_mw1cn")
-
-[node name="ServerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1708502742]
-replication_config = SubResource("SceneReplicationConfig_3ri7u")
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=902292802]
 offset_left = -1.0
@@ -105,5 +77,12 @@ text = "cool down:   "
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+
+[node name="RollbackSynchronizer" type="Node" parent="." unique_id=1881069352 node_paths=PackedStringArray("root")]
+script = ExtResource("3_r4tgf")
+root = NodePath("..")
+enable_prediction = true
+state_properties = Array[String]([":rotation", ":position", ":health", ":team", ":cool_down_time_left", ":player_id", ":physics_state"])
+metadata/_custom_type_script = "uid://d350u8evihs1u"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

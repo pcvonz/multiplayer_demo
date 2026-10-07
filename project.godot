@@ -32,6 +32,8 @@ Async="*uid://bb1cle7uin2wt"
 Noray="*uid://gu4bv4tgms3x"
 PacketHandshake="*uid://tt3j25a05n7c"
 Lobby="*uid://bavolc4frdaa5"
+WindowTiler="*uid://cmqjajhjgffm1"
+NetworkSimulator="*uid://1y2ey1e6qjwr"
 
 [debug]
 
@@ -39,7 +41,7 @@ gdscript/warnings/unsafe_property_access=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/netfox.internals/plugin.cfg", "res://addons/netfox.noray/plugin.cfg", "res://addons/netfox/plugin.cfg")
+enabled=PackedStringArray("res://addons/netfox.extras/plugin.cfg", "res://addons/netfox.internals/plugin.cfg", "res://addons/netfox.noray/plugin.cfg", "res://addons/netfox/plugin.cfg")
 
 [input]
 
@@ -66,6 +68,7 @@ zoom_out={
 
 [physics]
 
+2d/physics_engine="Rapier2D"
 2d/default_gravity=0.0
 2d/default_linear_damp=0.0
 

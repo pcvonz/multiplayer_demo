@@ -1,17 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://ca1lil8vcesb6"]
+[gd_scene format=3 uid="uid://ca1lil8vcesb6"]
 
-[ext_resource type="Script" path="res://asteroid/asteroid_spawner.gd" id="1_m4x42"]
+[ext_resource type="Script" uid="uid://c1eq8d770gdv6" path="res://asteroid/asteroid_spawner.gd" id="1_m4x42"]
 
-[node name="asteroid_spawner" type="Node2D"]
+[node name="asteroid_spawner" type="Node2D" unique_id=252554438]
 script = ExtResource("1_m4x42")
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://asteroid/asteroid.tscn")
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1956745734]
+_spawnable_scenes = PackedStringArray("uid://cm8jhjmqpdpkk")
 spawn_path = NodePath("..")
-spawn_limit = 200
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
+[node name="Timer" type="Timer" parent="." unique_id=2106253561]
+wait_time = 50.0
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

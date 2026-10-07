@@ -32,8 +32,8 @@ func _on_add_to_spawner(node: Node):
 func spawn_player(id: Variant):
 	Global.players[id].team = team
 	var new_player: Player = preload("res://ship/player.tscn").instantiate()
-	new_player.set_multiplayer_authority(id)
+	new_player.input.set_multiplayer_authority(id)
 	new_player.player_id = id
-	new_player.name = "%s" % id
 	new_player.global_position = get_node("team_%s" % team).global_position
-	$PlayerSpawner.add_child(new_player)
+	# TODO: The take control function doesn't set the input for any user who isn't the server. Which makes it so other user's don't have control over their default ship
+	$PlayerSpawner.add_child(new_player, true)

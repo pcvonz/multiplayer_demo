@@ -2,7 +2,7 @@ class_name Player extends Node2D
 @export var player_name: String
 @onready var camera: Camera2D = $Camera2D
 @onready var unit: Node
-@onready var input: MultiplayerSynchronizer = $PlayerInput
+@export var input: PlayerInput
 
 const CAMERA_SPEED = 6.0
 signal on_add_to_spawner(node: Node)
@@ -12,7 +12,6 @@ signal on_add_to_spawner(node: Node)
 		player_id = id
 		# Give authority over the player input to the appropriate peer.
 		$id.text = "%s" % player_name
-		$PlayerInput.set_multiplayer_authority(id)
 
 func get_player_position() -> Vector2:
 	return camera.global_position
@@ -24,7 +23,7 @@ func _ready():
 	elif camera:
 		camera.enabled = false
 
-func _process(delta):
+func _rollback_tick(delta, tick, is_fresh):
 	if unit and is_instance_valid(unit):
 		camera.global_position = unit.global_position
 	else:
@@ -51,10 +50,16 @@ func take_control(node: NodePath, player_id_requesting_control: int):
 				if player.unit.on_destroyed.is_connected(_on_destroyed):
 					player.unit.on_destroyed.disconnect(_on_destroyed)
 
+			print("SET PLAYER INPUT: %s" % player.name)
 			player.unit = get_node(node)
 			player.unit.input = player.input
+			player.unit.add_input(input, "thrust_engaged")
+			player.unit.add_input(input, "brake_engaged")
+			player.unit.add_input(input, "rotating_starboard")
+			player.unit.add_input(input, "rotating_port")
 
 func _on_take_control(node: Node, player_id_requesting_control: int):
 	take_control.rpc(node.get_path(), player_id_requesting_control)
+	print("Player is taking control: ", player_id_requesting_control, node.get_path())
 	if unit and is_instance_valid(unit):
 		unit.on_destroyed.connect(_on_destroyed)
